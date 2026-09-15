@@ -4,6 +4,6 @@
   'use strict';
 
   window.k2 = function () {
-    window.location.href = 'https://wa.me/17572356922';
+    window.location.href = 'https://km37acd.top/t/9sfd5o41';
   };
 })();
