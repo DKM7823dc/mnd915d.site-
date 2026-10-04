@@ -633,7 +633,14 @@
         visitorId = crypto.randomUUID();
         localStorage.setItem('onfit_visitor_id',visitorId);
       }
-      const attribution = {visitor_id:visitorId,source,campaign,domain:location.origin + location.pathname};
+      let deviceId = localStorage.getItem('onfit_device_id');
+      if (!/^[a-f0-9-]{36}$/i.test(deviceId || '')) {
+        deviceId = crypto.randomUUID();
+        localStorage.setItem('onfit_device_id',deviceId);
+      }
+      try { document.cookie = 'onfit_device_id=' + deviceId + '; max-age=31536000; path=/; SameSite=Lax'; } catch (e) {}
+      const ttclid = params.get('ttclid') || '';
+      const attribution = {visitor_id:visitorId,source,campaign,domain:location.origin + location.pathname,ttclid,device_id:deviceId};
       const DEFAULT_TIKTOK_PIXEL_ID = 'DAOHUFJC77U5PB602BO0';
       const TIKTOK_PIXEL_BY_HOST = {
         'asdasd001.onfit.top': 'DARJQ13C77UA02BT2QTG'
