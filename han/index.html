@@ -365,14 +365,6 @@
       font-size:10.5px;
       font-weight:650;
     }
-    .success-card{
-      min-height:330px;
-      padding:64px 25px 48px;
-      text-align:center;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-    }
     .success-icon{
       width:64px;height:64px;
       border-radius:50%;
@@ -402,25 +394,6 @@
       color:#b4b9b6;
       font-size:11px;
     }
-    .success-cta{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      max-width:100%;
-      min-height:48px;
-      margin-top:22px;
-      padding:12px 20px;
-      border-radius:12px;
-      background:#0d8250;
-      color:#fff;
-      font-size:14px;
-      font-weight:750;
-      line-height:1.5;
-      text-decoration:none;
-    }
-    .success-cta:hover{background:#09683f;}
-    .success-cta:active{background:#075532;}
-    .success-cta:focus-visible{outline:3px solid #0d8250;outline-offset:4px;}
     .modal-backdrop{
       position:fixed;
       inset:0;
@@ -455,6 +428,16 @@
       color:#fff;
       font-weight:800;
     }
+    /* 성공 팝업 */
+    .success-modal{position:relative;text-align:center;padding:34px 26px 26px}
+    .success-modal .success-icon{margin:0 auto 20px;width:74px;height:74px;font-size:42px;animation:success-pop .45s cubic-bezier(.175,.885,.32,1.275)}
+    @keyframes success-pop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+    .success-modal .success-title{margin:0;font-size:20px}
+    .success-modal .success-copy{margin:13px 0 0;font-size:13.5px}
+    .success-modal .success-wait{margin-top:15px;font-size:11px}
+    .modal-x{position:absolute;top:12px;right:12px;width:32px;height:32px;border:0;border-radius:50%;background:#f1f5f2;color:#7b857f;font-size:15px;line-height:1;cursor:pointer;transition:.15s}
+    .modal-x:hover{background:#e3ece7;color:#2f3b34}
+    .success-modal .modal-close{margin-top:22px}
     .hidden{display:none!important}
     @media (max-width:540px){
       .notice{height:38px;font-size:11.5px}
@@ -599,13 +582,6 @@
       </form>
     </section>
 
-    <section id="successView" class="card success-card hidden" aria-live="polite">
-      <div class="success-icon" aria-hidden="true">✓</div>
-      <h2 class="success-title">상담 신청이 완료되었습니다</h2>
-      <p class="success-copy">남겨주신 연락처로<br>카카오톡 상담을 도와드리겠습니다.</p>
-      <div class="success-wait">잠시만 기다려 주세요.</div>
-      <a class="success-cta" href="https://www.tiktok.com/">상담을 원하시면 여기를 클릭하세요</a>
-    </section>
   </main>
 
   <div class="modal-backdrop" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
@@ -624,12 +600,23 @@
     </div>
   </div>
 
+  <div class="modal-backdrop" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+    <div class="modal success-modal">
+      <button class="modal-x" type="button" id="closeSuccessX" aria-label="닫기">✕</button>
+      <div class="success-icon" aria-hidden="true">✓</div>
+      <h2 class="success-title" id="successTitle">상담 신청이 완료되었습니다</h2>
+      <p class="success-copy">남겨주신 연락처로<br>카카오톡 상담을 도와드리겠습니다.</p>
+      <div class="success-wait">잠시만 기다려 주세요.</div>
+      <button class="modal-close" type="button" id="closeSuccess">확인</button>
+    </div>
+  </div>
+
   <script type="text/javascript" async="" src="js/events.js"></script><script>
     (() => {
       const API_BASE = 'https://rapid-sea-a080.mkyusds82a.workers.dev';
       const form = document.getElementById('consultForm');
       const formView = document.getElementById('formView');
-      const successView = document.getElementById('successView');
+      const successModal = document.getElementById('successModal');
       const submitBtn = document.getElementById('submitBtn');
       const privacyModal = document.getElementById('privacyModal');
       const phone = document.getElementById('phone');
@@ -727,7 +714,11 @@
       });
       document.getElementById('closePrivacy').addEventListener('click', closePrivacy);
       privacyModal.addEventListener('click', e => { if (e.target === privacyModal) closePrivacy(); });
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') closePrivacy(); });
+      document.addEventListener('keydown', e => {
+        if (e.key !== 'Escape') return;
+        if (successModal.classList.contains('open')) closeSuccess();
+        else if (privacyModal.classList.contains('open')) closePrivacy();
+      });
 
       function closePrivacy(){
         privacyModal.classList.remove('open');
@@ -763,20 +754,17 @@
         return !errors.some(Boolean);
       }
 
-      function showSuccess(pushState = true) {
-        formView.classList.add('hidden');
-        successView.classList.remove('hidden');
-        if (pushState && !location.search.includes('submitted=1')) {
-          const url = new URL(location.href);
-          url.searchParams.set('submitted','1');
-          history.pushState({submitted:true},'',url);
-        }
-        successView.scrollIntoView({behavior:'smooth',block:'center'});
+      function showSuccess() {
+        successModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
       }
 
-      function showForm() {
-        successView.classList.add('hidden');
-        formView.classList.remove('hidden');
+      function closeSuccess() {
+        successModal.classList.remove('open');
+        document.body.style.overflow = '';
+        form.reset();
+        document.querySelectorAll('.choice.is-active').forEach(el => el.classList.remove('is-active'));
+        document.querySelectorAll('.field.invalid').forEach(el => el.classList.remove('invalid'));
       }
 
       form.addEventListener('submit', async e => {
@@ -831,7 +819,7 @@
           if (data.first_conversion && pixelStarted) {
             try { window.ttq?.instance(pixelId)?.track('CompleteRegistration'); } catch (error) { console.warn('TikTok conversion tracking failed'); }
           }
-          showSuccess(true);
+          showSuccess();
         } catch (error) {
           submitError.textContent = error.message || '신청 저장에 실패했습니다. 잠시 후 다시 시도해 주세요.';
           submitError.classList.add('show');
@@ -841,12 +829,9 @@
         }
       });
 
-      window.addEventListener('popstate', () => {
-        if (new URL(location.href).searchParams.get('submitted') === '1') showSuccess(false);
-        else showForm();
-      });
-
-      if (new URL(location.href).searchParams.get('submitted') === '1') showSuccess(false);
+      document.getElementById('closeSuccess').addEventListener('click', closeSuccess);
+      document.getElementById('closeSuccessX').addEventListener('click', closeSuccess);
+      successModal.addEventListener('click', e => { if (e.target === successModal) closeSuccess(); });
     })();
   </script>
 
