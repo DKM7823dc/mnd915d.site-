@@ -1,0 +1,179 @@
+<!doctype html>
+<!--
+  这是后台管理页面的本地预览版（独立文件，方便直接双击打开看界面）。
+  它和 worker.js 里内嵌的 ADMIN_HTML 是同一份界面，只是这里把 API 地址
+  写成了绝对地址，本地打开也能直接连到已部署的 Worker。
+  正式后台入口： https://rapid-sea-a080.mkyusds82a.workers.dev/admin
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>상담 신청 관리</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#f4f8f6;color:#171b18;font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Noto Sans KR","Microsoft YaHei",sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 14px}
+  h1{font-size:19px;margin:0 0 14px}
+  .card{background:#fff;border:1px solid #dfe8e3;border-radius:14px;padding:22px;box-shadow:0 8px 22px rgba(27,76,51,.06)}
+  #loginView{max-width:360px;margin:12vh auto 0}
+  #loginView label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}
+  #loginView input{width:100%;height:44px;border:1px solid #dce4df;border-radius:10px;padding:0 12px;font-size:14px;outline:0}
+  #loginView input:focus{border-color:#34956a;box-shadow:0 0 0 3px rgba(22,131,80,.09)}
+  .err{color:#d94343;font-size:12px;min-height:16px;margin-top:8px}
+  button.primary{width:100%;height:46px;margin-top:8px;border:0;border-radius:10px;background:linear-gradient(90deg,#0f8150,#0b7043);color:#fff;font-size:14px;font-weight:800;cursor:pointer}
+  .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .top .sp{flex:1}
+  .btn{border:1px solid #d5e0da;background:#fff;color:#2b3a32;border-radius:9px;height:38px;padding:0 14px;font-size:13px;font-weight:700;cursor:pointer}
+  .btn.active{background:#0d7b48;color:#fff;border-color:#0d7b48}
+  .tbl-wrap{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;white-space:nowrap}
+  th,td{padding:9px 10px;border-bottom:1px solid #eef2ef;text-align:left;vertical-align:top}
+  th{background:#f0f7f3;font-size:12px;color:#4c5a52;position:sticky;top:0}
+  td.rmk{max-width:220px;white-space:normal;min-width:150px}
+  .rmk-text{color:#555;display:inline-block;word-break:break-all}
+  .rmk-empty{color:#c2c9c4}
+  .mini{border:1px solid #d5e0da;background:#f7faf8;color:#2b6b4a;border-radius:7px;font-size:11px;padding:3px 8px;cursor:pointer}
+  .mini:hover{background:#e9f4ee}
+  input.rmk-input{width:100%;border:1px solid #34956a;border-radius:7px;padding:5px 8px;font-size:12px;font-family:inherit}
+  .tag{color:#b98a00;font-weight:700}
+  .muted{color:#a2aaa5}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="loginView" class="card">
+    <h1>상담 신청 관리</h1>
+    <label>账号</label>
+    <input id="user" autocomplete="username" placeholder="请输入账号">
+    <label>密码</label>
+    <input id="pass" type="password" autocomplete="current-password" placeholder="请输入密码" onkeydown="if(event.key==='Enter')doLogin()">
+    <div class="err" id="loginError"></div>
+    <button class="primary" onclick="doLogin()">登录</button>
+  </div>
+
+  <div id="listView" style="display:none">
+    <div class="top">
+      <h1 style="margin:0">表单提交记录</h1>
+      <button class="btn" id="btn3" onclick="setRange(3)">最近3天</button>
+      <button class="btn" id="btnAll" onclick="setRange('all')">全部</button>
+      <button class="btn" onclick="loadList()">刷新</button>
+      <button class="btn" onclick="exportCsv()">导出CSV</button>
+      <span class="sp"></span>
+      <span class="muted" id="count"></span>
+      <button class="btn" onclick="logout()">退出</button>
+    </div>
+    <div class="card tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>ID</th><th>提交时间</th><th>姓名</th><th>电话</th><th>目标</th><th>性别</th>
+          <th>年龄</th><th>身高</th><th>体重</th><th>来源</th><th>备注</th><th>标记</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+<script>
+var API = 'https://rapid-sea-a080.mkyusds82a.workers.dev';
+var token = sessionStorage.getItem('token');
+var range = 3;
+if (token) { showList(); loadList(); }
+
+function $(id){ return document.getElementById(id); }
+
+function doLogin(){
+  fetch(API + '/api/login',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({user:$('user').value,pass:$('pass').value})})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d && d.ok){ sessionStorage.setItem('token',d.token); token=d.token; showList(); loadList(); }
+      else $('loginError').textContent = (d && d.error) || '登录失败';
+    })
+    .catch(function(){ $('loginError').textContent = '网络错误'; });
+}
+
+function showList(){
+  $('loginView').style.display='none';
+  $('listView').style.display='block';
+  setRangeBtn();
+}
+
+function setRange(v){ range=v; setRangeBtn(); loadList(); }
+function setRangeBtn(){
+  $('btn3').className = 'btn' + (range===3?' active':'');
+  $('btnAll').className = 'btn' + (range==='all'?' active':'');
+}
+
+function logout(){ sessionStorage.removeItem('token'); location.reload(); }
+
+function authHeaders(){ return {'Authorization':'Bearer '+token}; }
+
+function loadList(){
+  var url = API + '/api/leads?limit=1000' + (range==='all' ? '&all=1' : '');
+  fetch(url,{headers:authHeaders()})
+    .then(function(r){ if(r.status===401){ logout(); return; } return r.json(); })
+    .then(function(d){
+      if(!d || !d.ok) return;
+      $('count').textContent = '共 '+d.count+' 条';
+      render(d.leads);
+    });
+}
+
+function esc(s){
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function render(rows){
+  var tb = $('tbody');
+  tb.innerHTML = '';
+  if(!rows.length){
+    tb.innerHTML = '<tr><td colspan="12" class="muted" style="text-align:center;padding:24px">最近3天暂无提交记录</td></tr>';
+    return;
+  }
+  rows.forEach(function(r){
+    var tr = document.createElement('tr');
+    var rmk = r.remark ? esc(r.remark) : '<span class="rmk-empty">(无)</span>';
+    tr.innerHTML =
+      '<td>'+r.id+'</td>'+
+      '<td>'+esc(r.created_at_cn)+'</td>'+
+      '<td>'+esc(r.name)+'</td>'+
+      '<td>'+esc(r.phone)+'</td>'+
+      '<td>'+esc(r.goal)+'</td>'+
+      '<td>'+esc(r.gender)+'</td>'+
+      '<td>'+r.age+'</td>'+
+      '<td>'+r.height+'</td>'+
+      '<td>'+r.weight+'</td>'+
+      '<td>'+esc(r.source)+'</td>'+
+      '<td class="rmk" data-id="'+r.id+'"><span class="rmk-text">'+rmk+'</span> <button class="mini" onclick="startEdit('+r.id+')">编辑</button></td>'+
+      '<td>'+(r.is_duplicate?'<span class="tag">重复</span>':'')+'</td>';
+    tb.appendChild(tr);
+  });
+}
+
+function startEdit(id){
+  var cell = document.querySelector('td.rmk[data-id="'+id+'"]');
+  if(!cell) return;
+  var cur = cell.querySelector('.rmk-text').textContent;
+  cell.innerHTML = '<input class="rmk-input" id="rmk-in-'+id+'" value="'+esc(cur)+'"> '+
+    '<button class="mini" onclick="saveRmk('+id+')">保存</button> '+
+    '<button class="mini" onclick="loadList()">取消</button>';
+  $('rmk-in-'+id).focus();
+}
+
+function saveRmk(id){
+  var v = $('rmk-in-'+id).value;
+  fetch(API + '/api/leads/'+id,{method:'PATCH',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+    body:JSON.stringify({remark:v})})
+    .then(function(r){return r.json();})
+    .then(function(d){ if(d && d.ok) loadList(); else alert('保存失败'); });
+}
+
+function exportCsv(){
+  location.href = API + '/api/leads?format=csv&all=1&token=' + encodeURIComponent(token);
+}
+</script>
+</body>
+</html>
