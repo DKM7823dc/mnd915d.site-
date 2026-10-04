@@ -1,32 +1,21 @@
 <!doctype html>
 <!--
-  상담 신청 관리 백엔드 (로컬 미리보기용)
-  worker.js 내부 ADMIN_HTML 과 동일한 화면. API 주소는 아래 var API 로 통일.
-  정식 입구: https://rapid-sea-a080.mkyusds82a.workers.dev/admin
+  咨询表单管理后台（本地预览版，与 worker.js 内嵌 ADMIN_HTML 一致）
+  正式入口: https://rapid-sea-a080.mkyusds82a.workers.dev/admin
 -->
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>상담 신청 관리</title>
+<title>咨询表单管理后台</title>
 <style>
-  :root{
-    --g:#0d7b48;--gd:#08683c;--gb:#10945b;--soft:#eaf7ef;
-    --line:#e5ece8;--txt:#1a211c;--mut:#6b756e;--bg:#f3f7f5;
-  }
+  :root{--g:#0d7b48;--gd:#08683c;--gb:#10945b;--soft:#eaf7ef;--line:#e5ece8;--txt:#1a211c;--mut:#6b756e;--bg:#f3f7f5}
   *{box-sizing:border-box}
-  body{
-    margin:0;color:var(--txt);
-    background:
-      radial-gradient(circle at 12% -4%, rgba(29,145,92,.08), transparent 30rem),
-      var(--bg);
-    font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Noto Sans KR","Microsoft YaHei",sans-serif;
-    letter-spacing:-.01em;
-  }
-  .wrap{max-width:1120px;margin:0 auto;padding:26px 16px 56px}
+  body{margin:0;color:var(--txt);background:radial-gradient(circle at 12% -4%,rgba(29,145,92,.08),transparent 30rem),var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;letter-spacing:-.01em}
+  .wrap{max-width:1180px;margin:0 auto;padding:26px 16px 56px}
   .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px rgba(27,76,51,.06)}
 
-  /* 로그인 */
+  /* 登录 */
   .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
   .login-card{width:min(400px,100%);padding:38px 32px 30px}
   .logo{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:8px}
@@ -42,26 +31,31 @@
   .btn-primary{width:100%;height:48px;margin-top:6px;border:0;border-radius:11px;color:#fff;background:linear-gradient(90deg,var(--gb),var(--g));font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 18px rgba(12,113,68,.18);transition:.16s}
   .btn-primary:hover{filter:brightness(1.04);transform:translateY(-1px)}
 
-  /* 헤더 */
-  .header{background:linear-gradient(120deg,#15985b,#0a7d46 55%,#076839);border-radius:16px;padding:20px 24px;color:#fff;display:flex;align-items:center;gap:12px;box-shadow:0 12px 30px rgba(14,111,66,.16)}
-  .header .t{font-size:18px;font-weight:800;letter-spacing:-.02em}
-  .header .s{font-size:12px;color:rgba(255,255,255,.8);margin-top:3px}
-  .header .sp{flex:1}
+  /* 头部 */
+  .header{background:linear-gradient(120deg,#15985b,#0a7d46 55%,#076839);border-radius:16px;padding:18px 22px;color:#fff;box-shadow:0 12px 30px rgba(14,111,66,.16)}
+  .header .t{font-size:19px;font-weight:800;letter-spacing:-.02em}
+  .header .s{font-size:12px;color:rgba(255,255,255,.82);margin-top:3px}
+  .head-row{display:flex;align-items:center;gap:12px}
+  .head-row .sp{flex:1}
   .btn-ghost{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.12);color:#fff;border-radius:9px;height:38px;padding:0 15px;font-size:13px;font-weight:700;cursor:pointer}
   .btn-ghost:hover{background:rgba(255,255,255,.22)}
+  /* 标签 */
+  .tabs{display:flex;gap:8px;margin-top:14px}
+  .tab{border:0;background:rgba(255,255,255,.14);color:rgba(255,255,255,.85);height:38px;padding:0 18px;border-radius:9px;font-size:13.5px;font-weight:700;cursor:pointer}
+  .tab.active{background:#fff;color:var(--g)}
 
-  /* 통계 */
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
-  .stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;align-items:center;gap:14px}
+  /* 统计卡 */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;align-items:center;gap:13px}
   .stat-ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:20px;flex:0 0 auto}
   .stat-ic.g{background:var(--soft);color:var(--g)}
   .stat-ic.y{background:#fff6e0;color:#b98a00}
   .stat-ic.b{background:#e8f1fb;color:#3a6ea8}
-  .stat .v{font-size:22px;font-weight:850;line-height:1.1}
+  .stat-ic.p{background:#f6ecfb;color:#8a4bb5}
+  .stat .v{font-size:21px;font-weight:850;line-height:1.1}
   .stat .k{font-size:12px;color:var(--mut);margin-top:3px}
-  .stat .k small{display:block;font-weight:500;color:#9aa49d;margin-top:2px;font-size:11px}
 
-  /* 툴바 */
+  /* 工具栏 */
   .toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px}
   .toolbar .sp{flex:1}
   .seg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:11px;padding:3px;gap:2px}
@@ -69,9 +63,14 @@
   .seg button.active{background:var(--g);color:#fff;box-shadow:0 4px 10px rgba(13,123,72,.22)}
   .btn{border:1px solid var(--line);background:#fff;color:#2b3a32;border-radius:10px;height:40px;padding:0 15px;font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
   .btn:hover{border-color:#bcd8c9;background:#f7fbf8}
+  .btn.solid{background:var(--g);color:#fff;border-color:var(--g)}
+  .btn.solid:hover{background:var(--gd)}
+  .dlabel{font-size:12.5px;color:var(--mut);font-weight:700}
+  .dinput{height:40px;border:1px solid var(--line);border-radius:10px;padding:0 10px;font-size:13px;color:var(--txt);background:#fff;outline:0}
+  .dinput:focus{border-color:var(--gb)}
   .count-pill{font-size:12.5px;color:var(--mut)}
 
-  /* 테이블 */
+  /* 表格 */
   .tbl-card{margin-top:12px;overflow:hidden}
   .tbl-wrap{overflow-x:auto}
   table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}
@@ -79,7 +78,7 @@
   tbody td{padding:12px 14px;border-bottom:1px solid #eef3f0;vertical-align:top}
   tbody tr:nth-child(even){background:#fafcfb}
   tbody tr:hover{background:#f2f9f5}
-  td.rmk{max-width:240px;white-space:normal;min-width:160px}
+  td.rmk{max-width:230px;white-space:normal;min-width:150px}
   .rmk-text{color:#4b554f;display:inline-block;word-break:break-all}
   .rmk-empty{color:#c2c9c4}
   .mini{border:1px solid #d5e0da;background:#f7faf8;color:var(--g);border-radius:7px;font-size:11px;padding:3px 9px;cursor:pointer;font-weight:700}
@@ -89,10 +88,11 @@
   .tag.new{background:var(--soft);color:var(--g)}
   .empty{text-align:center;color:#9aa49d;padding:40px !important}
   .muted{color:var(--mut)}
-  @media (max-width:640px){
+  .rate{font-weight:800;color:var(--g)}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:#7a847e}
+  @media (max-width:760px){
     .stats{grid-template-columns:1fr 1fr}
-    .stats .stat:last-child{grid-column:1 / -1}
-    .header{flex-wrap:wrap}
+    .head-row{flex-wrap:wrap}
   }
 </style>
 </head>
@@ -101,8 +101,8 @@
 
   <div id="loginView" class="login-wrap">
     <div class="card login-card">
-      <div class="logo"><span class="logo-mark" aria-hidden="true"></span><span>상담 신청 관리</span></div>
-      <p class="login-sub">자연한의원 다이어트 상담 신청 내역</p>
+      <div class="logo"><span class="logo-mark" aria-hidden="true"></span><span>咨询表单管理后台</span></div>
+      <p class="login-sub">减肥咨询申请数据 · 查询与报表统计</p>
       <label class="field-l">账号</label>
       <input class="input" id="user" autocomplete="username" placeholder="请输入账号">
       <label class="field-l">密码</label>
@@ -114,49 +114,82 @@
 
   <div id="listView" style="display:none">
     <div class="header">
-      <div>
-        <div class="t">表单提交记录</div>
-        <div class="s">다이어트 상담 신청 관리 · 로그인 후 최근 3일 기본 조회</div>
+      <div class="head-row">
+        <div>
+          <div class="t">咨询表单管理后台</div>
+          <div class="s">默认查询最近 3 天 · 提交时间均为北京时间 (UTC+8)</div>
+        </div>
+        <div class="sp"></div>
+        <button class="btn-ghost" onclick="logout()">退出登录</button>
       </div>
-      <div class="sp"></div>
-      <button class="btn-ghost" onclick="exportCsv()">导出 CSV</button>
-      <button class="btn-ghost" onclick="logout()">退出</button>
-    </div>
-
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-ic g">📋</div>
-        <div><div class="v" id="stTotal">0</div><div class="k">当前记录</div></div>
-      </div>
-      <div class="stat">
-        <div class="stat-ic y">🔁</div>
-        <div><div class="v" id="stDup">0</div><div class="k">重复提交</div></div>
-      </div>
-      <div class="stat">
-        <div class="stat-ic b">🕒</div>
-        <div><div class="v" id="stLatest" style="font-size:15px">—</div><div class="k">最新提交<small>北京时间 (UTC+8)</small></div></div>
+      <div class="tabs">
+        <button class="tab active" id="tabLeads" onclick="switchTab('leads')">表单查询</button>
+        <button class="tab" id="tabStats" onclick="switchTab('stats')">报表统计</button>
       </div>
     </div>
 
-    <div class="toolbar">
-      <div class="seg">
-        <button id="btn3" onclick="setRange(3)">最近3天</button>
-        <button id="btnAll" onclick="setRange('all')">全部</button>
+    <!-- 表单查询 -->
+    <div id="panelLeads">
+      <div class="stats">
+        <div class="stat"><div class="stat-ic g">📋</div><div><div class="v" id="stTotal">0</div><div class="k">当前记录</div></div></div>
+        <div class="stat"><div class="stat-ic y">🔁</div><div><div class="v" id="stDup">0</div><div class="k">重复提交</div></div></div>
+        <div class="stat"><div class="stat-ic b">🕒</div><div><div class="v" id="stLatest" style="font-size:15px">—</div><div class="k">最新提交时间</div></div></div>
+        <div class="stat"><div class="stat-ic p">🌐</div><div><div class="v" id="stDomain" style="font-size:14px">—</div><div class="k">来源域名数</div></div></div>
       </div>
-      <button class="btn" onclick="loadList()">⟳ 刷新</button>
-      <span class="sp"></span>
-      <span class="count-pill" id="count"></span>
+
+      <div class="toolbar">
+        <div class="seg">
+          <button id="btn3" onclick="setRange('3')">最近3天</button>
+          <button id="btnAll" onclick="setRange('all')">全部</button>
+        </div>
+        <span class="dlabel">按日期查询</span>
+        <input type="date" class="dinput" id="datePick" onchange="setRange(this.value)">
+        <button class="btn solid" onclick="loadList()">查询</button>
+        <span class="sp"></span>
+        <span class="count-pill" id="count"></span>
+      </div>
+
+      <div class="card tbl-card">
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr>
+              <th>ID</th><th>提交时间</th><th>姓名</th><th>电话</th><th>目标</th><th>性别</th>
+              <th>年龄</th><th>身高</th><th>体重</th><th>广告来源</th><th>来源域名</th><th>提交IP</th><th>备注</th><th>标记</th>
+            </tr></thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
-    <div class="card tbl-card">
-      <div class="tbl-wrap">
-        <table>
-          <thead><tr>
-            <th>ID</th><th>提交时间</th><th>姓名</th><th>电话</th><th>目标</th><th>性别</th>
-            <th>年龄</th><th>身高</th><th>体重</th><th>来源</th><th>备注</th><th>标记</th>
-          </tr></thead>
-          <tbody id="tbody"></tbody>
-        </table>
+    <!-- 报表统计 -->
+    <div id="panelStats" style="display:none">
+      <div class="stats">
+        <div class="stat"><div class="stat-ic g">👁</div><div><div class="v" id="rpVisits">0</div><div class="k">浏览次数</div></div></div>
+        <div class="stat"><div class="stat-ic b">👤</div><div><div class="v" id="rpVisitors">0</div><div class="k">独立访客</div></div></div>
+        <div class="stat"><div class="stat-ic y">📝</div><div><div class="v" id="rpLeads">0</div><div class="k">提交表单</div></div></div>
+        <div class="stat"><div class="stat-ic p">📈</div><div><div class="v" id="rpRate">—</div><div class="k">转化率</div></div></div>
+      </div>
+
+      <div class="toolbar">
+        <span class="dlabel">开始日期</span>
+        <input type="date" class="dinput" id="statsStart">
+        <span class="dlabel">结束日期</span>
+        <input type="date" class="dinput" id="statsEnd">
+        <button class="btn solid" onclick="loadStats()">查询</button>
+        <span class="sp"></span>
+        <span class="count-pill" id="statsCount"></span>
+      </div>
+
+      <div class="card tbl-card">
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr>
+              <th>日期</th><th>来源域名</th><th>浏览次数</th><th>独立访客</th><th>提交表单</th><th>转化率</th>
+            </tr></thead>
+            <tbody id="statsBody"></tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -165,11 +198,14 @@
 <script>
 var API = 'https://rapid-sea-a080.mkyusds82a.workers.dev';
 var token = sessionStorage.getItem('token');
-var range = 3;
+var range = '3';
 if (token) { showList(); loadList(); }
 
 function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function authHeaders(){ return {'Authorization':'Bearer '+token}; }
 
+// ── 登录 ──────────────────────────────
 function doLogin(){
   fetch(API + '/api/login',{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({user:$('user').value,pass:$('pass').value})})
@@ -180,6 +216,7 @@ function doLogin(){
     })
     .catch(function(){ $('loginError').textContent = '网络错误'; });
 }
+function logout(){ sessionStorage.removeItem('token'); location.reload(); }
 
 function showList(){
   $('loginView').style.display='none';
@@ -187,17 +224,26 @@ function showList(){
   setRangeBtn();
 }
 
-function setRange(v){ range=v; setRangeBtn(); loadList(); }
-function setRangeBtn(){
-  $('btn3').className = range===3 ? 'active' : '';
-  $('btnAll').className = range==='all' ? 'active' : '';
+function switchTab(t){
+  $('tabLeads').className = t==='leads' ? 'tab active' : 'tab';
+  $('tabStats').className = t==='stats' ? 'tab active' : 'tab';
+  $('panelLeads').style.display = t==='leads' ? '' : 'none';
+  $('panelStats').style.display = t==='stats' ? '' : 'none';
+  if(t==='stats') loadStats();
 }
 
-function logout(){ sessionStorage.removeItem('token'); location.reload(); }
-function authHeaders(){ return {'Authorization':'Bearer '+token}; }
+// ── 表单查询 ──────────────────────────
+function setRange(v){ range=v; setRangeBtn(); loadList(); }
+function setRangeBtn(){
+  $('btn3').className = range==='3' ? 'active' : '';
+  $('btnAll').className = range==='all' ? 'active' : '';
+  if(range!=='3' && range!=='all' && $('datePick').value !== range) $('datePick').value = range;
+}
 
 function loadList(){
-  var url = API + '/api/leads?limit=1000' + (range==='all' ? '&all=1' : '');
+  var url = API + '/api/leads?limit=2000';
+  if(range==='all') url += '&all=1';
+  else if(range!=='3' && range) url += '&date=' + encodeURIComponent(range);
   fetch(url,{headers:authHeaders()})
     .then(function(r){ if(r.status===401){ logout(); return; } return r.json(); })
     .then(function(d){
@@ -207,25 +253,24 @@ function loadList(){
     });
 }
 
-function esc(s){
-  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
 function render(rows){
   var tb = $('tbody');
   tb.innerHTML = '';
-
   var dup = rows.filter(function(r){ return r.is_duplicate; }).length;
+  var doms = {};
+  rows.forEach(function(r){ if(r.domain) doms[r.domain]=1; });
   $('stTotal').textContent = rows.length;
   $('stDup').textContent = dup;
   $('stLatest').textContent = rows.length ? rows[0].created_at_cn : '—';
+  $('stDomain').textContent = Object.keys(doms).length;
 
   if(!rows.length){
-    tb.innerHTML = '<tr><td colspan="12" class="empty">最近3天暂无提交记录</td></tr>';
+    tb.innerHTML = '<tr><td colspan="14" class="empty">暂无提交记录</td></tr>';
     return;
   }
   rows.forEach(function(r){
     var tr = document.createElement('tr');
+    var gender = r.gender==='여성' ? '女' : (r.gender==='남성' ? '男' : esc(r.gender));
     var rmk = r.remark ? esc(r.remark) : '<span class="rmk-empty">(无)</span>';
     tr.innerHTML =
       '<td class="muted">'+r.id+'</td>'+
@@ -233,11 +278,13 @@ function render(rows){
       '<td><b>'+esc(r.name)+'</b></td>'+
       '<td>'+esc(r.phone)+'</td>'+
       '<td>'+esc(r.goal)+'</td>'+
-      '<td>'+esc(r.gender)+'</td>'+
+      '<td>'+gender+'</td>'+
       '<td>'+r.age+'</td>'+
       '<td>'+r.height+'</td>'+
       '<td>'+r.weight+'</td>'+
       '<td>'+esc(r.source)+'</td>'+
+      '<td class="mono">'+(r.domain ? esc(r.domain) : '—')+'</td>'+
+      '<td class="mono">'+(r.ip ? esc(r.ip) : '—')+'</td>'+
       '<td class="rmk" data-id="'+r.id+'"><span class="rmk-text">'+rmk+'</span> <button class="mini" onclick="startEdit('+r.id+')">编辑</button></td>'+
       '<td>'+(r.is_duplicate ? '<span class="tag">重复</span>' : '<span class="tag new">新</span>')+'</td>';
     tb.appendChild(tr);
@@ -253,7 +300,6 @@ function startEdit(id){
     '<button class="mini" onclick="loadList()">取消</button>';
   $('rmk-in-'+id).focus();
 }
-
 function saveRmk(id){
   var v = $('rmk-in-'+id).value;
   fetch(API + '/api/leads/'+id,{method:'PATCH',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
@@ -262,9 +308,55 @@ function saveRmk(id){
     .then(function(d){ if(d && d.ok) loadList(); else alert('保存失败'); });
 }
 
-function exportCsv(){
-  location.href = API + '/api/leads?format=csv&all=1&token=' + encodeURIComponent(token);
+// ── 报表统计 ──────────────────────────
+function initStatsDates(){
+  var end = new Date(); var start = new Date(Date.now()-6*86400000);
+  function dstr(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+  $('statsEnd').value = dstr(end);
+  $('statsStart').value = dstr(start);
 }
+function loadStats(){
+  var start = $('statsStart').value, end = $('statsEnd').value;
+  var url = API + '/api/stats';
+  var q = [];
+  if(start) q.push('start='+encodeURIComponent(start));
+  if(end) q.push('end='+encodeURIComponent(end));
+  if(q.length) url += '?' + q.join('&');
+  fetch(url,{headers:authHeaders()})
+    .then(function(r){ if(r.status===401){ logout(); return; } return r.json(); })
+    .then(function(d){
+      if(!d || !d.ok) return;
+      renderStats(d.rows, d.totals);
+    });
+}
+function renderStats(rows, totals){
+  $('statsCount').textContent = '共 ' + (rows?rows.length:0) + ' 组';
+  if(totals){
+    $('rpVisits').textContent = totals.visits;
+    $('rpVisitors').textContent = totals.visitors;
+    $('rpLeads').textContent = totals.leads;
+    $('rpRate').textContent = totals.visitors>0 ? (totals.leads/totals.visitors*100).toFixed(1)+'%' : '—';
+  }
+  var tb = $('statsBody');
+  tb.innerHTML = '';
+  if(!rows || !rows.length){
+    tb.innerHTML = '<tr><td colspan="6" class="empty">暂无统计数据</td></tr>';
+    return;
+  }
+  rows.forEach(function(r){
+    var tr = document.createElement('tr');
+    var rate = r.visitors>0 ? (r.leads/r.visitors*100).toFixed(1)+'%' : '—';
+    tr.innerHTML =
+      '<td>'+esc(r.date)+'</td>'+
+      '<td class="mono">'+(r.domain ? esc(r.domain) : '(无域名)')+'</td>'+
+      '<td>'+r.visits+'</td>'+
+      '<td>'+r.visitors+'</td>'+
+      '<td>'+r.leads+'</td>'+
+      '<td class="rate">'+rate+'</td>';
+    tb.appendChild(tr);
+  });
+}
+initStatsDates();
 </script>
 </body>
 </html>
