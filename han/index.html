@@ -633,7 +633,7 @@
         visitorId = crypto.randomUUID();
         localStorage.setItem('onfit_visitor_id',visitorId);
       }
-      const attribution = {visitor_id:visitorId,source,campaign,domain:location.hostname};
+      const attribution = {visitor_id:visitorId,source,campaign,domain:location.origin + location.pathname};
       const DEFAULT_TIKTOK_PIXEL_ID = 'DAOHUFJC77U5PB602BO0';
       const TIKTOK_PIXEL_BY_HOST = {
         'asdasd001.onfit.top': 'DARJQ13C77UA02BT2QTG'

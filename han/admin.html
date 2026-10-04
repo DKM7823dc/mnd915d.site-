@@ -11,12 +11,11 @@
 <style>
   :root{--g:#0d7b48;--gd:#08683c;--gb:#10945b;--soft:#eaf7ef;--line:#e5ece8;--txt:#1a211c;--mut:#6b756e;--bg:#f3f7f5}
   *{box-sizing:border-box}
-  body{margin:0;color:var(--txt);background:radial-gradient(circle at 12% -4%,rgba(29,145,92,.08),transparent 30rem),var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;letter-spacing:-.01em}
-  .wrap{max-width:1180px;margin:0 auto;padding:26px 16px 56px}
-  .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px rgba(27,76,51,.06)}
+  body{margin:0;color:var(--txt);background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;letter-spacing:-.01em}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(27,76,51,.05)}
 
-  /* 登录 */
-  .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+  /* ── 登录 ── */
+  .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(circle at 12% -4%,rgba(29,145,92,.08),transparent 30rem),var(--bg)}
   .login-card{width:min(400px,100%);padding:38px 32px 30px}
   .logo{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:8px}
   .logo-mark{position:relative;width:16px;height:16px;border-radius:50% 50% 46% 50%;background:var(--g);transform:rotate(-35deg);flex:0 0 auto}
@@ -31,21 +30,33 @@
   .btn-primary{width:100%;height:48px;margin-top:6px;border:0;border-radius:11px;color:#fff;background:linear-gradient(90deg,var(--gb),var(--g));font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 18px rgba(12,113,68,.18);transition:.16s}
   .btn-primary:hover{filter:brightness(1.04);transform:translateY(-1px)}
 
-  /* 头部 */
-  .header{background:linear-gradient(120deg,#15985b,#0a7d46 55%,#076839);border-radius:16px;padding:18px 22px;color:#fff;box-shadow:0 12px 30px rgba(14,111,66,.16)}
-  .header .t{font-size:19px;font-weight:800;letter-spacing:-.02em}
-  .header .s{font-size:12px;color:rgba(255,255,255,.82);margin-top:3px}
-  .head-row{display:flex;align-items:center;gap:12px}
-  .head-row .sp{flex:1}
-  .btn-ghost{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.12);color:#fff;border-radius:9px;height:38px;padding:0 15px;font-size:13px;font-weight:700;cursor:pointer}
-  .btn-ghost:hover{background:rgba(255,255,255,.22)}
-  /* 标签 */
-  .tabs{display:flex;gap:8px;margin-top:14px}
-  .tab{border:0;background:rgba(255,255,255,.14);color:rgba(255,255,255,.85);height:38px;padding:0 18px;border-radius:9px;font-size:13.5px;font-weight:700;cursor:pointer}
-  .tab.active{background:#fff;color:var(--g)}
+  /* ── 后台布局：左侧菜单 + 右侧内容 ── */
+  .app{display:flex;min-height:100vh}
+  .sidebar{width:232px;flex:0 0 auto;background:linear-gradient(180deg,#0a5c39,#076036);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+  .brand{display:flex;align-items:center;gap:10px;padding:22px 20px 20px}
+  .brand .logo-mark{background:#fff}
+  .brand .logo-mark:after{background:var(--g)}
+  .brand-t{font-size:15px;font-weight:800;letter-spacing:-.01em}
+  .brand-s{font-size:10.5px;color:rgba(255,255,255,.55);margin-top:2px;letter-spacing:.02em}
+  .nav{flex:1;padding:8px 12px}
+  .nav-label{font-size:10.5px;color:rgba(255,255,255,.45);padding:10px 12px 6px;text-transform:uppercase;letter-spacing:.08em}
+  .menu{display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:10px;font-size:13.5px;font-weight:700;color:rgba(255,255,255,.82);cursor:pointer;margin-bottom:4px;transition:.14s}
+  .menu:hover{background:rgba(255,255,255,.08);color:#fff}
+  .menu.active{background:#fff;color:var(--gd);box-shadow:0 6px 16px rgba(0,0,0,.18)}
+  .menu .ic{font-size:16px;width:20px;text-align:center}
+  .side-foot{padding:16px 12px;border-top:1px solid rgba(255,255,255,.14)}
+  .logout-btn{width:100%;display:flex;align-items:center;gap:11px;padding:11px 13px;border:0;border-radius:10px;background:transparent;color:rgba(255,255,255,.75);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+  .logout-btn:hover{background:rgba(255,255,255,.1);color:#fff}
+  .logout-btn .ic{font-size:15px;width:20px;text-align:center}
+
+  .main{flex:1;min-width:0;padding:24px 26px 48px}
+  .topbar{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+  .topbar h1{font-size:20px;font-weight:850;margin:0;letter-spacing:-.02em}
+  .topbar .sub{font-size:12.5px;color:var(--mut);margin-top:2px}
+  .topbar .sp{flex:1}
 
   /* 统计卡 */
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
   .stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;align-items:center;gap:13px}
   .stat-ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:20px;flex:0 0 auto}
   .stat-ic.g{background:var(--soft);color:var(--g)}
@@ -90,15 +101,29 @@
   .muted{color:var(--mut)}
   .rate{font-weight:800;color:var(--g)}
   .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:#7a847e}
+  .info-box{background:#eef7f1;border:1px solid #cfe7d8;border-radius:12px;padding:14px 16px;font-size:12.5px;line-height:1.75;color:#3c5a48;margin-bottom:14px}
+  .info-box b{color:var(--gd)}
+  .formula{display:inline-block;background:#fff;border:1px solid #cfe7d8;border-radius:7px;padding:2px 9px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:var(--gd);margin:0 3px}
+
   @media (max-width:760px){
+    .app{flex-direction:column}
+    .sidebar{width:100%;height:auto;position:static;flex-direction:row;align-items:center;padding:0 12px}
+    .brand{padding:12px 6px}
+    .brand-s{display:none}
+    .nav{display:flex;flex:1;padding:0;gap:4px}
+    .nav-label{display:none}
+    .menu{padding:9px 12px;margin:0}
+    .side-foot{border-top:0;padding:0 4px}
+    .logout-btn{padding:9px 10px}
+    .logout-btn span{display:none}
+    .main{padding:18px 14px 40px}
     .stats{grid-template-columns:1fr 1fr}
-    .head-row{flex-wrap:wrap}
   }
 </style>
 </head>
 <body>
-<div class="wrap">
 
+  <!-- 登录 -->
   <div id="loginView" class="login-wrap">
     <div class="card login-card">
       <div class="logo"><span class="logo-mark" aria-hidden="true"></span><span>咨询表单管理后台</span></div>
@@ -112,94 +137,111 @@
     </div>
   </div>
 
-  <div id="listView" style="display:none">
-    <div class="header">
-      <div class="head-row">
-        <div>
-          <div class="t">咨询表单管理后台</div>
-          <div class="s">默认查询最近 3 天 · 提交时间均为北京时间 (UTC+8)</div>
-        </div>
+  <!-- 后台 -->
+  <div id="app" class="app" style="display:none">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <div><div class="brand-t">咨询管理后台</div><div class="brand-s">CONSULTATION ADMIN</div></div>
+      </div>
+      <nav class="nav">
+        <div class="nav-label">数据管理</div>
+        <div class="menu active" data-menu="leads" onclick="switchTab('leads')"><span class="ic">📋</span><span>表单查询</span></div>
+        <div class="menu" data-menu="stats" onclick="switchTab('stats')"><span class="ic">📊</span><span>报表统计</span></div>
+      </nav>
+      <div class="side-foot">
+        <button class="logout-btn" onclick="logout()"><span class="ic">⎋</span><span>退出登录</span></button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div><h1 id="pageTitle">表单查询</h1><div class="sub" id="pageSub">默认查询最近 3 天 · 提交时间均为北京时间 (UTC+8)</div></div>
         <div class="sp"></div>
-        <button class="btn-ghost" onclick="logout()">退出登录</button>
-      </div>
-      <div class="tabs">
-        <button class="tab active" id="tabLeads" onclick="switchTab('leads')">表单查询</button>
-        <button class="tab" id="tabStats" onclick="switchTab('stats')">报表统计</button>
-      </div>
-    </div>
-
-    <!-- 表单查询 -->
-    <div id="panelLeads">
-      <div class="stats">
-        <div class="stat"><div class="stat-ic g">📋</div><div><div class="v" id="stTotal">0</div><div class="k">当前记录</div></div></div>
-        <div class="stat"><div class="stat-ic y">🔁</div><div><div class="v" id="stDup">0</div><div class="k">重复提交</div></div></div>
-        <div class="stat"><div class="stat-ic b">🕒</div><div><div class="v" id="stLatest" style="font-size:15px">—</div><div class="k">最新提交时间</div></div></div>
-        <div class="stat"><div class="stat-ic p">🌐</div><div><div class="v" id="stDomain" style="font-size:14px">—</div><div class="k">来源域名数</div></div></div>
+        <button class="btn" onclick="loadList()">⟳ 刷新</button>
       </div>
 
-      <div class="toolbar">
-        <div class="seg">
-          <button id="btn3" onclick="setRange('3')">最近3天</button>
-          <button id="btnAll" onclick="setRange('all')">全部</button>
+      <!-- 表单查询 -->
+      <div id="panelLeads">
+        <div class="stats">
+          <div class="stat"><div class="stat-ic g">📋</div><div><div class="v" id="stTotal">0</div><div class="k">当前记录</div></div></div>
+          <div class="stat"><div class="stat-ic y">🔁</div><div><div class="v" id="stDup">0</div><div class="k">重复提交</div></div></div>
+          <div class="stat"><div class="stat-ic b">🕒</div><div><div class="v" id="stLatest" style="font-size:15px">—</div><div class="k">最新提交时间</div></div></div>
+          <div class="stat"><div class="stat-ic p">🌐</div><div><div class="v" id="stDomain" style="font-size:14px">—</div><div class="k">来源URL数</div></div></div>
         </div>
-        <span class="dlabel">按日期查询</span>
-        <input type="date" class="dinput" id="datePick" onchange="setRange(this.value)">
-        <button class="btn solid" onclick="loadList()">查询</button>
-        <span class="sp"></span>
-        <span class="count-pill" id="count"></span>
-      </div>
 
-      <div class="card tbl-card">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr>
-              <th>ID</th><th>提交时间</th><th>姓名</th><th>电话</th><th>目标</th><th>性别</th>
-              <th>年龄</th><th>身高</th><th>体重</th><th>广告来源</th><th>来源域名</th><th>提交IP</th><th>备注</th><th>标记</th>
-            </tr></thead>
-            <tbody id="tbody"></tbody>
-          </table>
+        <div class="toolbar">
+          <div class="seg">
+            <button id="btn3" onclick="setRange('3')">最近3天</button>
+            <button id="btnAll" onclick="setRange('all')">全部</button>
+          </div>
+          <span class="dlabel">按日期查询</span>
+          <input type="date" class="dinput" id="datePick" onchange="setRange(this.value)">
+          <button class="btn solid" onclick="loadList()">查询</button>
+          <span class="sp"></span>
+          <span class="count-pill" id="count"></span>
+        </div>
+
+        <div class="card tbl-card">
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr>
+                <th>ID</th><th>提交时间</th><th>姓名</th><th>电话</th><th>目标</th><th>性别</th>
+                <th>年龄</th><th>身高</th><th>体重</th><th>广告来源</th><th>来源URL</th><th>提交IP</th><th>备注</th><th>标记</th>
+              </tr></thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- 报表统计 -->
-    <div id="panelStats" style="display:none">
-      <div class="stats">
-        <div class="stat"><div class="stat-ic g">👁</div><div><div class="v" id="rpVisits">0</div><div class="k">浏览次数</div></div></div>
-        <div class="stat"><div class="stat-ic b">👤</div><div><div class="v" id="rpVisitors">0</div><div class="k">独立访客</div></div></div>
-        <div class="stat"><div class="stat-ic y">📝</div><div><div class="v" id="rpLeads">0</div><div class="k">提交表单</div></div></div>
-        <div class="stat"><div class="stat-ic p">📈</div><div><div class="v" id="rpRate">—</div><div class="k">转化率</div></div></div>
-      </div>
+      <!-- 报表统计 -->
+      <div id="panelStats" style="display:none">
+        <div class="info-box">
+          💡 <b>转化率说明：</b>转化率 = <span class="formula">提交表单数 ÷ 独立访客数 × 100%</span>。<br>
+          例如：100 位独立访客中有 20 人提交了表单，转化率 = 20 ÷ 100 = <b>20%</b>。<br>
+          说明：页面每刷新一次「浏览次数」+1；同一人多次刷新，「独立访客」仍只算 1 次。
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="stat-ic g">👁</div><div><div class="v" id="rpVisits">0</div><div class="k">浏览次数</div></div></div>
+          <div class="stat"><div class="stat-ic b">👤</div><div><div class="v" id="rpVisitors">0</div><div class="k">独立访客</div></div></div>
+          <div class="stat"><div class="stat-ic y">📝</div><div><div class="v" id="rpLeads">0</div><div class="k">提交表单</div></div></div>
+          <div class="stat"><div class="stat-ic p">📈</div><div><div class="v" id="rpRate">—</div><div class="k">转化率</div></div></div>
+        </div>
 
-      <div class="toolbar">
-        <span class="dlabel">开始日期</span>
-        <input type="date" class="dinput" id="statsStart">
-        <span class="dlabel">结束日期</span>
-        <input type="date" class="dinput" id="statsEnd">
-        <button class="btn solid" onclick="loadStats()">查询</button>
-        <span class="sp"></span>
-        <span class="count-pill" id="statsCount"></span>
-      </div>
+        <div class="toolbar">
+          <div class="seg">
+            <button id="gDate" class="active" onclick="setGroup('date')">按日期</button>
+            <button id="gUrl" onclick="setGroup('url')">按来源URL</button>
+          </div>
+          <span class="dlabel">开始日期</span>
+          <input type="date" class="dinput" id="statsStart">
+          <span class="dlabel">结束日期</span>
+          <input type="date" class="dinput" id="statsEnd">
+          <button class="btn solid" onclick="loadStats()">查询</button>
+          <span class="sp"></span>
+          <span class="count-pill" id="statsCount"></span>
+        </div>
 
-      <div class="card tbl-card">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr>
-              <th>日期</th><th>来源域名</th><th>浏览次数</th><th>独立访客</th><th>提交表单</th><th>转化率</th>
-            </tr></thead>
-            <tbody id="statsBody"></tbody>
-          </table>
+        <div class="card tbl-card">
+          <div class="tbl-wrap">
+            <table>
+              <thead id="statsHead"><tr>
+                <th>日期</th><th>来源URL</th><th>浏览次数</th><th>独立访客</th><th>提交表单</th><th>转化率</th>
+              </tr></thead>
+              <tbody id="statsBody"></tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   </div>
 
-</div>
 <script>
 var API = 'https://rapid-sea-a080.mkyusds82a.workers.dev';
 var token = sessionStorage.getItem('token');
 var range = '3';
-if (token) { showList(); loadList(); }
+if (token) { showApp(); loadList(); }
 
 function $(id){ return document.getElementById(id); }
 function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -211,24 +253,26 @@ function doLogin(){
     body:JSON.stringify({user:$('user').value,pass:$('pass').value})})
     .then(function(r){return r.json();})
     .then(function(d){
-      if(d && d.ok){ sessionStorage.setItem('token',d.token); token=d.token; showList(); loadList(); }
+      if(d && d.ok){ sessionStorage.setItem('token',d.token); token=d.token; showApp(); loadList(); }
       else $('loginError').textContent = (d && d.error) || '登录失败';
     })
     .catch(function(){ $('loginError').textContent = '网络错误'; });
 }
 function logout(){ sessionStorage.removeItem('token'); location.reload(); }
 
-function showList(){
+function showApp(){
   $('loginView').style.display='none';
-  $('listView').style.display='block';
+  $('app').style.display='flex';
   setRangeBtn();
 }
 
+// ── 左侧菜单切换 ──────────────────────
 function switchTab(t){
-  $('tabLeads').className = t==='leads' ? 'tab active' : 'tab';
-  $('tabStats').className = t==='stats' ? 'tab active' : 'tab';
+  document.querySelectorAll('.menu').forEach(function(el){ el.classList.toggle('active', el.dataset.menu===t); });
   $('panelLeads').style.display = t==='leads' ? '' : 'none';
   $('panelStats').style.display = t==='stats' ? '' : 'none';
+  $('pageTitle').textContent = t==='leads' ? '表单查询' : '报表统计';
+  $('pageSub').textContent = t==='leads' ? '默认查询最近 3 天 · 提交时间均为北京时间 (UTC+8)' : '按日期与来源URL统计 · 转化率 = 表单数 ÷ 独立访客';
   if(t==='stats') loadStats();
 }
 
@@ -310,26 +354,23 @@ function saveRmk(id){
 
 // ── 报表统计 ──────────────────────────
 function initStatsDates(){
-  var end = new Date(); var start = new Date(Date.now()-6*86400000);
   function dstr(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
-  $('statsEnd').value = dstr(end);
-  $('statsStart').value = dstr(start);
+  $('statsEnd').value = dstr(new Date());
+  $('statsStart').value = dstr(new Date(Date.now()-6*86400000));
 }
+var group = 'date';
+function setGroup(v){ group=v; $('gDate').className = group==='date' ? 'active' : ''; $('gUrl').className = group==='url' ? 'active' : ''; loadStats(); }
 function loadStats(){
   var start = $('statsStart').value, end = $('statsEnd').value;
-  var url = API + '/api/stats';
-  var q = [];
+  var url = API + '/api/stats', q = ['group=' + group];
   if(start) q.push('start='+encodeURIComponent(start));
   if(end) q.push('end='+encodeURIComponent(end));
-  if(q.length) url += '?' + q.join('&');
+  url += '?' + q.join('&');
   fetch(url,{headers:authHeaders()})
     .then(function(r){ if(r.status===401){ logout(); return; } return r.json(); })
-    .then(function(d){
-      if(!d || !d.ok) return;
-      renderStats(d.rows, d.totals);
-    });
+    .then(function(d){ if(!d || !d.ok) return; renderStats(d.rows, d.totals, d.byUrl); });
 }
-function renderStats(rows, totals){
+function renderStats(rows, totals, byUrl){
   $('statsCount').textContent = '共 ' + (rows?rows.length:0) + ' 组';
   if(totals){
     $('rpVisits').textContent = totals.visits;
@@ -337,17 +378,21 @@ function renderStats(rows, totals){
     $('rpLeads').textContent = totals.leads;
     $('rpRate').textContent = totals.visitors>0 ? (totals.leads/totals.visitors*100).toFixed(1)+'%' : '—';
   }
+  $('statsHead').innerHTML = byUrl
+    ? '<tr><th>来源URL</th><th>浏览次数</th><th>独立访客</th><th>提交表单</th><th>转化率</th></tr>'
+    : '<tr><th>日期</th><th>来源URL</th><th>浏览次数</th><th>独立访客</th><th>提交表单</th><th>转化率</th></tr>';
   var tb = $('statsBody');
   tb.innerHTML = '';
+  var col = byUrl ? 5 : 6;
   if(!rows || !rows.length){
-    tb.innerHTML = '<tr><td colspan="6" class="empty">暂无统计数据</td></tr>';
+    tb.innerHTML = '<tr><td colspan="'+col+'" class="empty">暂无统计数据</td></tr>';
     return;
   }
   rows.forEach(function(r){
     var tr = document.createElement('tr');
     var rate = r.visitors>0 ? (r.leads/r.visitors*100).toFixed(1)+'%' : '—';
     tr.innerHTML =
-      '<td>'+esc(r.date)+'</td>'+
+      (byUrl ? '' : '<td>'+esc(r.date)+'</td>') +
       '<td class="mono">'+(r.domain ? esc(r.domain) : '(无域名)')+'</td>'+
       '<td>'+r.visits+'</td>'+
       '<td>'+r.visitors+'</td>'+
