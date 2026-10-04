@@ -118,6 +118,11 @@
   .switch .slider:before{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
   .switch input:checked + .slider{background:var(--g)}
   .switch input:checked + .slider:before{transform:translateX(20px)}
+  .toast{position:fixed;top:22px;left:50%;transform:translate(-50%,-10px);background:var(--g);color:#fff;padding:13px 24px;border-radius:11px;font-size:14px;font-weight:800;box-shadow:0 12px 32px rgba(13,123,72,.4);z-index:300;opacity:0;pointer-events:none;transition:.25s ease}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  .toast.err{background:#d94343;box-shadow:0 12px 32px rgba(217,67,67,.4)}
+  .num-input{width:62px;height:30px;border:1px solid var(--line);border-radius:8px;padding:0 6px;font-size:13px;font-weight:800;text-align:center;color:var(--gd);outline:0;background:#fbfdfc;margin:0 2px}
+  .num-input:focus{border-color:var(--gb);background:#fff}
 
   @media (max-width:760px){
     .app{flex-direction:column}
@@ -263,15 +268,15 @@
           </div>
           <div class="setting">
             <div class="setting-main">
-              <div class="setting-title">设备指纹 + Cookie 锁设备（7 天）</div>
-              <div class="setting-desc">开启后，同一设备（设备 ID + Cookie）在 7 天内不可重复提交表单。</div>
+              <div class="setting-title">设备指纹 + Cookie 锁设备</div>
+              <div class="setting-desc">开启后，同一设备（设备 ID + Cookie）在 <input type="number" class="num-input" id="sDeviceDays" min="1" step="1"> 天内不可重复提交表单。</div>
             </div>
             <label class="switch"><input type="checkbox" id="sDevice"><span class="slider"></span></label>
           </div>
           <div class="setting">
             <div class="setting-main">
-              <div class="setting-title">同一 IP 24 小时最多 2 条线索</div>
-              <div class="setting-desc">开启后，同一 IP 在 24 小时内最多提交 2 条表单。</div>
+              <div class="setting-title">同一 IP 24 小时线索上限</div>
+              <div class="setting-desc">开启后，同一 IP 在 24 小时内最多提交 <input type="number" class="num-input" id="sIpCount" min="1" step="1"> 条表单。</div>
             </div>
             <label class="switch"><input type="checkbox" id="sIp"><span class="slider"></span></label>
           </div>
@@ -424,16 +429,32 @@ function loadSettings(){
       $('sTtclid').checked = d.settings.require_ttclid;
       $('sDevice').checked = d.settings.device_lock;
       $('sIp').checked = d.settings.ip_limit;
+      $('sDeviceDays').value = d.settings.device_lock_days || 7;
+      $('sIpCount').value = d.settings.ip_limit_count || 2;
     });
 }
 function saveSettings(){
-  var body = {require_ttclid: $('sTtclid').checked, device_lock: $('sDevice').checked, ip_limit: $('sIp').checked};
+  var body = {
+    require_ttclid: $('sTtclid').checked,
+    device_lock: $('sDevice').checked,
+    device_lock_days: parseInt($('sDeviceDays').value, 10) || 7,
+    ip_limit: $('sIp').checked,
+    ip_limit_count: parseInt($('sIpCount').value, 10) || 2
+  };
   fetch(API + '/api/settings',{method:'PUT',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify(body)})
     .then(function(r){return r.json();})
     .then(function(d){
-      if(d && d.ok){ $('settingsMsg').textContent = '已保存'; setTimeout(function(){ $('settingsMsg').textContent=''; },2000); }
-      else alert('保存失败');
-    });
+      if(d && d.ok){ toast('✓ 设置已保存，立即生效'); }
+      else toast('保存失败，请重试', true);
+    })
+    .catch(function(){ toast('网络错误，请重试', true); });
+}
+function toast(msg, isErr){
+  var t = $('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (isErr ? ' err' : '');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(function(){ t.className = 'toast'; }, 2600);
 }
 
 // ── 报表统计 ──────────────────────────
@@ -487,5 +508,6 @@ function renderStats(rows, totals, byUrl){
 }
 initStatsDates();
 </script>
+<div class="toast" id="toast"></div>
 </body>
 </html>
