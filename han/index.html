@@ -420,6 +420,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if (data.first_conversion) { try { window.ttq && ttq.track('CompleteRegistration'); } catch (e) {} }
         showResult(true);
           
+      // 追踪事件
+      ttq.track('ClickButton');
+      ttq.track('Contact');
+      ttq.track('AddToCart');
+      ttq.track('CompleteRegistration');
       } catch (e) {
         showResult(false);
       }
