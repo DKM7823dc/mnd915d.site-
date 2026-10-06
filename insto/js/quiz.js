@@ -1,7 +1,13 @@
 const questions = [
   {
     text: "Junte-se a nós. Que tipo de ajuda você precisa?",
-    options: ["Obter análise de ações", "Aprenda sobre ações", "Acesso a ações premium","Obtenha conselhos sobre investimentos","Saya ingin belajar tentang investasi saham."],
+ options: [
+  "Saya ingin belajar investasi saham.",
+  "Dapatkan analisis saham",
+  "Pelajari tentang saham",
+  "Akses saham premium",
+  "Dapatkan saran investasi"
+],
   }
 ];
 
