@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>AI Stock Analysis System - Revolutionary Market Intelligence</title>
+    <style>
+        :root {
+            --primary-cosmic-blue: #0a0e27;
+            --secondary-nebula-purple: #1a0b2e;
+            --accent-quantum-cyan: #00d4ff;
+            --highlight-stellar-gold: #ffd700;
+            --warning-solar-yellow: #ffeb3b;
+            --grid-cosmic-lines: rgba(0, 212, 255, 0.1);
+            --text-stellar-white: #ffffff;
+            --text-cosmic-gray: #b8bcc8;
+            --gradient-nebula: linear-gradient(135deg, #0a0e27 0%, #1a0b2e 50%, #2d1b69 100%);
+            --border-quantum-glow: rgba(0, 212, 255, 0.3);
+            --shadow-cosmic-depth: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .cosmic-container-primary {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--gradient-nebula);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .cosmic-container-primary::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(90deg, var(--grid-cosmic-lines) 1px, transparent 1px),
+                linear-gradient(var(--grid-cosmic-lines) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .cosmic-container-primary::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .stellar-section-wrapper {
+            position: relative;
+            z-index: 10;
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .quantum-hero-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .nebula-title-primary {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-stellar-white);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            letter-spacing: -0.5px;
+        }
+
+        .cosmic-subtitle-descriptor {
+            font-size: 1.2rem;
+            color: var(--text-cosmic-gray);
+            margin-bottom: 2rem;
+        }
+
+        .avatar-quantum-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .stellar-profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-quantum-cyan);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+            object-fit: cover;
+            animation: quantum-pulse 2s infinite alternate;
+        }
+
+        @keyframes quantum-pulse {
+            0% { 
+                box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+                transform: scale(1);
+            }
+            100% { 
+                box-shadow: 0 0 50px rgba(0, 212, 255, 0.9);
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes breath-glow {
+            0% { 
+                box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+                transform: translateY(0px);
+            }
+            50% { 
+                box-shadow: 0 15px 35px rgba(0, 212, 255, 0.5);
+                transform: translateY(-1px);
+            }
+            100% { 
+                box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+                transform: translateY(0px);
+            }
+        }
+
+        .metrics-constellation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .metric-stellar-card {
+            background: rgba(26, 11, 46, 0.8);
+            border: 1px solid var(--border-quantum-glow);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-cosmic-depth);
+        }
+
+        .metric-quantum-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-quantum-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-description-label {
+            color: var(--text-cosmic-gray);
+            font-size: 0.9rem;
+        }
+
+        .analysis-input-constellation {
+            background: rgba(26, 11, 46, 0.9);
+            border: 2px solid var(--border-quantum-glow);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(15px);
+        }
+
+        .input-field-cosmic {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            background: rgba(10, 14, 39, 0.8);
+            border: 2px solid var(--border-quantum-glow);
+            border-radius: 10px;
+            color: var(--text-stellar-white);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-field-cosmic::placeholder {
+            color: var(--text-cosmic-gray);
+        }
+
+        .input-field-cosmic:focus {
+            outline: none;
+            border-color: var(--accent-quantum-cyan);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .quantum-action-button {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--accent-quantum-cyan), var(--highlight-stellar-gold));
+            color: var(--primary-cosmic-blue);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            animation: breath-glow 3s infinite;
+        }
+
+        .quantum-action-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .quantum-action-button:hover::before {
+            left: 100%;
+        }
+
+        .quantum-action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        .rankings-galaxy-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .ranking-nebula-card {
+            background: rgba(26, 11, 46, 0.9);
+            border: 1px solid var(--border-quantum-glow);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(15px);
+        }
+
+        .ranking-title-cosmic {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent-quantum-cyan);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .stellar-data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .table-header-quantum {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--text-stellar-white);
+            font-weight: 600;
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 2px solid var(--accent-quantum-cyan);
+        }
+
+        .table-data-cosmic {
+            padding: 0.8rem;
+            color: var(--text-cosmic-gray);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .table-data-cosmic:first-child {
+            color: var(--highlight-stellar-gold);
+            font-weight: 600;
+        }
+
+        /* Style for Symbol column - add underline */
+        .table-data-cosmic:nth-child(2) {
+            text-decoration: underline;
+        }
+
+        /* Style for Score column - red color */
+        .table-data-cosmic:nth-child(3) {
+            color: #ff4444 !important;
+            font-weight: 600;
+        }
+
+        .clickable-stock {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .clickable-stock:hover {
+            color: var(--accent-quantum-cyan) !important;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .risk-disclosure-constellation {
+            background: rgba(26, 11, 46, 0.95);
+            border: 2px solid var(--warning-solar-yellow);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .warning-title-stellar {
+            color: var(--warning-solar-yellow);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .disclaimer-text-cosmic {
+            color: var(--text-cosmic-gray);
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-galaxy-links {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-quantum-glow);
+        }
+
+        .legal-link-quantum {
+            color: var(--accent-quantum-cyan);
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .legal-link-quantum:hover {
+            color: var(--highlight-stellar-gold);
+        }
+
+        .modal-overlay-cosmic {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content-nebula {
+            background: var(--gradient-nebula);
+            border: 2px solid var(--accent-quantum-cyan);
+            border-radius: 20px;
+            padding: 1.5rem;
+            max-width: 320px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .modal-close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-cosmic-gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close-button:hover {
+            color: var(--accent-quantum-cyan);
+        }
+
+        .modal-quantum-button {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--accent-quantum-cyan), var(--highlight-stellar-gold));
+            color: var(--primary-cosmic-blue);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            animation: breath-glow 3s infinite;
+        }
+
+        .progress-quantum-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-stellar-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-quantum-cyan), var(--highlight-stellar-gold));
+            width: 0%;
+            transition: width 2s ease;
+        }
+
+        @media (max-width: 768px) {
+            .nebula-title-primary {
+                font-size: 2rem;
+            }
+            
+            .rankings-galaxy-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .stellar-section-wrapper {
+                padding: 1rem;
+            }
+
+            .metrics-constellation-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+                margin-bottom: 2rem;
+            }
+
+            .metric-stellar-card {
+                padding: 1rem;
+            }
+
+            .metric-quantum-value {
+                font-size: 1.8rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .metric-description-label {
+                font-size: 0.75rem;
+                line-height: 1.2;
+            }
+        }
+    </style>
+</head>
+<body class="cosmic-container-primary">
+    <div class="stellar-section-wrapper">
+        <!-- Hero Section -->
+        <section class="quantum-hero-header">
+            <h1 class="nebula-title-primary">Revolutionary AI Stock Analysis System</h1>
+            <p class="cosmic-subtitle-descriptor">Advanced Market Intelligence Powered by Artificial Intelligence</p>
+            
+            <div class="avatar-quantum-container">
+                <img src="img/56.jpg" alt="AI System" class="stellar-profile-image">
+            </div>
+            
+            <div class="metrics-constellation-grid">
+                <div class="metric-stellar-card">
+                    <div class="metric-quantum-value">99.7%</div>
+                    <div class="metric-description-label">Analysis Accuracy</div>
+                </div>
+                <div class="metric-stellar-card">
+                    <div class="metric-quantum-value">2s</div>
+                    <div class="metric-description-label">Processing Time</div>
+                </div>
+                <div class="metric-stellar-card">
+                    <div class="metric-quantum-value">36,968</div>
+                    <div class="metric-description-label">Active Users</div>
+                </div>
+                <div class="metric-stellar-card">
+                    <div class="metric-quantum-value">360°</div>
+                    <div class="metric-description-label">Multi-Dimensional Analysis</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analysis Input Section -->
+        <section class="analysis-input-constellation">
+            <!-- Feature Labels Top -->
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; color: var(--text-cosmic-gray); font-size: 0.9rem;">
+                <span style="color: var(--accent-quantum-cyan);">✓ Comprehensive Stock Analysis</span>
+                <span style="color: var(--accent-quantum-cyan);">✓ Grasp Stock Trends</span>
+                <span style="color: var(--accent-quantum-cyan);">✓ Alert Potential Risks</span>
+            </div>
+            
+            <input type="text" id="stockInputField" class="input-field-cosmic" placeholder="Enter stock symbol (e.g., AAPL, TSLA, MSFT)">
+            
+            <button class="quantum-action-button" onclick="ajd()">Analyze Stock Performance</button>
+            
+            <!-- Feature Labels Bottom -->
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 1.5rem; color: var(--text-cosmic-gray); font-size: 0.9rem;">
+                <span style="color: var(--highlight-stellar-gold);">Big Data</span>
+                <span style="color: var(--highlight-stellar-gold);">🤖 Intelligent Quantification</span>
+            </div>
+        </section>
+
+        <!-- Rankings Section -->
+        <section class="rankings-galaxy-section">
+            <div class="ranking-nebula-card">
+                <h3 class="ranking-title-cosmic">Recent Diagnostic Rankings - Highest Scores</h3>
+                <table class="stellar-data-table">
+                    <thead>
+                        <tr>
+                            <th class="table-header-quantum">Rank</th>
+                            <th class="table-header-quantum">Stock Name</th>
+                            <th class="table-header-quantum">Score</th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                        <tr><td class="table-data-cosmic">1</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('Cisco Systems Inc')">CSCO</td><td class="table-data-cosmic">89.66</td></tr>
+                        <tr><td class="table-data-cosmic">2</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('Tesla Inc')">Tesla</td><td class="table-data-cosmic">88.92</td></tr>
+                        <tr><td class="table-data-cosmic">3</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('Micron Technology Inc')">Micron</td><td class="table-data-cosmic">87.82</td></tr>
+                        <tr><td class="table-data-cosmic">4</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('American Electric Power')">AEP</td><td class="table-data-cosmic">86.27</td></tr>
+                        <tr><td class="table-data-cosmic">5</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('Monster Beverage Corp')">MNST</td><td class="table-data-cosmic">85.82</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ranking-nebula-card">
+                <h3 class="ranking-title-cosmic">Popular Focus Stocks</h3>
+                <table class="stellar-data-table">
+                    <thead>
+                        <tr>
+                            <th class="table-header-quantum">Rank</th>
+                            <th class="table-header-quantum">Stock Name</th>
+                            <th class="table-header-quantum">Score</th>
+                        </tr>
+                    </thead>
+                   <tbody>
+                        <tr><td class="table-data-cosmic">1</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('Cisco Systems Inc')">AEP</td><td class="table-data-cosmic">88.22</td></tr>
+                        <tr><td class="table-data-cosmic">2</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('Adobe Inc')">Adobe</td><td class="table-data-cosmic">87.92</td></tr>
+                        <tr><td class="table-data-cosmic">3</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('Qualcomm Inc')">Qualcomm</td><td class="table-data-cosmic">86.37</td></tr>
+                        <tr><td class="table-data-cosmic">4</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('Warner Bros Discovery')">WBD</td><td class="table-data-cosmic">85.82</td></tr>
+                        <tr><td class="table-data-cosmic">5</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('Applied Materials Inc')">AMAT</td><td class="table-data-cosmic">84.68</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ranking-nebula-card">
+                <h3 class="ranking-title-cosmic">Growth Potential Leaders</h3>
+                <table class="stellar-data-table">
+                    <thead>
+                        <tr>
+                            <th class="table-header-quantum">Rank</th>
+                            <th class="table-header-quantum">Stock Name</th>
+                            <th class="table-header-quantum">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="table-data-cosmic">1</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('Cadence Design Systems')">CDNS</td><td class="table-data-cosmic">89.34</td></tr>
+                        <tr><td class="table-data-cosmic">2</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('Microchip Technology')">MCHP</td><td class="table-data-cosmic">88.27</td></tr>
+                        <tr><td class="table-data-cosmic">3</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('Intuitive Surgical Inc')">ISRG</td><td class="table-data-cosmic">87.29</td></tr>
+                        <tr><td class="table-data-cosmic">4</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('Apple Inc')">Apple</td><td class="table-data-cosmic">86.26</td></tr>
+                        <tr><td class="table-data-cosmic">5</td><td class="table-data-cosmic clickable-stock" onclick="analyzeStock('PACCAR Inc')">PACCAR</td><td class="table-data-cosmic">85.76</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Risk Disclosure Section -->
+        <section class="risk-disclosure-constellation">
+            <h3 class="warning-title-stellar">⚠️ Important Risk Disclosure</h3>
+            <p class="disclaimer-text-cosmic">This service provides general market information only and does not constitute investment advice or recommendations.</p>
+            <p class="disclaimer-text-cosmic">• Financial markets involve risks, and you may lose some or all of your invested capital. All examples shown are historical data analysis and do not guarantee future returns.</p>
+            <p class="disclaimer-text-cosmic">• Investors should make prudent decisions based on their own risk tolerance. All information provided consists of objective factual statements and does not constitute investment advice.</p>
+            <p class="disclaimer-text-cosmic">• AI analysis tools only provide probability calculations based on historical data and algorithmic models, and do not constitute investment advice in any form.</p>
+            <p class="disclaimer-text-cosmic">• Past performance does not represent future performance, and actual returns may be lower or higher than AI predictions.</p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer-galaxy-links">
+            <a href="privacy.html" class="legal-link-quantum">Privacy Policy</a>
+            <a href="terms.html" class="legal-link-quantum">Terms of Service</a>
+        </footer>
+    </div>
+
+    <!-- Progress Modal -->
+    <div id="progressModalOverlay" class="modal-overlay-cosmic">
+        <div class="modal-content-nebula">
+            <button class="modal-close-button" onclick="closeModal('progressModalOverlay')">&times;</button>
+            <h3 style="color: var(--accent-quantum-cyan); margin-bottom: 1rem;">AI System Processing</h3>
+            <p style="color: var(--text-cosmic-gray); margin-bottom: 1rem;">Combining: Market Analysis, Latest News Analysis, Historical Data Analysis</p>
+            <div class="progress-quantum-container">
+                <div id="progressBar" class="progress-stellar-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div id="resultModalOverlay" class="modal-overlay-cosmic">
+        <div class="modal-content-nebula">
+            <button class="modal-close-button" onclick="closeModal('resultModalOverlay')">&times;</button>
+            <h3 style="color: var(--accent-quantum-cyan); margin-bottom: 1rem;">Your Stock Analysis Report is Complete</h3>
+            <p style="color: var(--text-stellar-white); margin-bottom: 1rem;">Get your personalized report and our exclusive Top 10 Stock Picks for 2025 - Free!</p>
+            <p style="color: var(--text-cosmic-gray); margin-bottom: 1.5rem;">※ Click to redirect to official WhatsApp account</p>
+            <button class="modal-quantum-button" onclick="redirectToWhatsApp()">Click Here to Receive Report</button>
+        </div>
+    </div>
+
+    <script>
+        function ajd() {
+            // Show progress modal
+            const progressModal = document.getElementById('progressModalOverlay');
+            const resultModal = document.getElementById('resultModalOverlay');
+            const progressBar = document.getElementById('progressBar');
+            
+            // Reset progress bar to 0% first
+            progressBar.style.width = '0%';
+            progressModal.style.display = 'flex';
+            
+            // Animate progress bar
+            setTimeout(() => {
+                progressBar.style.width = '100%';
+            }, 100);
+            
+            // Hide progress modal and show result modal after 2 seconds
+            setTimeout(() => {
+                progressModal.style.display = 'none';
+                resultModal.style.display = 'flex';
+            }, 2000);
+        }
+
+        function analyzeStock(stockName) {
+            // Set the stock name in the input field
+            document.getElementById('stockInputField').value = stockName;
+            // Trigger the analysis
+            ajd();
+        }
+
+        function redirectToWhatsApp() {
+            // This would redirect to WhatsApp - placeholder for actual WhatsApp link
+            window.open('https://wa.me/your_whatsapp_number', '_blank');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            const progressModal = document.getElementById('progressModalOverlay');
+            const resultModal = document.getElementById('resultModalOverlay');
+            
+            if (event.target === progressModal) {
+                progressModal.style.display = 'none';
+            }
+            if (event.target === resultModal) {
+                resultModal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
