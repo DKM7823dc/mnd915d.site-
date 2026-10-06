@@ -123,6 +123,9 @@
   .toast.err{background:#d94343;box-shadow:0 12px 32px rgba(217,67,67,.4)}
   .num-input{width:62px;height:30px;border:1px solid var(--line);border-radius:8px;padding:0 6px;font-size:13px;font-weight:800;text-align:center;color:var(--gd);outline:0;background:#fbfdfc;margin:0 2px}
   .num-input:focus{border-color:var(--gb);background:#fff}
+  .textarea{width:100%;min-height:96px;border:1px solid #d9e3dd;border-radius:11px;padding:10px 12px;font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--txt);background:#fbfdfc;outline:0;resize:vertical;line-height:1.6}
+  .textarea:focus{border-color:var(--gb);background:#fff;box-shadow:0 0 0 3px rgba(22,131,80,.10)}
+  .btn.mini-save{border:1px solid var(--line);background:#fff;color:var(--g);border-radius:9px;height:34px;padding:0 14px;font-size:12.5px;font-weight:800;cursor:pointer}
 
   @media (max-width:760px){
     .app{flex-direction:column}
@@ -280,6 +283,35 @@
             </div>
             <label class="switch"><input type="checkbox" id="sIp"><span class="slider"></span></label>
           </div>
+          <div class="setting">
+            <div class="setting-main">
+              <div class="setting-title">只允许韩国 IP 提交</div>
+              <div class="setting-desc">开启后，仅韩国 IP 可以提交表单，其他地区 IP 将被拦截。</div>
+            </div>
+            <label class="switch"><input type="checkbox" id="sKorea"><span class="slider"></span></label>
+          </div>
+          <div class="setting">
+            <div class="setting-main">
+              <div class="setting-title">屏蔽 VPN/机房/广告审核爬虫 IP</div>
+              <div class="setting-desc">开启后，数据中心/VPN 机房 IP，以及 TikTok、Google、Facebook 广告审核爬虫 IP 将被拦截，无法提交表单。</div>
+            </div>
+            <label class="switch"><input type="checkbox" id="sBots"><span class="slider"></span></label>
+          </div>
+          <div class="setting">
+            <div class="setting-main">
+              <div class="setting-title">白名单 IP（无视所有校验规则）</div>
+              <div class="setting-desc">白名单内的 IP 可无视上述所有参数设置（ttclid / 锁设备 / IP 上限 / 仅韩国 / 屏蔽爬虫），直接提交。每行一个，支持单个 IP 或 CIDR 网段。</div>
+            </div>
+          </div>
+          <div class="setting" style="padding-top:2px">
+            <div style="flex:1">
+              <textarea class="textarea" id="sWhitelist" rows="4" placeholder="每行一个 IP，例如：&#10;203.0.113.5&#10;198.51.100.0/24&#10;2001:db8::1"></textarea>
+              <div style="display:flex;align-items:center;gap:10px;margin-top:10px">
+                <button class="btn mini-save" onclick="saveSettings()">提交白名单</button>
+                <span class="count-pill">支持 IPv4/IPv6、CIDR 网段，多行或逗号分隔</span>
+              </div>
+            </div>
+          </div>
           <div class="setting-foot">
             <button class="btn solid" onclick="saveSettings()">保存设置</button>
             <span class="count-pill" id="settingsMsg"></span>
@@ -431,6 +463,9 @@ function loadSettings(){
       $('sIp').checked = d.settings.ip_limit;
       $('sDeviceDays').value = d.settings.device_lock_days || 7;
       $('sIpCount').value = d.settings.ip_limit_count || 2;
+      $('sKorea').checked = d.settings.allow_kr_only !== false;
+      $('sBots').checked = d.settings.block_bots !== false;
+      $('sWhitelist').value = d.settings.whitelist_ips || '';
     });
 }
 function saveSettings(){
@@ -439,7 +474,10 @@ function saveSettings(){
     device_lock: $('sDevice').checked,
     device_lock_days: parseInt($('sDeviceDays').value, 10) || 7,
     ip_limit: $('sIp').checked,
-    ip_limit_count: parseInt($('sIpCount').value, 10) || 2
+    ip_limit_count: parseInt($('sIpCount').value, 10) || 2,
+    allow_kr_only: $('sKorea').checked,
+    block_bots: $('sBots').checked,
+    whitelist_ips: $('sWhitelist').value
   };
   fetch(API + '/api/settings',{method:'PUT',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify(body)})
     .then(function(r){return r.json();})
