@@ -10,6 +10,31 @@
 			contain-intrinsic-size: 3000px 1500px
 		}
 	</style>
+
+	<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-KR1K3FYH0H"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-KR1K3FYH0H'); </script>
+
+
+	<!-- Event snippet for 网页浏览 conversion page
+     In your html page, add the snippet and call gtag_report_conversion
+     when someone clicks on the chosen link or button. -->
+<script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18496863003/mVF3CLLZ5ZIdEJv2_vNE',
+      'value': 1.0,
+      'currency': 'USD',
+      'event_callback': callback
+    });
+
+    return false;
+  }
+</script>
 	   <script src="https://api.wenk918d.site/js/meetu-sdk.js"></script>
 	<link rel='stylesheet' id='astra-theme-css-css' href='yd/inm/static/css/main.min.css' media='all'>
 	<style id='astra-theme-css-inline-css'>
@@ -3273,6 +3298,7 @@
 <script>
 function k2() {
 	MeetU.download(event);
+	gtag_report_conversion();
 	return false;
 }
 </script>
