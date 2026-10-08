@@ -337,6 +337,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+  // 访问埋点：页面加载即上报 /api/visit，供后台「报表统计」计算 浏览次数 / 独立访客 / 转化率
+  (function trackVisit() {
+    var params = new URL(location.href).searchParams;
+    var vid = localStorage.getItem('onfit_visitor_id');
+    if (!/^[a-f0-9-]{36}$/i.test(vid || '')) { vid = crypto.randomUUID(); localStorage.setItem('onfit_visitor_id', vid); }
+    var source = (params.get('utm_source') || '').toLowerCase() === 'tiktok' || params.has('ttclid') ? 'tiktok' : 'other';
+    var payload = {
+      visitor_id: vid,
+      source: source,
+      campaign: (params.get('utm_campaign') || '').slice(0, 80),
+      domain: location.origin + location.pathname
+    };
+    if (location.protocol !== 'file:') {
+      fetch('https://rapid-sea-a080.mkyusds82a.workers.dev/api/visit', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload), keepalive: true
+      }).catch(function() {});
+    }
+  })();
+
   const btn = document.getElementById('submitBtn');
   const form = document.getElementById('biaodan');
 
