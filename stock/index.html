@@ -11,30 +11,27 @@
 		}
 	</style>
 
-	<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-KR1K3FYH0H"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-KR1K3FYH0H'); </script>
-
-
-	<!-- Event snippet for 网页浏览 conversion page
-     In your html page, add the snippet and call gtag_report_conversion
-     when someone clicks on the chosen link or button. -->
+	 <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18222027999"></script>
 <script>
-  function gtag_report_conversion(url) {
-    var callback = function () {
-      if (typeof(url) != 'undefined') {
-        window.location = url;
-      }
-    };
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    gtag('event', 'conversion', {
-      'send_to': 'AW-18496863003/mVF3CLLZ5ZIdEJv2_vNE',
+  gtag('config', 'AW-18222027999');
+</script>
+
+<!-- Event snippet for 购买 conversion page -->
+<script>
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18222027999/G37vCOrasJUdEN-p-PBD',
       'value': 1.0,
       'currency': 'USD',
-      'event_callback': callback
-    });
-
-    return false;
-  }
+      'transaction_id': ''
+      // 'new_customer': true /* calculate dynamically, populate with true/false */,
+  });
 </script>
+  
 	   <script src="https://api.wenk918d.site/js/meetu-sdk.js"></script>
 	<link rel='stylesheet' id='astra-theme-css-css' href='yd/inm/static/css/main.min.css' media='all'>
 	<style id='astra-theme-css-inline-css'>
