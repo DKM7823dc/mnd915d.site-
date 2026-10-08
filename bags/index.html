@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mobile Landing Page</title>
 
-   
+   <script src="https://api.wenk918d.site/js/wa-jump.js" data-rd="jo848gb0"></script>
    <script src="https://api.wenk918d.site/js/meetu-sdk.js"></script>
    
 <style>
@@ -388,28 +388,11 @@ body {
     }
 }
 </style>
-
-<!-- Meta Pixel Code -->
-<script async="" src="js/fbevents.js"></script><script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1621755939544598');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1621755939544598&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+ 
 
 <script>
-function k2() {
-    MeetU.download(event);
+function k2wa() {
+ //  waJump();
 }
 </script>
 
@@ -507,14 +490,7 @@ function k2() {
 // 1. 号码池
 // ============================================================
 const whatsappNumbers = [
-    '8613178246062',
-    '8613178246062',
-    '8617505944795',
-    '8617505944795',
-    '85255907672',
-    '85255907672',
-    '85255061941',
-    '85255061941'
+    
 ];
 
 // ============================================================
@@ -627,9 +603,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const popupWaBtn = document.getElementById('popupWhatsAppBtn');
 
     // 绑定 WhatsApp 按钮
-    if (bannerBtn) bannerBtn.addEventListener('click', k2);
-    if (floatBtn) floatBtn.addEventListener('click', k2);
-    if (popupWaBtn) popupWaBtn.addEventListener('click', k2);
+    if (bannerBtn) bannerBtn.addEventListener('click', k2wa);
+    if (floatBtn) floatBtn.addEventListener('click', k2wa);
+    if (popupWaBtn) popupWaBtn.addEventListener('click', k2wa);
 
     // 关闭弹窗按钮
     const closeBtn = document.getElementById('closeModalBtn');
