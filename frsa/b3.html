@@ -878,7 +878,7 @@
         <div class="dl-item"><span class="dl-chk">✓</span>Regardez des vidéos HD sans mise en mémoire tampon</div>
       </div>
       <span class="dl-btn">Obtenez l'application gratuitement · Regarder maintenant</span>
-      <div class="dl-note">🔒 Sûr et privé — aucune carte bancaire requise</div>
+      <div class="dl-note">🔒 Sûr — aucun paiement requis</div>
     </div>
   </div>
 
@@ -971,14 +971,16 @@
     });
     document.getElementById('hotGrid').innerHTML = hotHtml + hotHtml;
 
-    // Render user list
+    // Render user list (16 items, images 1-1.jpg … 16-1.jpg)
     var userHtml = '';
-    USERS.slice(0, 15).forEach(function(u, i) {
-      var vk = 6 + ((i * 7 + u.n * 3) % 18);
-      var vd = (i + u.n) % 10;
+    for (var i = 0; i < 16; i++) {
+      var u = USERS[i];
+      var imgN = i + 1;
+      var vk = 6 + ((i * 7 + imgN * 3) % 18);
+      var vd = (i + imgN) % 10;
       var vstr = vk + '.' + vd + 'K';
-      userHtml += '<article class="card" onclick="openViewer(\'' + u.name + '\',\'' + u.age + '\',\'' + u.job + '\',\'' + u.h + '\',\'' + u.w + '\',\'' + u.loc + '\',\'images/' + u.n + '-1.jpg\')">'
-        + '<div class="ph"><img src="images/' + u.n + '-1.jpg" alt="' + u.name + '">'
+      userHtml += '<article class="card" onclick="openViewer(\'' + u.name + '\',\'' + u.age + '\',\'' + u.job + '\',\'' + u.h + '\',\'' + u.w + '\',\'' + u.loc + '\',\'images/' + imgN + '-1.jpg\')">'
+        + '<div class="ph"><img src="images/' + imgN + '-1.jpg" alt="' + u.name + '">'
         + '<span class="badge ' + u.bt + '">' + u.badge + '</span>'
         + '<button class="play" onclick="event.stopPropagation();k2(event)" aria-label="Lire la vidéo">'
         + '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>'
@@ -987,12 +989,7 @@
         + '<span class="views">👁 ' + vstr + '</span></div>'
         + '<button class="p-cta" onclick="event.stopPropagation();k2(event)"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>Regarder maintenant</button>'
         + '</article>';
-    });
-    userHtml += '<article class="more-card" onclick="k2(event)">'
-      + '<span class="more-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"></path></svg></span>'
-      + '<span class="more-txt">Voir plus de vidéos</span>'
-      + '<span class="more-sub">100 % Gratuit</span>'
-      + '</article>';
+    }
     document.getElementById('userGrid').innerHTML = userHtml;
 
     // Viewer
