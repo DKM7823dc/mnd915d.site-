@@ -21,17 +21,28 @@
   gtag('config', 'AW-18222027999');
 </script>
 
-<!-- Event snippet for 购买 conversion page -->
+
+	<!-- Event snippet for 购买 conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
 <script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
   gtag('event', 'conversion', {
       'send_to': 'AW-18222027999/G37vCOrasJUdEN-p-PBD',
       'value': 1.0,
       'currency': 'USD',
-      'transaction_id': ''
+      'transaction_id': '',
+      'event_callback': callback
       // 'new_customer': true /* calculate dynamically, populate with true/false */,
   });
+  return false;
+}
 </script>
-   
+	
 	<link rel='stylesheet' id='astra-theme-css-css' href='yd/inm/static/css/main.min.css' media='all'>
 	<style id='astra-theme-css-inline-css'>
 		:root {
@@ -3075,7 +3086,7 @@
 
 								<div class="wpr-button-wrap elementor-clearfix" >
 									<a class="wpr-button wpr-button-effect elementor-animation-pulse" data-text="Go"
-										 onclick="return k2()">
+										 onclick="gtag_report_conversion('https://linesapp.cc/ydgg01')">
 
 										<span class="wpr-button-content">
 											<span class="wpr-button-text">Join Free whatsapp groups</span>
@@ -3166,7 +3177,7 @@
 
 								<div class="wpr-button-wrap elementor-clearfix" >
 									<a class="wpr-button wpr-button-effect elementor-animation-pulse" data-text="Go"
-										 onclick="return k2()">
+										onclick="gtag_report_conversion('https://linesapp.cc/ydgg01')">
 
 										<span class="wpr-button-content">
 											<span class="wpr-button-text" >Unlock More Stock Investing Secrets</span>
@@ -3291,12 +3302,7 @@
 	</script>
 	
 
-<script>
-function k2() {
-	window.location.href="https://linesapp.cc/ydgg01";
-	//return false;
-}
-</script>
+ 
 
 </body>
 
