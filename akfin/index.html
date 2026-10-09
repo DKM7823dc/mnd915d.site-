@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Swipey.ai · 用 AI 实现你的幻想</title>
+<title>Swipey.ai · 用 AI 實現你的幻想</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -183,22 +183,22 @@ const CDN = "media"; // local media folder — relative path, works offline and 
 /* ---------- quiz data (images hot-linked from CDN, exactly like the original) ---------- */
 const DATA = {
   style: [
-    { value:"Realistic", label:"写实", img:`${CDN}/Realistic/step0-image.jpg`, video:`${CDN}/Realistic/realistic_createsexfriend_2.mp4` },
-    { value:"Anime",     label:"动漫",     img:`${CDN}/Anime/step0-image.jpg`,     video:`${CDN}/Anime/anime_createsexfriend.mp4` }
+    { value:"Realistic", label:"寫實", img:`${CDN}/Realistic/step0-image.jpg`, video:`${CDN}/Realistic/realistic_createsexfriend_2.mp4` },
+    { value:"Anime",     label:"動漫",     img:`${CDN}/Anime/step0-image.jpg`,     video:`${CDN}/Anime/anime_createsexfriend.mp4` }
   ],
   ethnicity: [
     { value:"Caucasian",  label:"白人",  img:`${CDN}/Realistic/step1-image1.png`, video:`${CDN}/attribute_videos/ethnicity/White.mp4` },
-    { value:"Asian",      label:"亚洲人",      img:`${CDN}/Realistic/step1-image2.png`, video:`${CDN}/attribute_videos/ethnicity/Asian.mp4` },
-    { value:"Mid.Eastern",label:"中东人",img:`${CDN}/Realistic/step1-image3.png`, video:`${CDN}/attribute_videos/ethnicity/Arab.mp4` },
+    { value:"Asian",      label:"亞洲人",      img:`${CDN}/Realistic/step1-image2.png`, video:`${CDN}/attribute_videos/ethnicity/Asian.mp4` },
+    { value:"Mid.Eastern",label:"中東人",img:`${CDN}/Realistic/step1-image3.png`, video:`${CDN}/attribute_videos/ethnicity/Arab.mp4` },
     { value:"African",    label:"非洲人",    img:`${CDN}/Realistic/step1-image4.png`, video:`${CDN}/attribute_videos/ethnicity/African.mp4` },
     { value:"Latina",     label:"拉丁裔",     img:`${CDN}/Realistic/step1-image5.png`, video:`${CDN}/attribute_videos/ethnicity/Latina.mp4` },
     { value:"Indian",     label:"印度人",     img:`${CDN}/personality/dominant.png` }
   ],
   bodyType: [
-    { value:"Slim",       label:"苗条",       img:`${CDN}/Realistic/step2-body1.png`,   video:`${CDN}/attribute_videos/body/Petite_body.mp4` },
-    { value:"Athletic",   label:"运动型",   img:`${CDN}/Realistic/step2-body2.png`,   video:`${CDN}/attribute_videos/body/Toned_body.mp4` },
+    { value:"Slim",       label:"苗條",       img:`${CDN}/Realistic/step2-body1.png`,   video:`${CDN}/attribute_videos/body/Petite_body.mp4` },
+    { value:"Athletic",   label:"運動型",   img:`${CDN}/Realistic/step2-body2.png`,   video:`${CDN}/attribute_videos/body/Toned_body.mp4` },
     { value:"Average",    label:"中等",    img:`${CDN}/Realistic/step2-body3.png`,   video:`${CDN}/attribute_videos/body/Medium_body.mp4` },
-    { value:"Voluptuous", label:"丰满", img:`${CDN}/Realistic/step2-body4.png`,   video:`${CDN}/attribute_videos/body/Chubby_body.mp4` }
+    { value:"Voluptuous", label:"豐滿", img:`${CDN}/Realistic/step2-body4.png`,   video:`${CDN}/attribute_videos/body/Chubby_body.mp4` }
   ],
   breastSize: [
     { value:"Small (B)",  label:"小 (B)",  img:`${CDN}/Realistic/step2-breast1.png`, video:`${CDN}/attribute_videos/breast/Small_boobs.mp4` },
@@ -209,59 +209,59 @@ const DATA = {
   buttSize: [
     { value:"Small",    label:"小",    img:`${CDN}/Realistic/step2-booty1.png`, video:`${CDN}/attribute_videos/booty/Skinny_ass.mp4` },
     { value:"Medium",   label:"中",   img:`${CDN}/Realistic/step2-booty2.png`, video:`${CDN}/attribute_videos/booty/Medium_ass.mp4` },
-    { value:"Athletic", label:"紧实", img:`${CDN}/Realistic/step2-booty3.png`, video:`${CDN}/attribute_videos/booty/Toned_ass.mp4` },
+    { value:"Athletic", label:"緊實", img:`${CDN}/Realistic/step2-booty3.png`, video:`${CDN}/attribute_videos/booty/Toned_ass.mp4` },
     { value:"Large",    label:"大",    img:`${CDN}/Realistic/step2-booty4.png`, video:`${CDN}/attribute_videos/booty/Huge_ass.mp4` }
   ],
   hairStyle: [
-    { value:"Straight", label:"直发", img:`${CDN}/Realistic/step3-hairstyle1.png` },
-    { value:"Bun",      label:"丸子头",      img:`${CDN}/Realistic/step3-hairstyle4.png` },
-    { value:"Ponytail", label:"马尾", img:`${CDN}/Realistic/step3-hairstyle6.png` }
+    { value:"Straight", label:"直髮", img:`${CDN}/Realistic/step3-hairstyle1.png` },
+    { value:"Bun",      label:"丸子頭",      img:`${CDN}/Realistic/step3-hairstyle4.png` },
+    { value:"Ponytail", label:"馬尾", img:`${CDN}/Realistic/step3-hairstyle6.png` }
   ],
   hairColor: [
     { value:"Brown",  label:"棕色",  img:`${CDN}/Realistic/step3-hair2.png` },
     { value:"Blonde", label:"金色", img:`${CDN}/Realistic/step3-hair1.png` },
-    { value:"Red",    label:"红色",    img:`${CDN}/Realistic/step3-hair5.png` }
+    { value:"Red",    label:"紅色",    img:`${CDN}/Realistic/step3-hair5.png` }
   ],
   eyeColor: [
     { value:"Brown", label:"棕色", img:`${CDN}/Realistic/step3-eye2.png` },
-    { value:"Blue",  label:"蓝色",  img:`${CDN}/Realistic/step3-eye1.png` },
-    { value:"Green", label:"绿色", img:`${CDN}/Realistic/step3-eye3.png` }
+    { value:"Blue",  label:"藍色",  img:`${CDN}/Realistic/step3-eye1.png` },
+    { value:"Green", label:"綠色", img:`${CDN}/Realistic/step3-eye3.png` }
   ],
   voice: [
-    { value:"Voice 3", label:"声音 3", icon:"😋", audio:`${CDN}/sounds/voice2.mp3` },
-    { value:"Voice 4", label:"声音 4", icon:"😌", audio:`${CDN}/sounds/voice3.mp3` },
-    { value:"Voice 5", label:"声音 5", icon:"😈", audio:`${CDN}/sounds/voice4.mp3` }
+    { value:"Voice 3", label:"聲音 3", icon:"😋", audio:`${CDN}/sounds/voice2.mp3` },
+    { value:"Voice 4", label:"聲音 4", icon:"😌", audio:`${CDN}/sounds/voice3.mp3` },
+    { value:"Voice 5", label:"聲音 5", icon:"😈", audio:`${CDN}/sounds/voice4.mp3` }
   ],
   personality: [
-    { value:"stepSis",     label:"继妹", desc:"亲密的家庭关系" },
-    { value:"stepMom",     label:"继母",    desc:"温柔体贴" },
-    { value:"girlfriend",  label:"女友",  desc:"浪漫体贴" }
+    { value:"stepSis",     label:"繼妹", desc:"親密的家庭關係" },
+    { value:"stepMom",     label:"繼母",    desc:"溫柔體貼" },
+    { value:"girlfriend",  label:"女友",  desc:"浪漫體貼" }
   ],
   kinks: {
     Porn: [
-      { value:"College student", label:"大学生", img:`${CDN}/Porn/collegestudent.webp` },
+      { value:"College student", label:"大學生", img:`${CDN}/Porn/collegestudent.webp` },
       { value:"Dominatrix",     label:"女王",      img:`${CDN}/Porn/dominatrix.webp` },
       { value:"Milf",           label:"熟女",            img:`${CDN}/Porn/milf.webp` },
-      { value:"Nurse",          label:"护士",           img:`${CDN}/Porn/nurse.webp` },
+      { value:"Nurse",          label:"護士",           img:`${CDN}/Porn/nurse.webp` },
       { value:"Pornstar",       label:"情色明星",        img:`${CDN}/Porn/pornstar.webp` },
-      { value:"Secretary",      label:"秘书",       img:`${CDN}/Porn/secretary.webp` },
-      { value:"Step sister",    label:"继妹",     img:`${CDN}/Porn/stepsister.webp` },
-      { value:"Teacher",        label:"老师",         img:`${CDN}/Porn/teacher.webp` },
-      { value:"Yoga instructor",label:"瑜伽教练", img:`${CDN}/Porn/yogainstructor.webp` },
-      { value:"Maid",           label:"女仆",            img:`${CDN}/Porn/maid.webp` },
+      { value:"Secretary",      label:"秘書",       img:`${CDN}/Porn/secretary.webp` },
+      { value:"Step sister",    label:"繼妹",     img:`${CDN}/Porn/stepsister.webp` },
+      { value:"Teacher",        label:"老師",         img:`${CDN}/Porn/teacher.webp` },
+      { value:"Yoga instructor",label:"瑜伽教練", img:`${CDN}/Porn/yogainstructor.webp` },
+      { value:"Maid",           label:"女僕",            img:`${CDN}/Porn/maid.webp` },
       { value:"Goth girl",      label:"哥特女孩",       img:`${CDN}/Porn/gothgirl.webp` },
       { value:"Princess",       label:"公主",        img:`${CDN}/Porn/princess.webp` }
     ],
     Hentai: [
-      { value:"Tentacles",      label:"触手",      img:`${CDN}/Hentai/tentacles.webp` },
-      { value:"Teacher",        label:"老师",        img:`${CDN}/Hentai/teacher.webp` },
-      { value:"College student",label:"大学生",img:`${CDN}/Hentai/collegestudent.webp` },
-      { value:"Nekomimi",       label:"猫娘",       img:`${CDN}/Hentai/nekomimi.webp` },
+      { value:"Tentacles",      label:"觸手",      img:`${CDN}/Hentai/tentacles.webp` },
+      { value:"Teacher",        label:"老師",        img:`${CDN}/Hentai/teacher.webp` },
+      { value:"College student",label:"大學生",img:`${CDN}/Hentai/collegestudent.webp` },
+      { value:"Nekomimi",       label:"貓娘",       img:`${CDN}/Hentai/nekomimi.webp` },
       { value:"Futanari",       label:"扶她",       img:`${CDN}/Hentai/futanari.webp` },
       { value:"Milf",           label:"熟女",           img:`${CDN}/Hentai/milf.webp` },
-      { value:"Femdom",         label:"女主导",         img:`${CDN}/Hentai/femdom.webp` },
-      { value:"Pregnant",       label:"孕妇",       img:`${CDN}/Hentai/pregnant.webp` },
-      { value:"Nurse",          label:"护士",          img:`${CDN}/Hentai/nurse.webp` },
+      { value:"Femdom",         label:"女主導",         img:`${CDN}/Hentai/femdom.webp` },
+      { value:"Pregnant",       label:"孕婦",       img:`${CDN}/Hentai/pregnant.webp` },
+      { value:"Nurse",          label:"護士",          img:`${CDN}/Hentai/nurse.webp` },
       { value:"Fantasy",        label:"奇幻",        img:`${CDN}/Hentai/fantasy.webp` },
       { value:"Dandere",        label:"冷淡少女",        img:`${CDN}/Hentai/dandere.webp` },
       { value:"Idol",           label:"偶像",           img:`${CDN}/Hentai/idol.webp` }
@@ -269,27 +269,27 @@ const DATA = {
   },
   personaV2: [
     { label:"俏皮",   img:"media/personality/playful.png" },
-    { label:"欲女",    img:"media/personality/nympho.png" },
-    { label:"顺从",img:"media/personality/submissive.png" },
-    { label:"强势",  img:"media/personality/dominant.png" }
+    { label:"慾女",    img:"media/personality/nympho.png" },
+    { label:"順從",img:"media/personality/submissive.png" },
+    { label:"強勢",  img:"media/personality/dominant.png" }
   ]
 };
 
 /* ---------- step sequence ---------- */
 const STEPS = [
-  { id:"style",      title:["创建","你自己的","AI 女友"], sub:"打造只属于你的专属伴侣，让幻想成真。" },
-  { id:"ethnicity",  title:["选择","种族"] },
-  { id:"body",       title:["选择","身材"] },
-  { id:"breast",     title:["选择","胸围"] },
-  { id:"booty",      title:["选择","臀型"] },
-  { id:"hairStyle",  title:["选择","发型"] },
-  { id:"hairColor",  title:["选择","发色"] },
-  { id:"eyeColor",   title:["选择","眼睛颜色"] },
-  { id:"voice",      title:["选择","声音"] },
-  { id:"personality",title:["选择","性格"] },
-  { id:"kinks",      title:["选择","你的癖好"], sub:"她喜欢什么" },
-  { id:"result",     title:["你的","梦幻女郎","已就绪！"] },
-  { id:"paywall",    title:["立即","获取","访问权限"] }
+  { id:"style",      title:["創建","你自己的","AI 女友"], sub:"打造只屬於你的專屬伴侶，讓幻想成真。" },
+  { id:"ethnicity",  title:["選擇","種族"] },
+  { id:"body",       title:["選擇","身材"] },
+  { id:"breast",     title:["選擇","胸圍"] },
+  { id:"booty",      title:["選擇","臀型"] },
+  { id:"hairStyle",  title:["選擇","髮型"] },
+  { id:"hairColor",  title:["選擇","髮色"] },
+  { id:"eyeColor",   title:["選擇","眼睛顏色"] },
+  { id:"voice",      title:["選擇","聲音"] },
+  { id:"personality",title:["選擇","性格"] },
+  { id:"kinks",      title:["選擇","你的癖好"], sub:"她喜歡什麼" },
+  { id:"result",     title:["你的","夢幻女郎","已就緒！"] },
+  { id:"paywall",    title:["立即","獲取","訪問權限"] }
 ];
 
 const state = {
@@ -411,7 +411,7 @@ function renderEthnicity(){
 
   // age slider
   const age = el(`<div class="age-block fade-in">
-      <div class="age-head">选择年龄</div>
+      <div class="age-head">選擇年齡</div>
       <div class="age-row">
         <span class="age-num">18+</span>
         <input class="age-slider" type="range" min="18" max="55" value="${state.sel.age}">
@@ -464,7 +464,7 @@ function renderVoice(){
     const opt = el(`<div class="opt plain" data-v="${o.value}">
       <div class="opt-row">
         <div class="opt-icon">${o.icon}</div>
-        <div style="flex:1"><div class="opt-title">${o.label}</div><div class="opt-desc">点击试听</div></div>
+        <div style="flex:1"><div class="opt-title">${o.label}</div><div class="opt-desc">點擊試聽</div></div>
         <div class="check"></div>
       </div>
     </div>`);
@@ -536,14 +536,14 @@ function renderResult(){
   const persona = DATA.personaV2[Math.floor(Math.random()*DATA.personaV2.length)];
 
   app.appendChild(el(`<div class="fade-in" style="text-align:center">
-      <span class="ribbon">✨ 限时优惠 — 仅 <b>&nbsp;0.33$/天</b></span>
+      <span class="ribbon">✨ 限時優惠 — 僅 <b>&nbsp;0.33$/天</b></span>
       <h1 class="title">${titleHTML(step.title)}</h1>
     </div>`));
 
   // main result visual
   const main = el(`<div class="result-main">
       <img src="${styleObj.img}" alt="${styleObj.label}">
-      <div class="rm-label">${styleObj.label} · ${state.sel.age} 岁</div>
+      <div class="rm-label">${styleObj.label} · ${state.sel.age} 歲</div>
     </div>`);
   app.appendChild(main);
 
@@ -576,13 +576,13 @@ function renderResult(){
     const card = el(`<div class="r-card">
       ${c.img ? `<img src="${c.img}" alt="" loading="lazy">` : ""}
       ${c.age ? `<div class="age-number">${c.age}</div>` : ""}
-      <span>${c.txt || "岁"}</span>
+      <span>${c.txt || "歲"}</span>
     </div>`);
     grid.appendChild(card);
   });
   app.appendChild(grid);
 
-  const btn = el(`<button class="sparkle-btn">✨ 唤醒我的 AI</button>`);
+  const btn = el(`<button class="sparkle-btn">✨ 喚醒我的 AI</button>`);
   btn.addEventListener("click", ()=>{
     // fake "setting the scene" generation, then paywall
     app.innerHTML = "";
@@ -591,7 +591,7 @@ function renderResult(){
         <div class="loading-heart">💜</div>
         <div class="loading-bar"><i style="width:0%"></i></div>
         <div class="loading-pct">0%</div>
-        <div class="loading-label">正在布置场景…</div>
+        <div class="loading-label">正在佈置場景…</div>
       </div>`);
     app.appendChild(lw);
     const fill = lw.querySelector(".loading-bar i");
@@ -617,11 +617,11 @@ function renderPaywall(){
   const wrap = el(`<div class="paywall fade-in">
       <h1 class="title">${titleHTML(step.title)}</h1>
       <div class="pw-babe"><img src="${styleObj.img}" alt=""></div>
-      <p class="pw-sub">她正在里面等你…… 几秒内即可开始视频聊天。</p>
+      <p class="pw-sub">她正在裡面等你…… 幾秒內即可開始視頻聊天。</p>
       <button class="sparkle-btn download-btn" onclick="k2()">
-        <span class="dl-icon">⬇</span><span>立即下载</span>
+        <span class="dl-icon">⬇</span><span>立即下載</span>
       </button>
-      <p class="pw-note">免费下载 · 手机可用</p>
+      <p class="pw-note">免費下載 · 手機可用</p>
     </div>`);
   app.appendChild(wrap);
 }
