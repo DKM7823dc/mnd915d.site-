@@ -3,9 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Li Mingxin · Crude Oil Trading &amp; Market Strategy</title>
-<meta name="description" content="Li Mingxin is a Singaporean-Taiwanese oil company executive focused on international crude oil trading, market strategy, and research into African producing nations.">
-
+<title>Li Mingxin · 25 Years in the Oil &amp; Energy Industry</title>
+<meta name="description" content="Li Mingxin is a Singaporean-Taiwanese oil and energy professional with 25 years of experience, from frontline operations to supervisory leadership across Singapore's energy sector and international crude markets.">
 
 <style>
   :root {
@@ -21,7 +20,6 @@
     --line-strong: rgba(0,0,0,0.18);
     --accent: #a97b2f;
     --accent-strong: #8f6620;
-    --accent-deep: #7c581a;
     --accent-grad: linear-gradient(135deg, #a97b2f 0%, #7c581a 100%);
     --on-accent: #ffffff;
     --glow: rgba(169,123,47,0.10);
@@ -46,7 +44,6 @@
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    transition: background 0.4s ease, color 0.4s ease;
     overflow-x: hidden;
   }
 
@@ -57,7 +54,7 @@
 
   .wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
 
-  /* ---------- shared ---------- */
+  /* shared */
   .gold-text {
     background: var(--accent-grad);
     -webkit-background-clip: text; background-clip: text;
@@ -65,82 +62,58 @@
   }
   .eyebrow {
     display: inline-flex; align-items: center; gap: 12px;
-    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent);
+    font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
   }
   .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--accent); }
   h2.section-title {
-    font-family: var(--serif); font-weight: 500;
-    font-size: clamp(2rem, 4.6vw, 3.4rem); line-height: 1.06; letter-spacing: -0.015em;
-    color: var(--ink-strong); margin-top: 20px;
+    font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.08; letter-spacing: -0.02em;
+    color: var(--ink-strong); margin-top: 18px; font-weight: 700;
   }
   .lede { color: var(--muted); font-size: 1.05rem; line-height: 1.7; max-width: 64ch; }
 
   [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); transition-delay: var(--d, 0s); }
   [data-reveal].is-visible { opacity: 1; transform: none; }
 
-  /* ---------- nav ---------- */
-  header.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 80; }
-  header.nav.scrolled {
-    background: color-mix(in srgb, var(--bg) 86%, transparent);
-    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--line);
-  }
+  /* images */
+  .img-frame { border-radius: 6px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); box-shadow: 0 24px 50px rgba(0,0,0,0.10); }
+  .img-frame img { width: 100%; height: 100%; object-fit: cover; }
+  .img-frame.ratio-wide { aspect-ratio: 16 / 10; }
+  .img-frame.ratio-tall { aspect-ratio: 4 / 3; }
+  .banner { border-radius: 6px; overflow: hidden; border: 1px solid var(--line); margin-top: 44px; box-shadow: 0 24px 50px rgba(0,0,0,0.10); }
+  .banner img { width: 100%; height: clamp(220px, 38vw, 380px); object-fit: cover; }
+
+  /* nav */
+  header.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 80; background: rgba(247,246,242,0.86); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
   .brand { display: flex; align-items: center; gap: 12px; }
-  .brand-mark {
-    width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
-    background: var(--accent-grad); color: var(--on-accent);
-    font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1rem;
-  }
-  .brand-name { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; letter-spacing: 0.01em; }
+  .brand-mark { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-grad); color: var(--on-accent); font-style: italic; font-weight: 700; font-size: 1rem; }
+  .brand-name { font-size: 1.3rem; font-weight: 700; letter-spacing: 0.01em; }
   .nav-links { display: flex; gap: 30px; align-items: center; }
-  .nav-links a.link { font-size: 0.88rem; font-weight: 500; color: var(--muted); position: relative; transition: color 0.25s ease; }
+  .nav-links a.link { font-size: 0.88rem; font-weight: 600; color: var(--muted); position: relative; transition: color 0.25s ease; }
   .nav-links a.link:hover { color: var(--ink-strong); }
   .nav-links a.link::after { content: ""; position: absolute; left: 0; bottom: -6px; height: 1px; width: 0; background: var(--accent); transition: width 0.3s cubic-bezier(0.16,1,0.3,1); }
   .nav-links a.link:hover::after { width: 100%; }
-  .menu-toggle { display: none; flex-direction: column; gap: 5px; width: 40px; height: 40px; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--line-strong); border-radius: 3px; cursor: pointer; }
-  .menu-toggle span { width: 18px; height: 1.5px; background: var(--ink); transition: transform 0.3s ease, opacity 0.3s ease; }
-  .menu-toggle.open span:nth-child(1) { transform: translateY(3.2px) rotate(45deg); }
-  .menu-toggle.open span:nth-child(2) { transform: translateY(-3.2px) rotate(-45deg); }
+  .menu-toggle { display: none; flex-direction: column; gap: 5px; width: 42px; height: 42px; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--line-strong); border-radius: 4px; cursor: pointer; }
+  .menu-toggle span { width: 18px; height: 2px; background: var(--ink); transition: transform 0.3s ease, opacity 0.3s ease; }
+  .menu-toggle.open span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
+  .menu-toggle.open span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
 
-  .mobile-menu {
-    display: none; position: fixed; top: 70px; left: 0; right: 0; z-index: 79;
-    background: color-mix(in srgb, var(--bg) 96%, transparent); backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--line); padding: 12px 28px 24px;
-  }
+  .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; z-index: 79; background: rgba(247,246,242,0.97); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); padding: 12px 28px 24px; }
   .mobile-menu.open { display: block; }
-  .mobile-menu a { display: block; padding: 16px 0; font-size: 1.1rem; font-weight: 500; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .mobile-menu a { display: block; padding: 16px 0; font-size: 1.1rem; font-weight: 600; color: var(--ink); border-bottom: 1px solid var(--line); }
   .mobile-menu a:last-child { border-bottom: none; }
-  .mobile-menu .mm-cta { margin-top: 16px; display: inline-block; padding: 14px 24px; border-radius: 3px; background: var(--accent-grad); color: var(--on-accent); font-weight: 700; border-bottom: none; }
 
-  /* ---------- hero ---------- */
-  .hero { position: relative; min-height: 100dvh; display: flex; align-items: center; padding: 120px 0 64px; overflow: hidden; }
-  .hero::before {
-    content: ""; position: absolute; top: -20%; right: -10%; width: 70vw; height: 70vw;
-    background: radial-gradient(circle, var(--glow) 0%, transparent 62%);
-    pointer-events: none;
-  }
-  .hero::after {
-    content: ""; position: absolute; bottom: -30%; left: -15%; width: 55vw; height: 55vw;
-    background: radial-gradient(circle, var(--glow) 0%, transparent 60%);
-    pointer-events: none;
-  }
+  /* hero */
+  .hero { position: relative; min-height: 100dvh; display: flex; align-items: center; padding: 120px 0 56px; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; top: -20%; right: -10%; width: 70vw; height: 70vw; background: radial-gradient(circle, var(--glow) 0%, transparent 62%); pointer-events: none; }
   .hero-grid { position: relative; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: center; width: 100%; }
-
-  .hero-name {
-    font-family: var(--serif); font-weight: 500;
-    font-size: clamp(3.4rem, 8.5vw, 7rem); line-height: 0.96; letter-spacing: -0.02em;
-    color: var(--ink-strong); margin-top: 22px;
-  }
-  .hero-name .given { font-style: italic; }
-  .hero-role {
-    font-family: var(--serif); font-weight: 400; font-size: clamp(1.25rem, 2.4vw, 1.75rem);
-    color: var(--ink); margin-top: 20px; line-height: 1.25;
-  }
-  .hero-sub { max-width: 46ch; color: var(--muted); font-size: 1.03rem; line-height: 1.7; margin-top: 18px; }
-  .hero-actions { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
-  .btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--sans); font-size: 0.95rem; font-weight: 700; padding: 15px 28px; border-radius: 3px; border: 1px solid transparent; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease; cursor: pointer; }
+  .hero-name { font-size: clamp(3.2rem, 8vw, 6.5rem); line-height: 0.98; letter-spacing: -0.02em; color: var(--ink-strong); margin-top: 20px; font-weight: 800; }
+  .hero-name .given { font-style: italic; font-weight: 700; }
+  .hero-role { font-size: clamp(1.25rem, 2.3vw, 1.7rem); color: var(--ink); margin-top: 18px; line-height: 1.25; font-weight: 600; }
+  .hero-sub { max-width: 46ch; color: var(--muted); font-size: 1.03rem; line-height: 1.7; margin-top: 16px; }
+  .hero-actions { display: flex; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--sans); font-size: 0.95rem; font-weight: 700; padding: 15px 28px; border-radius: 4px; border: 1px solid transparent; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease; cursor: pointer; }
   .btn-primary { background: var(--accent-grad); color: var(--on-accent); }
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px var(--glow); }
   .btn-primary .arr { transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); }
@@ -148,146 +121,105 @@
   .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
   .btn-ghost:hover { border-color: var(--faint); transform: translateY(-2px); }
 
-  /* portrait */
   .portrait-col { display: flex; justify-content: flex-end; }
-  .portrait {
-    position: relative; width: min(100%, 400px);
-  }
-  .portrait::before {
-    content: ""; position: absolute; inset: -14px; border: 1px solid var(--line-strong); border-radius: 6px;
-    z-index: 0; transform: translate(14px, 14px);
-  }
-  .portrait-frame {
-    position: relative; z-index: 1; border-radius: 4px; overflow: hidden;
-    aspect-ratio: 3 / 4; border: 1px solid var(--line-strong);
-    background: var(--surface);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-  }
+  .portrait { position: relative; width: min(100%, 400px); }
+  .portrait::before { content: ""; position: absolute; inset: -14px; border: 1px solid var(--line-strong); border-radius: 6px; z-index: 0; transform: translate(14px, 14px); }
+  .portrait-frame { position: relative; z-index: 1; border-radius: 6px; overflow: hidden; aspect-ratio: 3 / 4; border: 1px solid var(--line-strong); background: var(--surface); box-shadow: 0 40px 80px rgba(0,0,0,0.18); }
   .portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-  .portrait-frame::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(10,11,13,0.72) 0%, transparent 40%),
-                linear-gradient(120deg, rgba(217,173,95,0.10) 0%, transparent 50%);
-  }
-  .portrait-nameplate {
-    position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 20px 22px;
-    display: flex; flex-direction: column; gap: 2px;
-  }
-  .portrait-nameplate .pn-name { font-family: var(--serif); font-size: 1.5rem; font-weight: 500; color: #fff; }
+  .portrait-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,20,18,0.62) 0%, transparent 40%); }
+  .portrait-nameplate { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 20px 22px; display: flex; flex-direction: column; gap: 2px; }
+  .portrait-nameplate .pn-name { font-size: 1.5rem; font-weight: 700; color: #fff; }
   .portrait-nameplate .pn-role { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: #eac77f; }
 
-  /* facts strip */
   .facts { position: relative; border-top: 1px solid var(--line); margin-top: 24px; }
   .facts-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
   .fact { padding: 26px 20px 26px 0; border-right: 1px solid var(--line); }
   .fact:last-child { border-right: none; }
   .fact .f-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); display: block; margin-bottom: 8px; }
-  .fact .f-value { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; color: var(--ink-strong); line-height: 1.2; }
+  .fact .f-value { font-size: 1.32rem; font-weight: 700; color: var(--ink-strong); line-height: 1.2; }
 
-  /* ---------- sections ---------- */
-  section { padding: 110px 0; position: relative; }
-  .rule { width: 100%; height: 1px; background: var(--line); margin-top: 40px; }
+  /* sections */
+  section { padding: 104px 0; position: relative; }
+  section.band { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 
   /* about */
   .about-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items: start; }
-  .about-sticky { position: sticky; top: 110px; }
-  .about-sticky .portrait { width: min(100%, 340px); }
-  .about-copy p { color: var(--muted); font-size: 1.08rem; line-height: 1.8; margin-bottom: 24px; }
-  .about-copy p strong { color: var(--ink-strong); font-weight: 600; }
-  .pull-quote {
-    margin-top: 12px; padding: 28px 32px; border-left: 2px solid var(--accent);
-    background: var(--bg-2); border-radius: 0 4px 4px 0;
-  }
-  .pull-quote p { font-family: var(--serif); font-size: 1.5rem; line-height: 1.35; color: var(--ink-strong); margin: 0; }
+  .about-side { position: sticky; top: 110px; }
+  .about-side .img-frame { margin-top: 34px; }
+  .about-copy p { color: var(--muted); font-size: 1.06rem; line-height: 1.8; margin-bottom: 22px; }
+  .about-copy p strong { color: var(--ink-strong); font-weight: 700; }
+  .pull-quote { margin-top: 8px; padding: 28px 32px; border-left: 3px solid var(--accent); background: var(--surface-2); border-radius: 0 6px 6px 0; }
+  .pull-quote p { font-size: 1.4rem; line-height: 1.4; color: var(--ink-strong); margin: 0; font-weight: 600; }
   .pull-quote p em { font-style: italic; color: var(--accent); }
 
   /* expertise */
-  .expertise { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .expertise-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
   .expertise-head .lede { max-width: 44ch; }
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
-  .card {
-    position: relative; border: 1px solid var(--line); border-radius: 6px; padding: 34px 30px;
-    background: var(--surface); overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 52px; }
+  .card { position: relative; border: 1px solid var(--line); border-radius: 6px; padding: 32px 28px; background: var(--surface); overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
   .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent-grad); opacity: 0; transition: opacity 0.3s ease; }
-  .card:hover { transform: translateY(-5px); border-color: var(--line-strong); box-shadow: 0 24px 50px rgba(0,0,0,0.35); }
+  .card:hover { transform: translateY(-5px); border-color: var(--line-strong); box-shadow: 0 24px 50px rgba(0,0,0,0.12); }
   .card:hover::before { opacity: 1; }
-  .card .num { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.12em; }
-  .card h3 { font-family: var(--serif); font-weight: 500; font-size: 1.55rem; line-height: 1.15; color: var(--ink-strong); margin-top: 16px; }
-  .card p { color: var(--muted); font-size: 0.95rem; line-height: 1.65; margin-top: 12px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .card.accented { background: linear-gradient(150deg, #faf4e6 0%, var(--surface) 70%); }
+  .card .num { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.12em; font-weight: 600; }
+  .card h3 { font-size: 1.4rem; line-height: 1.15; color: var(--ink-strong); margin-top: 14px; font-weight: 700; }
+  .card p { color: var(--muted); font-size: 0.94rem; line-height: 1.65; margin-top: 11px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
   .tag { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.04em; color: var(--muted); padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; }
-  .card.featured { grid-column: span 2; background: linear-gradient(150deg, var(--surface-2), var(--surface)); }
-  .card.featured h3 { font-size: clamp(1.9rem, 3vw, 2.5rem); max-width: 12ch; }
-  .card.featured p { max-width: 52ch; font-size: 1rem; }
 
   /* journey */
   .journey-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items: start; }
   .journey-left { position: sticky; top: 110px; }
   .timeline { position: relative; margin-top: 8px; padding-left: 30px; }
   .timeline::before { content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 1px; background: var(--line-strong); }
-  .tl-item { position: relative; padding-bottom: 44px; }
+  .tl-item { position: relative; padding-bottom: 46px; }
   .tl-item:last-child { padding-bottom: 0; }
-  .tl-item::before {
-    content: ""; position: absolute; left: -30px; top: 8px; width: 13px; height: 13px; border-radius: 50%;
-    background: var(--bg); border: 2px solid var(--accent);
-  }
-  .tl-item .tl-step { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
-  .tl-item h3 { font-family: var(--serif); font-weight: 500; font-size: 1.6rem; color: var(--ink-strong); margin-top: 10px; }
+  .tl-item::before { content: ""; position: absolute; left: -30px; top: 8px; width: 13px; height: 13px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+  .tl-item .tl-step { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .tl-item h3 { font-size: 1.55rem; color: var(--ink-strong); margin-top: 10px; font-weight: 700; }
   .tl-item p { color: var(--muted); font-size: 1rem; line-height: 1.7; margin-top: 10px; max-width: 48ch; }
 
+  /* projects split */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .split-copy p { color: var(--muted); font-size: 1.06rem; line-height: 1.8; margin-bottom: 20px; }
+  .split-copy .note { font-family: var(--mono); font-size: 0.78rem; color: var(--faint); line-height: 1.6; border-top: 1px solid var(--line); padding-top: 18px; margin-top: 6px; }
+
   /* markets */
-  .markets { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .country-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
-  .country-card {
-    position: relative; border: 1px solid var(--line); border-radius: 6px; padding: 30px 28px;
-    background: var(--surface); overflow: hidden; min-height: 220px; display: flex; flex-direction: column;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-  }
+  .country-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 44px; }
+  .country-card { position: relative; border: 1px solid var(--line); border-radius: 6px; padding: 30px 28px; background: var(--surface); overflow: hidden; min-height: 210px; display: flex; flex-direction: column; transition: transform 0.3s ease, border-color 0.3s ease; }
   .country-card:hover { transform: translateY(-5px); border-color: var(--line-strong); }
-  .country-card::after {
-    content: ""; position: absolute; right: -40px; bottom: -40px; width: 140px; height: 140px; border-radius: 50%;
-    background: radial-gradient(circle, var(--glow), transparent 70%);
-  }
-  .country-card .idx { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; }
-  .country-card .region { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-top: 26px; }
-  .country-card h3 { font-family: var(--serif); font-weight: 500; font-size: 1.9rem; color: var(--ink-strong); margin-top: 6px; line-height: 1.1; }
+  .country-card::after { content: ""; position: absolute; right: -40px; bottom: -40px; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, var(--glow), transparent 70%); }
+  .country-card .idx { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; font-weight: 600; }
+  .country-card .region { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-top: 24px; }
+  .country-card h3 { font-size: 1.8rem; color: var(--ink-strong); margin-top: 6px; line-height: 1.1; font-weight: 700; }
   .country-card p { color: var(--muted); font-size: 0.93rem; line-height: 1.6; margin-top: 12px; }
   .country-card.wide { grid-column: span 2; }
 
-  /* method */
-  .method-note { text-align: center; max-width: 720px; margin: 0 auto; }
-  .method-quote { font-family: var(--serif); font-size: clamp(1.6rem, 3.2vw, 2.5rem); line-height: 1.28; color: var(--ink-strong); }
-  .method-quote em { font-style: italic; color: var(--accent); }
-  .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 56px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
-  .method-col { padding: 44px; background: var(--surface); }
-  .method-col + .method-col { border-left: 1px solid var(--line); }
-  .method-col .m-num { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.14em; }
-  .method-col h3 { font-family: var(--serif); font-weight: 500; font-size: 1.7rem; color: var(--ink-strong); margin-top: 16px; }
-  .method-col p { color: var(--muted); font-size: 1rem; line-height: 1.7; margin-top: 14px; }
+  /* philosophy */
+  .phil-note { text-align: center; max-width: 760px; margin: 0 auto; }
+  .phil-quote { font-size: clamp(1.5rem, 3.1vw, 2.4rem); line-height: 1.32; color: var(--ink-strong); font-weight: 700; letter-spacing: -0.01em; }
+  .phil-quote em { font-style: italic; color: var(--accent); }
+  .phil-closing { margin: 40px auto 0; max-width: 40ch; font-size: 1.2rem; line-height: 1.5; color: var(--ink-strong); font-weight: 600; border-top: 1px solid var(--line); padding-top: 28px; }
 
   /* footer */
   footer { border-top: 1px solid var(--line); padding: 44px 0; }
   .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
   .footer-brand { display: flex; align-items: center; gap: 10px; }
-  .footer-brand .name { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; }
+  .footer-brand .name { font-size: 1.15rem; font-weight: 700; }
   .footer-meta { font-family: var(--mono); font-size: 0.72rem; color: var(--faint); letter-spacing: 0.04em; }
-  .footer-zh { font-family: var(--serif); color: var(--faint); font-size: 1rem; }
+  .footer-zh { color: var(--faint); font-size: 1rem; }
 
-  /* ---------- responsive ---------- */
+  /* responsive */
   @media (max-width: 1024px) {
     .hero-grid { grid-template-columns: 1fr; gap: 48px; }
     .portrait-col { justify-content: flex-start; }
     .portrait { width: min(100%, 360px); }
     .facts-grid { grid-template-columns: repeat(2, 1fr); }
     .fact { border-bottom: 1px solid var(--line); }
-    .about-grid, .journey-grid { grid-template-columns: 1fr; gap: 40px; }
-    .about-sticky, .journey-left { position: static; }
-    .about-sticky .portrait { width: min(100%, 340px); }
+    .about-grid, .journey-grid, .split { grid-template-columns: 1fr; gap: 40px; }
+    .about-side, .journey-left { position: static; }
+    .about-side .img-frame { width: min(100%, 420px); }
     .cards { grid-template-columns: 1fr 1fr; }
-    .card.featured { grid-column: span 2; }
     .country-grid { grid-template-columns: 1fr 1fr; }
     .country-card.wide { grid-column: span 2; }
   }
@@ -295,21 +227,18 @@
     .nav-links { display: none; }
     .menu-toggle { display: flex; }
     .wrap { padding: 0 20px; }
-    section { padding: 80px 0; }
-    .hero { padding: 96px 0 48px; }
+    section { padding: 76px 0; }
+    .hero { padding: 96px 0 44px; }
     .hero-actions { flex-direction: column; align-items: stretch; }
     .btn { justify-content: center; }
     .facts-grid { grid-template-columns: 1fr 1fr; }
     .fact { padding: 20px 12px 20px 0; }
     .fact .f-value { font-size: 1.1rem; }
     .cards { grid-template-columns: 1fr; }
-    .card.featured { grid-column: span 1; }
     .country-grid { grid-template-columns: 1fr; }
     .country-card.wide { grid-column: span 1; }
-    .method-grid { grid-template-columns: 1fr; }
-    .method-col + .method-col { border-left: none; border-top: 1px solid var(--line); }
-    .method-col { padding: 32px; }
     .portrait::before { display: none; }
+    .banner img { height: 220px; }
     .footer-inner { flex-direction: column; text-align: center; }
   }
 </style>
@@ -323,9 +252,9 @@
       <span class="brand-name">Li Mingxin</span>
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a class="link" href="#about">About</a>
-      <a class="link" href="#expertise">Expertise</a>
-      <a class="link" href="#journey">Journey</a>
+      <a class="link" href="#about">Background</a>
+      <a class="link" href="#career">Career</a>
+      <a class="link" href="#focus">Industry focus</a>
       <a class="link" href="#markets">Markets</a>
     </nav>
     <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
@@ -335,9 +264,9 @@
 </header>
 
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#about">About</a>
-  <a href="#expertise">Expertise</a>
-  <a href="#journey">Journey</a>
+  <a href="#about">Background</a>
+  <a href="#career">Career</a>
+  <a href="#focus">Industry focus</a>
   <a href="#markets">Markets</a>
 </div>
 
@@ -349,10 +278,10 @@
       <div class="hero-copy">
         <span class="eyebrow" data-reveal>Singapore · Taiwan</span>
         <h1 class="hero-name" data-reveal style="--d:.05s">Li <span class="given gold-text">Mingxin</span></h1>
-        <p class="hero-role" data-reveal style="--d:.1s">Crude oil trading &amp; market strategy</p>
-        <p class="hero-sub" data-reveal style="--d:.15s">A Singapore-based oil company executive. Reading energy markets with an international lens, crude supply and demand with data, and every opportunity with professional judgement.</p>
+        <p class="hero-role" data-reveal style="--d:.1s">25 years in the oil &amp; energy industry</p>
+        <p class="hero-sub" data-reveal style="--d:.15s">From frontline operations to a supervisory role across Singapore's energy sector and international crude markets.</p>
         <div class="hero-actions" data-reveal style="--d:.2s">
-          <a class="btn btn-primary" href="#expertise">Explore expertise <span class="arr">→</span></a>
+          <a class="btn btn-primary" href="#about">Explore background <span class="arr">→</span></a>
           <a class="btn btn-ghost" href="#markets">View focus markets</a>
         </div>
       </div>
@@ -363,7 +292,7 @@
           </div>
           <div class="portrait-nameplate">
             <span class="pn-name">Li Mingxin</span>
-            <span class="pn-role">Crude oil · market strategy</span>
+            <span class="pn-role">Oil &amp; energy · Singapore</span>
           </div>
         </div>
       </div>
@@ -371,115 +300,138 @@
 
     <div class="wrap facts">
       <div class="facts-grid">
-        <div class="fact" data-reveal><span class="f-label">Based in</span><span class="f-value">Singapore</span></div>
-        <div class="fact" data-reveal style="--d:.05s"><span class="f-label">Heritage</span><span class="f-value">Singaporean · Taiwanese</span></div>
-        <div class="fact" data-reveal style="--d:.1s"><span class="f-label">Focus</span><span class="f-value">Five African producers</span></div>
-        <div class="fact" data-reveal style="--d:.15s"><span class="f-label">Method</span><span class="f-value">Public-data research</span></div>
+        <div class="fact" data-reveal><span class="f-label">Experience</span><span class="f-value">25 years in oil &amp; energy</span></div>
+        <div class="fact" data-reveal style="--d:.05s"><span class="f-label">Based in</span><span class="f-value">Singapore</span></div>
+        <div class="fact" data-reveal style="--d:.1s"><span class="f-label">Heritage</span><span class="f-value">Singaporean · Taiwanese</span></div>
+        <div class="fact" data-reveal style="--d:.15s"><span class="f-label">Path</span><span class="f-value">Operations to supervision</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- PROFESSIONAL BACKGROUND -->
   <section id="about">
     <div class="wrap about-grid">
-      <div class="about-sticky">
-        <span class="eyebrow" data-reveal>About</span>
-        <h2 class="section-title" data-reveal style="--d:.05s">An international view of the crude market</h2>
-        <div class="portrait" style="margin-top: 36px; --d:.1s" data-reveal>
-          <div class="portrait-frame">
-            <img src="img/1.jpg" alt="Li Mingxin" loading="lazy">
-          </div>
+      <div class="about-side">
+        <span class="eyebrow" data-reveal>Professional background</span>
+        <h2 class="section-title" data-reveal style="--d:.05s">A career built on experience</h2>
+        <div class="img-frame ratio-tall" data-reveal style="--d:.1s">
+          <img src="img/2.jpeg" alt="Oil tanker at sea" loading="lazy">
         </div>
       </div>
       <div class="about-copy" data-reveal style="--d:.08s">
-        <p><strong>Li Mingxin</strong> is a Singaporean-Taiwanese executive working in the Singapore oil industry. His work sits at the centre of international crude trading, where supply meets demand, where benchmark prices meet regional differentials, and where a barrel of crude becomes a commercial decision.</p>
-        <p>He tracks the production, exports, and policy of the major producing nations, reads crude quality through API gravity and sulphur content, and follows the logistics that move a barrel from wellhead to refinery. Around it all sits a clear-eyed view of commercial risk: counterparties, contracts, payments, and cross-border compliance.</p>
-        <p>In recent years his attention has turned toward the African producing nations, where resource potential, export capacity, and industrial development are reshaping the global crude market.</p>
+        <p><strong>Li Mingxin</strong> has built his career through 25 years of practical experience, professional development, and progressive responsibility in the oil and energy industry. His journey from an entry-level employee to a supervisory role reflects a long-term commitment to learning, operational excellence, and professional growth.</p>
+        <p>Throughout his career, he has followed the development of Singapore's oil and energy sector, gaining a broader understanding of the industry's operational environment, commercial dynamics, and evolving market landscape.</p>
+        <p>His professional interests include international crude oil markets, supply and demand fundamentals, pricing mechanisms, crude quality, logistics, commercial strategy, and risk management.</p>
         <div class="pull-quote">
-          <p>Market judgement is built on data, logic, and a clear sense of risk. Rather than chase over-certain forecasts, I prefer to understand <em>why</em> markets move.</p>
+          <p>Build on experience, make decisions with discipline, and approach every opportunity with a clear understanding of both <em>value and risk</em>.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- EXPERTISE -->
-  <section class="expertise" id="expertise">
-    <div class="wrap">
-      <div class="expertise-head">
-        <div>
-          <span class="eyebrow" data-reveal>Expertise</span>
-          <h2 class="section-title" data-reveal style="--d:.05s">What I study</h2>
-        </div>
-        <p class="lede" data-reveal style="--d:.1s">Five threads run through my work, from the producing well to the refining gate and the commercial terms in between.</p>
-      </div>
-      <div class="cards">
-        <div class="card featured" data-reveal>
-          <span class="num">01</span>
-          <h3>Market supply &amp; demand</h3>
-          <p>Production, exports, and policy across the major producing nations, set against global refining demand. I follow what is being produced, who is buying it, and how policy shifts the balance.</p>
-          <div class="tags"><span class="tag">OPEC output</span><span class="tag">Refinery runs</span><span class="tag">Inventories</span></div>
-        </div>
-        <div class="card" data-reveal style="--d:.05s">
-          <span class="num">02</span>
-          <h3>Price strategy</h3>
-          <p>Benchmark crudes, regional differentials, quality premiums and discounts, and the drivers of volatility.</p>
-          <div class="tags"><span class="tag">Brent</span><span class="tag">WTI</span><span class="tag">Dubai</span><span class="tag">Spreads</span></div>
-        </div>
-        <div class="card" data-reveal style="--d:.1s">
-          <span class="num">03</span>
-          <h3>Quality &amp; suitability</h3>
-          <p>API gravity, sulphur content, and what each grade means for refining economics.</p>
-          <div class="tags"><span class="tag">Sweet vs sour</span><span class="tag">Light vs heavy</span></div>
-        </div>
-        <div class="card" data-reveal style="--d:.15s">
-          <span class="num">04</span>
-          <h3>Logistics &amp; supply chain</h3>
-          <p>Ports, storage, freight, and the arrangements that move a barrel to market.</p>
-          <div class="tags"><span class="tag">Loading terminals</span><span class="tag">Floating storage</span><span class="tag">Freight rates</span></div>
-        </div>
-        <div class="card" data-reveal style="--d:.2s">
-          <span class="num">05</span>
-          <h3>Commercial risk</h3>
-          <p>Counterparty background, contract terms, payment structure, and cross-border compliance.</p>
-          <div class="tags"><span class="tag">Due diligence</span><span class="tag">Payment security</span><span class="tag">Compliance</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- JOURNEY -->
-  <section id="journey">
+  <!-- CAREER DEVELOPMENT -->
+  <section class="band" id="career">
     <div class="wrap journey-grid">
       <div class="journey-left">
-        <span class="eyebrow" data-reveal>Journey</span>
-        <h2 class="section-title" data-reveal style="--d:.05s">From Singapore to Africa</h2>
+        <span class="eyebrow" data-reveal>Career development</span>
+        <h2 class="section-title" data-reveal style="--d:.05s">From operations to supervision</h2>
       </div>
       <div class="timeline" data-reveal style="--d:.1s">
         <div class="tl-item">
-          <span class="tl-step">The regional hub</span>
-          <h3>Singapore</h3>
-          <p>A global centre for crude trading, refining, and storage. Singapore is where the international market meets a deep ecosystem of counterparties, terminals, and financing.</p>
+          <span class="tl-step">Employee level</span>
+          <h3>Precision and accountability</h3>
+          <p>Practical knowledge of workplace operations, industry procedures, and the importance of getting the details right.</p>
         </div>
         <div class="tl-item">
-          <span class="tl-step">The core work</span>
-          <h3>Crude trading &amp; strategy</h3>
-          <p>International crude markets, from benchmark pricing and regional differentials to crude quality, logistics, and commercial risk.</p>
+          <span class="tl-step">Growing responsibility</span>
+          <h3>Coordination and execution</h3>
+          <p>As experience grew, he took on greater responsibilities, where coordination, problem-solving, and effective execution became increasingly important.</p>
         </div>
         <div class="tl-item">
-          <span class="tl-step">The current focus</span>
-          <h3>African producing nations</h3>
-          <p>A growing research focus on supply structure, export logistics, resource development, and the commercial environment of key African producers.</p>
+          <span class="tl-step">Supervisory role</span>
+          <h3>Judgment and communication</h3>
+          <p>Leadership built on technical knowledge, sound judgment, clear communication, and a strong sense of responsibility.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MARKETS -->
-  <section class="markets" id="markets">
+  <!-- INDUSTRY FOCUS -->
+  <section id="focus">
     <div class="wrap">
-      <span class="eyebrow" data-reveal>Focus markets</span>
-      <h2 class="section-title" data-reveal style="--d:.05s">African producers under study</h2>
-      <p class="lede" data-reveal style="--d:.1s; margin-top: 16px;">I work primarily from public sources: country energy reports, official statistics, public company announcements, and industry data.</p>
+      <div class="expertise-head">
+        <div>
+          <span class="eyebrow" data-reveal>Industry focus</span>
+          <h2 class="section-title" data-reveal style="--d:.05s">Singapore &amp; global energy markets</h2>
+        </div>
+        <p class="lede" data-reveal style="--d:.1s">Singapore plays an important role in international energy trading, oil refining, petrochemicals, and petroleum logistics.</p>
+      </div>
+      <div class="cards">
+        <div class="card accented" data-reveal>
+          <span class="num">01</span>
+          <h3>Crude oil markets</h3>
+          <p>Understanding global supply and demand, market fundamentals, and pricing dynamics.</p>
+          <div class="tags"><span class="tag">Supply &amp; demand</span><span class="tag">Pricing dynamics</span><span class="tag">Market fundamentals</span></div>
+        </div>
+        <div class="card" data-reveal style="--d:.05s">
+          <span class="num">02</span>
+          <h3>Commercial strategy</h3>
+          <p>Evaluating commercial considerations and the factors that influence energy transactions.</p>
+          <div class="tags"><span class="tag">Commercial terms</span><span class="tag">Transactions</span></div>
+        </div>
+        <div class="card" data-reveal style="--d:.1s">
+          <span class="num">03</span>
+          <h3>Crude quality</h3>
+          <p>Understanding crude characteristics and their relevance to refining requirements and market value.</p>
+          <div class="tags"><span class="tag">API gravity</span><span class="tag">Sulphur</span><span class="tag">Refining</span></div>
+        </div>
+        <div class="card" data-reveal style="--d:.15s">
+          <span class="num">04</span>
+          <h3>Logistics &amp; supply chains</h3>
+          <p>Examining transportation, storage, delivery arrangements, and supply chain efficiency.</p>
+          <div class="tags"><span class="tag">Transportation</span><span class="tag">Storage</span><span class="tag">Delivery</span></div>
+        </div>
+        <div class="card" data-reveal style="--d:.2s">
+          <span class="num">05</span>
+          <h3>Commercial risk management</h3>
+          <p>Recognizing the importance of counterparty assessment, contractual arrangements, payment terms, and compliance.</p>
+          <div class="tags"><span class="tag">Counterparty</span><span class="tag">Contracts</span><span class="tag">Compliance</span></div>
+        </div>
+        <div class="card" data-reveal style="--d:.25s">
+          <span class="num">06</span>
+          <h3>African energy markets</h3>
+          <p>Following developments in African oil-producing countries and their evolving role in global energy supply.</p>
+          <div class="tags"><span class="tag">Nigeria</span><span class="tag">Angola</span><span class="tag">Frontier basins</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT & INDUSTRY EXPERIENCE -->
+  <section class="band" id="projects">
+    <div class="wrap split">
+      <div class="split-copy" data-reveal>
+        <span class="eyebrow">Project &amp; industry experience</span>
+        <h2 class="section-title">Refining, infrastructure &amp; trade</h2>
+        <p style="margin-top:22px;">Over the course of his career, Li has maintained a close interest in the development of Singapore's oil and energy industry, including major developments across refining, petrochemicals, energy infrastructure, and international trade.</p>
+        <p>His industry perspective is informed by long-term professional experience and a continued interest in the commercial and operational factors that shape energy markets. He places particular importance on understanding how infrastructure, logistics, market conditions, and commercial decisions interact within the wider energy value chain.</p>
+        <p class="note">Specific project responsibilities and professional achievements can be presented separately where they can be publicly verified.</p>
+      </div>
+      <div class="img-frame ratio-wide" data-reveal style="--d:.12s">
+        <img src="img/2.jpeg" alt="Oil refinery" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- AFRICAN ENERGY MARKETS -->
+  <section id="markets">
+    <div class="wrap">
+      <span class="eyebrow" data-reveal>African energy markets</span>
+      <h2 class="section-title" data-reveal style="--d:.05s">Producers under study</h2>
+      <p class="lede" data-reveal style="--d:.1s; margin-top: 16px;">Following developments in African oil-producing countries and their evolving role in global energy supply.</p>
+      <div class="banner" data-reveal style="--d:.15s">
+        <img src="img/3.jpg" alt="Offshore oil and gas platform" loading="lazy">
+      </div>
       <div class="country-grid">
         <div class="country-card wide" data-reveal>
           <span class="idx">01</span>
@@ -515,24 +467,12 @@
     </div>
   </section>
 
-  <!-- METHOD -->
-  <section id="method">
-    <div class="wrap">
-      <div class="method-note" data-reveal>
-        <p class="method-quote">Understanding a producing country is not only about resource potential. It is about actual production, export infrastructure, crude quality, policy, and the conditions for <em>commercialisation</em>.</p>
-      </div>
-      <div class="method-grid">
-        <div class="method-col" data-reveal>
-          <span class="m-num">01</span>
-          <h3>Public-data research</h3>
-          <p>Research builds market understanding. I work from country energy reports, official statistics, public company announcements, and industry data to map supply structure and export logistics.</p>
-        </div>
-        <div class="method-col" data-reveal style="--d:.1s">
-          <span class="m-num">02</span>
-          <h3>Field observation</h3>
-          <p>On-the-ground observation, industry exchange, and business cooperation must rest on real, verifiable experience. I keep a clear line between the two.</p>
-        </div>
-      </div>
+  <!-- PROFESSIONAL PHILOSOPHY -->
+  <section class="band" id="philosophy">
+    <div class="wrap phil-note" data-reveal>
+      <span class="eyebrow" style="justify-content:center;">Professional philosophy</span>
+      <p class="phil-quote" style="margin-top:22px;">Sound commercial judgment requires more than an understanding of market prices. It also requires attention to operational realities, supply chain considerations, contractual obligations, and <em>potential risks</em>.</p>
+      <p class="phil-closing">Build on experience, make decisions with discipline, and approach every opportunity with a clear understanding of both value and risk.</p>
     </div>
   </section>
 
@@ -544,7 +484,7 @@
       <span class="brand-mark">LM</span>
       <span class="name">Li Mingxin</span>
     </div>
-    <p class="footer-meta">Crude oil trading &amp; market strategy · Singapore</p>
+    <p class="footer-meta">25 years in the oil &amp; energy industry · Singapore</p>
     <p class="footer-zh">李銘鑫</p>
     <p class="footer-meta">© <span id="year">2026</span> Li Mingxin</p>
   </div>
@@ -552,7 +492,6 @@
 
 <script>
   (function () {
-
     // mobile menu
     var menuToggle = document.getElementById('menu-toggle');
     var mobileMenu = document.getElementById('mobile-menu');
@@ -571,15 +510,6 @@
         });
       });
     }
-
-    // nav scrolled state
-    var nav = document.getElementById('nav');
-    var onScroll = function () {
-      if (window.scrollY > 12) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
 
     // reveal on scroll
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
