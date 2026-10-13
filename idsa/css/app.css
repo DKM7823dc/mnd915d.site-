@@ -205,6 +205,27 @@ button {
   font-size: 1.08rem;
 }
 
+.cta--center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  text-align: center;
+}
+
+.cta--center .cta__icon {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.cta--center .cta__label {
+  font-size: 1rem;
+}
+
 .cta--block {
   margin-top: 1rem;
 }
@@ -1340,36 +1361,15 @@ button {
   box-shadow: 0 -6px 20px rgba(20, 10, 30, 0.07);
 }
 
-.bookbar__tagline {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.25;
-  min-width: 0;
-  flex-shrink: 0;
-}
-
-.bookbar__tagline-main {
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: var(--ink);
-  white-space: nowrap;
-}
-
-.bookbar__tagline-sub {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
 .bookbar__btn {
   position: relative;
   flex: 1;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.75rem 0.95rem;
-  border-radius: 1rem;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.58rem 0.85rem;
+  border-radius: 0.85rem;
   background: var(--cta);
   color: #fff;
   box-shadow: var(--cta-shadow);
@@ -1384,24 +1384,24 @@ button {
 
 .bookbar__icon {
   flex-shrink: 0;
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .bookbar__cta {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   line-height: 1.15;
 }
 
 .bookbar__cta-label {
-  font-size: 1rem;
+  font-size: 0.92rem;
   font-weight: 800;
 }
 
 .bookbar__cta-sub {
-  font-size: 0.7rem;
+  font-size: 0.66rem;
   font-weight: 600;
   opacity: 0.92;
 }
@@ -1420,8 +1420,8 @@ button {
 }
 
 @keyframes btn-breathe {
-  0%, 100% { transform: scale(1); box-shadow: 0 10px 26px rgba(190, 24, 93, 0.28); }
-  50% { transform: scale(1.045); box-shadow: 0 14px 34px rgba(139, 92, 246, 0.45); }
+  0%, 100% { transform: scale(1); box-shadow: 0 8px 20px rgba(190, 24, 93, 0.24); }
+  50% { transform: scale(1.028); box-shadow: 0 10px 26px rgba(139, 92, 246, 0.4); }
 }
 
 @keyframes btn-shine {
