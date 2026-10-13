@@ -253,15 +253,13 @@
   </main>
 
   <div class="bookbar">
-    <div class="bookbar__tagline">
-      <span class="bookbar__tagline-main">Pay only after your session</span>
-      <span class="bookbar__tagline-sub">24×7 · no advance payment</span>
-    </div>
-     <button class="cta cta--lg" type="button" onclick="k2(event)">
-          <svg class="cta__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg>
-          <span class="cta__label">Book Now</span>
-          <span class="cta__offer">₹500 OFF your first visit</span>
-        </button>
+    <button id="book-btn" class="bookbar__btn" type="button">
+      <svg class="bookbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg>
+      <span class="bookbar__cta">
+        <span class="bookbar__cta-label">Book Now</span>
+        <span class="bookbar__cta-sub">First visit ₹500 OFF</span>
+      </span>
+    </button>
   </div>
 
   <div class="sheet" hidden="" id="city-sheet" role="dialog" aria-modal="true" aria-labelledby="city-sheet-title">
