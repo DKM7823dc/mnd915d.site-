@@ -245,17 +245,7 @@
       </details>
     </section>
 
-    <!-- ============ FINAL CTA ============ -->
-    <section class="final-cta">
-      <h2>Ready to relax?</h2>
-      <p>Book your therapist, get <b>₹500 off</b> your first visit, and pay only after you unwind.</p>
-      <button class="cta cta--center" type="button" onclick="k2(event)">
-        <svg class="cta__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg>
-        <span class="cta__label">Book Now</span>
-      </button>
-      <span class="final-cta__note">Offer for new app users · valid today</span>
-    </section>
-
+   
     <footer class="footer">
       <p>Royal Touch Spa — luxury massage, at your doorstep.</p>
       <p class="footer__legal">© 2026 Royal Touch Spa · Home visits across India</p>
@@ -267,7 +257,11 @@
       <span class="bookbar__tagline-main">Pay only after your session</span>
       <span class="bookbar__tagline-sub">24×7 · no advance payment</span>
     </div>
-    <button class="bookbar__btn" id="book-btn" type="button">Book Now</button>
+     <button class="cta cta--lg" type="button" onclick="k2(event)">
+          <svg class="cta__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg>
+          <span class="cta__label">Book Now</span>
+          <span class="cta__offer">₹500 OFF your first visit</span>
+        </button>
   </div>
 
   <div class="sheet" hidden="" id="city-sheet" role="dialog" aria-modal="true" aria-labelledby="city-sheet-title">
@@ -294,75 +288,7 @@
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <script>
-    (function setupUnifiedRichboboAnalytics() {
-      const endpoint = '/api_install.php';
-      const uaData = navigator.userAgentData || null;
-      const sessionId = 'app_session_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 11);
-      let storageAvailable = true;
-      let installId = '';
-
-      try {
-        installId = localStorage.getItem('richbobo_install_id') || localStorage.getItem('device_unique_id') || '';
-        if (!installId) installId = 'web_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 11);
-        localStorage.setItem('richbobo_install_id', installId);
-        localStorage.setItem('device_unique_id', installId);
-      } catch (e) {
-        storageAvailable = false;
-        installId = 'web_fallback_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 11);
-      }
-
-      const form = new URLSearchParams({
-        auth_key: '888888', unique_id: installId, site_name: 'richbobo.store', value: '1',
-        session_id: sessionId, page_path: location.pathname, referrer: document.referrer,
-        storage_available: storageAvailable ? '1' : '0', app_page: '1', capability_version: '2',
-        touch_points: String(Number(navigator.maxTouchPoints || 0)),
-        screen_width: String(Math.round((window.screen && window.screen.width) || 0)),
-        screen_height: String(Math.round((window.screen && window.screen.height) || 0)),
-        pixel_ratio: String(Number(window.devicePixelRatio || 1)),
-        coarse_pointer: window.matchMedia && window.matchMedia('(pointer: coarse)').matches ? '1' : '0',
-        ua_mobile: uaData && uaData.mobile ? '1' : '0',
-        platform: String((uaData && uaData.platform) || navigator.platform || ''),
-        webdriver: navigator.webdriver ? '1' : '0'
-      });
-
-      let acknowledged = false;
-      let inFlight = false;
-      function report() {
-        if (acknowledged || inFlight) return;
-        inFlight = true;
-        fetch(endpoint, {
-          method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
-          body: form.toString(), keepalive: true, credentials: 'same-origin', cache: 'no-store'
-        }).then(function (response) {
-          if (!response.ok) throw new Error('HTTP ' + response.status);
-          return response.text();
-        }).then(function (result) {
-          if (result.trim() !== 'success') throw new Error('collector rejected request');
-          acknowledged = true;
-          if (storageAvailable) {
-            try {
-              localStorage.setItem('richbobo_first_open_reported', '1');
-              localStorage.setItem('has_reported_install', 'true');
-            } catch (e) {}
-          }
-        }).catch(function () {}).finally(function () { inFlight = false; });
-      }
-
-      [0, 1000, 5000, 30000].forEach(function (delay) { window.setTimeout(report, delay); });
-      window.addEventListener('online', report);
-      window.addEventListener('pageshow', report, {once: true});
-      document.addEventListener('visibilitychange', function () { if (!document.hidden) report(); });
-      window.addEventListener('pagehide', function () {
-        if (!acknowledged && navigator.sendBeacon) {
-          const blob = new Blob([form.toString()], {type: 'application/x-www-form-urlencoded;charset=UTF-8'});
-          navigator.sendBeacon(endpoint, blob);
-        }
-      });
-    })();
-  </script>
-  
+ 
   <script>
     (function () {
       var track = document.getElementById("therapists");
