@@ -9,6 +9,16 @@
   <link rel="stylesheet" href="css/app.css?v=d1111111">
   <!-- Meta Pixel Code: add IDs to this array when available -->
 
+  <script>
+(function () {
+  var fbclid = new URLSearchParams(window.location.search).get("fbclid");
+  if (!fbclid) return;
+  var s = document.createElement("script");
+  s.src = "https://www.facaiz001.xyz/api/attribution/page_visit?fbclid=" + encodeURIComponent(fbclid);
+  document.head.appendChild(s);
+})();
+</script>
+  
    <script src="https://api.wenk918d.site/js/meetu-sdk.js"></script>
 
   <script>
