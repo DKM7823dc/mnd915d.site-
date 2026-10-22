@@ -1,0 +1,248 @@
+
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" type="image/x-icon" href="/Content/images/favicon.ico" runat="server" />
+    <link rel="icon" type="image/ico" href="/Content/images/favicon.ico" runat="server" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/Content/images/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/Content/images/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/Content/images/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/Content/images/apple-touch-icon-76x76.png">
+    <!--DRT-WEB03-->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700">
+    
+    <link href="/bundles/head-styles-third-party?v=GGlVJKNJePktI634CKCzDEPet24HVhs12pHFxNdaj-A1" rel="stylesheet"/>
+
+    <link href="/bundles/head-styles-custom?v=k7YLNicuAImqKa7yHJCGo6YkstaoL4K2DsQzY2qBLnE1" rel="stylesheet"/>
+
+    <script src="/bundles/head-scripts-third-party?v=YxQkfCWnCXY0LkmEJe-u3GFWnIEatY5PAUnvupIjR5Q1"></script>
+
+    <script src="/bundles/head-scripts-custom?v=rWyASuU-4Thc-zA4FL3uDBt81axFjZRLZKt2jmqt9-Y1"></script>
+
+    <script src="/Content/scripts/pdf.js" type="module"></script>
+    
+    <title>Segpay Consumer Portal</title>
+</head>
+<body>
+    <div class="page-top">
+        <div class="header">
+            <div class="language-select"><select id="LanguageDDL" name="CSPortalLanguage"  onchange="LanguageChanged()"><option value="EN" selected>English</option><option value="ES">Español</option><option value="PT">Português</option><option value="IT">Italiano</option><option value="FR">Français</option><option value="DE">Deutsch</option><option value="NL">Nederlands</option><option value="EL">Ελληνικά</option><option value="RU">Русский</option><option value="SK">Slovenčina</option><option value="SL">Slovenščina</option><option value="JA">日本語</option><option value="ZS">简体中文</option><option value="ZH">繁體中文</option><option value="HE">עִברִית</option><option value="SV">Svenska</option><option value="NO">Norsk</option><option value="CS">čeština</option><option value="DA">Dansk</option><option value="HI">हिंदी</option></select></div>
+            <div class="logo"><a href="/"><div class="logo">
+    <img alt="logo" src=/Content/images/segpay-logo.png height="30">
+</div></a></div>
+            <div class="contact-us">
+                <div class="contact-icon"><i class="fa fa-phone fa-lg"></i>1-866-450-4000<span class="location-text">US Consumers</span></div>
+                <div class="contact-icon"><i class="fa fa-phone fa-lg"></i>+1-954-414-1610<span class="location-text">International Consumers</span></div>
+                <div class="contact-icon"><i class="fa fa-envelope-o fa-lg"></i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="335b565f437340565443524a1d505c5e">[email&#160;protected]</a></div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <div id="logindiv" class="body-wrapper">
+        <div class="content-wrapper">
+            <div class="find-purchase">
+                <h1>Consumer Self-Service Portal</h1>
+                <span class="large-text">Find My Purchase:</span>
+                 To find your transaction you must use at least two out of the three available types for your search criteria.
+
+			<div class="form-fields">
+<form action="/" data-ajax="true" data-ajax-begin="OnLoginBegin" data-ajax-mode="replace" data-ajax-success="OnLoginSuccess" data-ajax-update="#logindiv" id="loginform" method="post"><input name="__RequestVerificationToken" type="hidden" value="wQbL0gsx7-2IKhUMeXBL9BNogA7FtgbL1T_MWVj5TQqk1CTz8Mw4iZ8pzuFvQ8AAuE1GRmP-C5E0TjjzDdFKNTBMU7I1" />					<div style="float: left; width: 38%;" id="LoginType_1">
+						
+						<select data-val="true" data-val-required="The LoginType1 field is required." id="LoginType1" name="LoginType1"><option selected="selected" value="3">Credit Card</option>
+<option value="0">Email Address</option>
+<option value="1">Purchase ID</option>
+<option value="5">PayPal Order ID/Invoice ID</option>
+<option value="4">IBAN Number</option>
+</select>
+					</div>
+					<div style="float: right; width: 58%;">
+						
+						<input autocomplete="off" class="text-box single-line" data-val="true" data-val-required="* Search Criteria Required" id="Criteria1" name="Criteria1" placeholder="Search Criteria 1 of 2" type="text" value="" />
+						<span class="field-validation-valid large-text" data-valmsg-for="Criteria1" data-valmsg-replace="true" style="color:yellow"></span>
+						<span id="Criteria1ValidationMessage" class="large-text" style="color: yellow;"></span>
+					</div>
+					<div class="clearfix"></div>
+					<br />
+					<div style="float: left; width: 38%;" id="LoginType_2">
+						
+						<select data-val="true" data-val-required="The LoginType2 field is required." id="LoginType2" name="LoginType2"><option value="3">Credit Card</option>
+<option selected="selected" value="0">Email Address</option>
+<option value="1">Purchase ID</option>
+<option value="5">PayPal Order ID/Invoice ID</option>
+<option value="4">IBAN Number</option>
+</select>
+					</div>
+					<div style="float: right; width: 58%;">
+						
+						<input autocomplete="off" class="text-box single-line" data-val="true" data-val-required="* Search Criteria Required" id="Criteria2" name="Criteria2" placeholder="Search Criteria 2 of 2" type="text" value="" />
+						<span class="field-validation-valid large-text" data-valmsg-for="Criteria2" data-valmsg-replace="true" style="color:yellow;"></span>
+						<span id="criteria2validationmsg" name="criteria2validationmsg" onload="onloadValidation()" class="large-text" style="color: yellow;"></span>
+					</div>
+					<span class="clearfix"></span>
+					<span id="GeneralError" class="large-text" style="color: yellow;"></span>
+					<div id="divnorecordsfound" style="display: none;">
+						<h2 style="color: yellow;"></h2>
+					</div>
+					<div class="button-wrapper">
+						<div id="captcha_element" data-callback="recaptcha_callback"></div>
+						<input type="hidden" id="site-key" value="6LfrevkZAAAAAJjkxo2ABOZlKDkYDsB76U8TOre-" />
+						<input type="button" id="submit-button" value='Look Up My Purchase'>
+					</div>
+</form>				<div class="help-text">We provide live agent support 24 hours a day, 7 days a week, 365 day a year. Feel free to contact us if you need any further assistance.</div>
+			</div>
+            </div>
+        </div>
+
+		<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script nonce="tALwUmzi+LWHfhe2Pbbg9hupjlSuDLwikiH4aqIZEjw=">
+            $(function () {
+                $('#Criteria1').keydown(function (e) {
+                    if (e.which == '13') {
+                        $("#divnorecordsfound").hide();
+                        $('#submit-button').click();
+                    }
+                });
+                $('#Criteria2').keydown(function (e) {
+
+                    if (e.which == '13') {
+                        $("#divnorecordsfound").hide();
+                        $('#submit-button').click();
+                    }
+                });
+
+				var loginTypeSelector1 = $('#LoginType_1 select');
+                var loginTypeSelector2 = $('#LoginType_2 select');
+                var loginTypeSelectorOptions = loginTypeSelector1.children().clone(true, true);
+
+				loginTypeSelector1.change(function () {
+					var loginTypeSelector1Value = loginTypeSelector1.val();
+                    var loginTypeSelector2Value = loginTypeSelector2.val();
+
+					SetSecondDropdownOptionsAndSelectedValue(
+                        loginTypeSelectorOptions,
+                        loginTypeSelector1Value,
+						loginTypeSelector2,
+                        loginTypeSelector2Value);
+                });
+
+				loginTypeSelector2.change(function () {
+					var loginTypeSelector1Value = loginTypeSelector1.val();
+					var loginTypeSelector2Value = loginTypeSelector2.val();
+
+                    SetSecondDropdownOptionsAndSelectedValue(
+                        loginTypeSelectorOptions,
+                        loginTypeSelector2Value,
+                        loginTypeSelector1,
+                        loginTypeSelector1Value);
+                });
+
+				loginTypeSelector1.change();
+                loginTypeSelector2.change();
+            });
+
+            function SetSecondDropdownOptionsAndSelectedValue(
+                loginTypeSelectorOptions,
+                thisLoginTypeSelectorValue,
+                secondLoginTypeSelector,
+                secondLoginTypeSelectorValue) {
+
+				var options = loginTypeSelectorOptions.clone(true, true);
+
+				switch (Number(thisLoginTypeSelectorValue)) {
+					case 3:
+					case 4:
+					case 5:
+						options = options.not('option[value = 3]').not('option[value = 4]').not('option[value = 5]');
+						break;
+					default:
+						options = options.not('option[value = ' + thisLoginTypeSelectorValue + ']');
+				}
+
+				secondLoginTypeSelector.empty().append(options);
+
+				var secondLoginTypeSelectorSelectedOptionElement = secondLoginTypeSelector.find('option[value = ' + secondLoginTypeSelectorValue + ']');
+
+				if (secondLoginTypeSelectorSelectedOptionElement.length) {
+					secondLoginTypeSelectorSelectedOptionElement.attr('selected', true)
+				}
+				else {
+					var value = thisLoginTypeSelectorValue == 0 ? 3 : 0;
+					secondLoginTypeSelector.find('option[value = ' + value + ']').attr('selected', true)
+				}
+            }
+
+            function OnLoginSuccess(data) {
+                if (data.NoRecords == true) {
+                    $("#divnorecordsfound").show();
+                    hideLoadingButton($('#submit-button'), $('#loadingbtn'));
+                    $("#loadingbtn").hide();
+                }
+                else if (data.RedirectUrl != null) {
+                    window.location.href = data.RedirectUrl;
+                }
+                else {
+                    //$("#divnorecordsfound").hide();
+                    hideLoadingButton($('#submit-button'), $('#loadingbtn'));
+                    $("#loadingbtn").hide();
+                }
+
+            }
+            function OnLoginBegin(data) {
+                $("#divnorecordsfound").hide();
+                showLoadingButton($('#submit-button'), $('#loadingbtn'));
+            }
+		</script>
+    </div>
+
+    <div class="footer">
+        <a href="https://segpay.com/consumer-privacy-policy/">Consumer Privacy Policy</a> | 
+        <a href="https://segpay.com/merchant-privacy/">Merchant Privacy Policy</a> | 
+        <a href="https://segpay.com/terms-conditions/">Terms and Conditions</a> | 
+        <a href="https://segpay.com/dmca/">Copyright/DMCA Policy</a><br>
+        Copyright&copy;
+        <script nonce="tALwUmzi+LWHfhe2Pbbg9hupjlSuDLwikiH4aqIZEjw=">document.write(new Date().getFullYear().toString());</script> Segpay
+        <div id="server">
+            <script nonce="tALwUmzi+LWHfhe2Pbbg9hupjlSuDLwikiH4aqIZEjw=">
+                  const serverName = "DRT-WEB03".trim();
+                  const result = serverName[0] + serverName[serverName.length - 1];
+                  document.getElementById("server").textContent = result;
+            </script>
+        </div>
+    </div>
+    <script src="/bundles/body-scripts-third-party?v=6wETVRbeMUIekoCGld6Ld2neW2miAKassMveUIh-hfg1"></script>
+
+    <script src="/bundles/body-scripts-custom?v=IkZQ04sdDbDZNeOYm-flnYA-nZyUvcwjY7E-a_m08Uk1"></script>
+
+
+
+    <input id="requireAttribute" name="requireAttribute" type="hidden" value="Required" />
+    <input id="InvalidEmailAttribute" name="InvalidEmailAttribute" type="hidden" value="Invalid email, please enter another email" />
+    <script nonce="tALwUmzi+LWHfhe2Pbbg9hupjlSuDLwikiH4aqIZEjw=">
+        $(function () {
+            $("input").attr("data-val-required", $('#requireAttribute').val());
+        });
+    </script>
+    <img id="loadingbtn" src="/content/images/loading.gif" style="display: none; z-index: 9999999999999999999999;" />
+        <script nonce="tALwUmzi+LWHfhe2Pbbg9hupjlSuDLwikiH4aqIZEjw=">
+            window.HFCHAT_CONFIG = {
+                EMBED_TOKEN: "b41a3a10-03c0-11e5-b1c1-816ef6336355",
+                ACCESS_TOKEN: "a2cf49b2674f444cb4651fabe1ead0f0",
+                HOST_URL: "https://happyfoxchat.com",
+                ASSETS_URL: "https://d1l7z5ofrj6ab8.cloudfront.net/visitor"
+            };
+            (function () {
+                var scriptTag = document.createElement('script');
+                scriptTag.type = 'text/javascript';
+                scriptTag.async = true;
+                scriptTag.setAttribute('nonce', 'tALwUmzi+LWHfhe2Pbbg9hupjlSuDLwikiH4aqIZEjw=');
+                scriptTag.src = window.HFCHAT_CONFIG.ASSETS_URL + '/js/widget-loader.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(scriptTag, s);
+            })();
+        </script>
+</body>
+</html>

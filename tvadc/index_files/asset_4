@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>RTA - Parental Control Software - Website Label </title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">	
+<meta charset="UTF-8">
+
+<!-- meta -->
+<meta name="description" content="RTA offers a website label, parental control software and works to help parents prevent children from viewing age inappropriate content." />
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.rtalabel.org/">
+<link rel="shortcut icon" href="/favicon.ico" />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- original css -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+	<!-- our additions -->
+    <link rel="stylesheet" href="assets/css/rta.css">
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="assets/css/googleapis-muli-fontfamily.css" rel="stylesheet">
+
+
+<!-- Start GoogleAnalytics code -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FNX1WJNYY7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FNX1WJNYY7');
+</script>
+<!-- End GoogleAnalytics code -->
+<!-- script async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7179447259735554 crossorigin="anonymous"></script>
+<script>$.get("ips/counter.php", function(data) {
+	if (data == 1) {
+		$.getScript("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7179447259735554", function (data,textStatus,jqxhr) { 
+			console.log( data ); // Data returned
+			console.log( textStatus ); // Success
+			console.log( jqxhr.status ); // 200
+			console.log("loaded googlesyndication"); 
+		});
+	}
+});
+</script -->
+</head>
+<body>
+
+<!-- donation modal box: these boxes do not work properly with opera -->
+<div class="modal" id="donate-top">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-body" id="donate-modal-body"></div>
+<script>$("#donate-modal-body").load("assets/forms/donate.php");</script>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-bs-dismiss="modal">close</button>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+// main navigation function that pulls in dynamic content
+function pg(query, hash) {
+    if (/content=/.test(query)) { 
+        $('#page').load('section.php?'+query);
+    } else {
+        $('#page').load(query);
+    }
+    if (hash != null && hash.length > 1) {
+        setTimeout(function () { go(hash); }, 800);
+    }
+}
+// animation to roll down past the header
+function go(hash) {
+	$(document).ready(function () {
+		$("html, body").animate({ scrollTop: $(hash).offset().top }, 800);
+	});
+}
+// this function sets up the link and title for loading pages in the background - e.g. news
+function h(link, title) {
+	var pattern = location.search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	var tester = new RegExp(pattern, 'i');
+	// if we haven't seen this link before push it into history if we can
+	if (!tester.test(link) && typeof (history.pushState) != 'undefined') {
+		shortlink = link.replace('section.php','')
+		var obj = {Url: shortlink, Page: title};
+		history.pushState(obj, obj.Page, obj.Url);
+	}
+	document.title = title;
+}
+// background load a page
+function bg(link, title) {
+	pg(link, '#top');
+	h(link, title);
+}
+</script>
+
+<header class="header container-background">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-5 col-md-5 col-lg-3 text-center">
+                <a href="index.html" class="logo-link">
+                    <img class="img-fluid" src="assets/img/logo.png" alt="RTA Label - Parental Controls - Website Label" height="166">
+                </a>
+            </div>
+            <div class="col-12 col-sm-7 col-md-7 col-lg-9 align-self-end">
+                <div class="row header-social">
+                    <div class="col-5 col-md-4 col-lg-7 social-links">
+                        <a href="https://x.com/ASACP" class="social-item">
+                            <img class="img-fluid" src="assets/img/twitter_icon.png" alt="">
+                        </a>
+                        <a href="https://facebook.com/asacp" class="social-item">
+                            <img class="img-fluid" src="assets/img/facebook_icon.png" alt="">
+                        </a>
+                    </div>
+
+                    <div class="col-7 col-md-8 col-lg-4 donate-container">
+                        <a href='https://www.asacp.org/index.html?content=donate' class="donate">
+                            <b class="first-line">Donate Now</b>
+<br/>
+                            <span class="second-line">Click here for details</span>
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <nav class="navbar navbar-expand-lg navbar-dark">
+                            <button class="navbar-toggler ml-auto" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="mainNav">
+                                <ul class="navbar-nav ms-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="index.html">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="what-is-rta-link" 
+                                           href="index.html?assets/pages/default.php#what-is-rta">What is RTA?</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="how-you-can-help-link" 
+                                           href="index.html?assets/pages/default.php#how-you-can-help">How You Can Help</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="rta-contact-link" 
+                                           href="?content=contact">Contact Us</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- inline styles courtesy of chrome -->
+<style>
+ul#ul-sponsors,
+ul#ul-news,
+ul#ul-parents,
+ul#ul-resources,
+.dropdown-menu,
+.navbar-nav .dropdown-menu {
+    background: #fff;
+}
+
+.navbar-nav .dropdown-menu li, 
+.navbar-nav .dropdown-menu a {
+    color: #fff;
+    background-color: #000; 
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.navbar-nav .dropdown-menu li a:focus,
+.navbar-nav .dropdown-menu li a:hover {
+    color: rgba(255, 255, 255, .75);
+    text-decoration: none;
+}
+
+</style>
+<div class="content">
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-lg navbar-dark">
+                        <div class="navbar-collapse" id="secondaryNav">
+                            <ul class="navbar-nav ms-auto">
+								<li class="nav-item">
+								<div class="dropdown" id="rta-label-your-sites-dropdown">
+								<a 
+									id="dLabelNews" 
+									class="nav-link" 
+									data-bs-toggle="dropdown" 
+									role="button"
+									aria-haspopup="true"
+									aria-expanded="false"
+								href="#">Label with RTA</a>
+								<ul class="dropdown-menu" id="ul-news" 
+									style="background-color: black; max-width: 300px; line-height: 2;" 
+									role="menu" aria-labelledby="dLabelNews">
+<li><a href="index.html?content=howto#top">Label your Site</a></li>
+<li><a href="index.html?content=rtaplus#top">RTA Verified</a></li>
+<li><a href="index.html?content=RTAV#top">RTA Verified Subscribers</a></li>
+								</ul>
+								</li>
+                                <li class="nav-item">
+                                <div class="dropdown" id="news-dropdown">
+                                <a 
+                                    id="dLabelNews" 
+                                    class="nav-link" 
+                                    data-bs-toggle="dropdown" 
+                                    role="button"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                href="#">Press</a>
+                                <ul class="dropdown-menu" id="ul-news" 
+                                    style="background-color: black; max-width: 300px; line-height: 2;" 
+                                    role="menu" aria-labelledby="dLabelNews">
+                                <li>
+                                    <a href="index.html?content=press">News &amp; Press</a>
+                                </li>
+                                <li>
+                                    <a href="index.html?assets/pages/awards.php">Awards &amp; Partners</a>
+                                </li>
+                                </ul>
+                                </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.html?content=parents">Parents</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.html?content=faq">FAQ</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+<a name="top" id="top"></a>
+    <div class="info-section container-fluid">
+        <div class="row">
+            <div class="col-12 info-item info-report">
+                <div class="row">
+                    <div class="col-12" style="">
+                        <h3>WEBMASTERS LABEL YOUR SITES</h3>
+                        <a href='?content=howto#top'
+                        >Click here for more information</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="page" id="page">
+<center>
+<img src="images/site_loading.gif" alt="site loading" 
+	title="javascript is required for this site" class="waiting" />
+<div id="javascript-required" class="waiting">
+<noscript>Javascript is required for this site.</noscript>
+</div>
+</center>
+</div>
+
+<script>
+// Map ?content= keys that have dedicated assets/pages/ files
+var contentPageMap = {
+    'howto': 'assets/pages/howto.php',
+};
+
+hash = ((location.hash.length > 1) ? location.hash: '#top');
+if (/content=validate$/.test(location.search) && document.referrer.length > 0)  {
+    search = location.search + "&ref=" + document.referrer;
+    pg(search.substring(1), hash);
+} else if (/content=index/.test(location.search)) {
+    pg('assets/pages/default.php', location.hash);
+} else if (location.search.length > 1) {
+    var contentMatch = location.search.match(/[?&]content=([^&]+)/);
+    if (contentMatch && contentPageMap[contentMatch[1]]) {
+        pg(contentPageMap[contentMatch[1]], hash);
+    } else if (/content=|assets\/pages\/(apply|awards).php/.test(location.search)) {
+        pg(location.search.substring(1), hash);
+    } else {
+        pg('assets/pages/default.php', location.hash);
+    }
+} else {
+    pg('assets/pages/default.php', location.hash);
+}
+</script>
+
+</div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-6 group">
+                    <h3 class="heading">About ASACP</h3>
+                    <p class="description">The Association of Sites Advocating Child Protection (ASACP) is a non-profit
+                        organization dedicated to eliminating child exploitation from the Internet. Founded in 1996,
+                        ASACP battles child exploitation through its 
+						<a data-bs-toggle="modal" data-bs-target="#report-instructions-top" 
+							href="?content=report">CE Reporting Tipline</a> and helps parents prevent
+						children from viewing age-restricted material online with the 
+						<a href="http://www.rtalabel.org">Restricted To Adults - RTA Website Label</a>.</p>
+                </div>
+                <div class="col-12 col-sm-6 group">
+                    <h3 class="heading">WHY ASACP</h3>
+                    <p class="description">ASACP offers a secure, anonymous reporting system for the general public to
+                        report questionable content who may feel uncomfortable contacting government agencies. ASACP
+                        fosters communication and cooperation with the online adult industry.This means we have the
+                        outreach and access to involve adult sites and their customers in our fight.</p>
+                </div>
+                <div class="col-12 info" id="bottom-line">ASACP IS A NONPROFIT ORGANIZATION<br/>© 2025 ASACP</div>
+                <script>$("#bottom-line").load("assets/forms/bottom-line.php");</script>
+            </div>
+
+        </div>
+    </footer>
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+sc_project=2407610; 
+sc_invisible=1; 
+sc_partition=22; 
+sc_security="e5ffa3ae"; 
+sc_remove_link=1; 
+</script>
+
+
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"></script><noscript><div
+class="statcounter"><img class="statcounter"
+src="https://c23.statcounter.com/2407610/0/e5ffa3ae/1/"
+alt="hits counter" ></div></noscript>
+<!-- End of StatCounter Code -->
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4e01b8d790c4e41',t:'MTc5MjU4NDA4Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
