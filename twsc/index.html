@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="zh-TW"><head>
+		
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css">
+  <title>一夜情生活館</title>
+  
+  
+   
+   <script src="https://api.wenk918d.site/js/meetu-sdk.js"></script>
+   
+ <script>
+						function k2() {
+							MeetU.download(event);
+						}
+					</script>
+  					 
+					
+</head>
+<body style="background-image: url(images/bg-image.jpg)">
+  <div class="inner-content">
+    <div class="content">
+      <div id="intro">
+        <h1>註意！</h1>
+        <p></p><h2>只進入身體不進入生活</h2><p></p>
+        <p>在你10公里內，有28位女性會員正在等你！其中不少是尋求刺激的正妹、飢渴難耐的熟姊，還有欲求不滿的人妻。別再猶豫，立刻行動！目前男性可以免費註冊的時間窗口只剩下<span id="countdown" style="font-family: urbanist, sans-serif"><strong>05:00</strong></span>。我們只需要你回答三個簡單的問題，以確定你是否符合使用我們專屬網站的資格。祝你好運！</p>
+        <button class="custom-button sticky-button" onclick="showLoadingScreen()">繼續</button>
+      </div>
+
+      <div id="loadingScreen" style="display: none">
+        <h2>正在載入個人檔案選擇程序</h2>
+        <div class="progress-bar-area">
+          <div id="progress-bar"></div>
+        </div>
+        <ul style="display: none">
+          <li>檢查是否有免費通行證。</li>
+          <li>正在檢查重複註冊。</li>
+          <li>搜尋免費註冊選項。</li>
+        </ul>
+      </div>
+
+      <ul class="step-title">
+        <li id="stepItem1">
+          <h4>年齡</h4>
+          <img class="icon" src="images/age.svg" alt="">
+          <img class="selectedImage" src="" alt="">
+        </li>
+        <li id="stepItem2">
+          <h4>頭髮</h4>
+          <img class="icon" src="images/hair.png" alt="">
+          <img class="selectedImage" src="" alt="">
+        </li>
+        <li id="stepItem3">
+          <h4>胸部</h4>
+          <img class="icon" src="images/boobs.png" alt="">
+          <img class="selectedImage" src="" alt="">
+        </li>
+        <li id="stepItem4">
+          <h4>臀部</h4>
+          <img class="icon" src="images/ass.png" alt="">
+          <img class="selectedImage" src="" alt="">
+        </li>
+        <li id="stepItem5">
+          <h4>個人檔案</h4>
+          <img class="icon" src="images/ass.png" alt="">
+          <img class="selectedImage" src="" alt="">
+        </li>
+      </ul>
+
+      <div id="steps">
+        <div id="step1" class="step" style="display: none">
+          <h2>你喜歡哪個年齡層的女性?</h2>
+          <div class="option-list">
+            <button onclick="storeDataAndProceed({id: 1, img: './assets/20-30.png'})">
+              <div class="image"><img src="images/20-30.png" alt=""></div>
+              <h4 class="name">20-30</h4>
+            </button>
+            <button onclick="storeDataAndProceed({id: 2, img: './assets/30-40.png'})">
+              <div class="image"><img src="images/30-40.png" alt=""></div>
+              <h4 class="name">30-40</h4>
+            </button>
+            <button onclick="storeDataAndProceed({id: 3, img: './assets/50+.png'})">
+              <div class="image"><img src="images/50%2B.png" alt=""></div>
+              <h4 class="name">40+</h4>
+            </button>
+          </div>
+        </div>
+
+        <div id="step2" class="step" style="display: none">
+          <h2>請選擇你喜歡的髮型</h2>
+          <div class="option-list">
+            <button onclick="storeDataAndProceed({id: 1, img: './assets/3.png'})">
+              <div class="image"><img src="images/3.png" alt=""></div>
+              <h4 class="name">短髮</h4>
+            </button>
+            <button onclick="storeDataAndProceed({id: 2, img: './assets/13.png'})">
+              <div class="image"><img src="images/13.png" alt=""></div>
+              <h4 class="name">中等</h4>
+            </button>
+            <button onclick="storeDataAndProceed({id: 3, img: './assets/23.png'})">
+              <div class="image"><img src="images/23.png" alt=""></div>
+              <h4 class="name">長髮</h4>
+            </button>
+          </div>
+        </div>
+
+        <div id="step2" class="step" style="display: none">
+          <h2>請選擇你喜歡的髮型</h2>
+          <div class="option-list">
+            <button onclick="storeDataAndProceed({id: 1, img: './assets/2.png'})">
+              <div class="image"><img src="images/2.png" alt=""></div>
+              <h4 class="name">短髮</h4>
+            </button>
+            <button onclick="storeDataAndProceed({id: 2, img: './assets/21.png'})">
+              <div class="image"><img src="images/21.png" alt=""></div>
+              <h4 class="name">中等</h4>
+            </button>
+            <button onclick="storeDataAndProceed({id: 3, img: './assets/22.png'})">
+              <div class="image"><img src="images/22.png" alt=""></div>
+              <h4 class="name">長髮</h4>
+            </button>
+          </div>
+        </div>
+
+        <div id="step2" class="step" style="display: none">
+          <h2>請選擇你喜歡的髮型</h2>
+          <div class="option-list">
+            <button onclick="storeDataAndProceed({id: 1, img: './assets/1.png'})">
+              <div class="image"><img src="images/1.png" alt=""></div>
+              <h4 class="name">短髮</h4>
+            </button>
+            <button onclick="storeDataAndProceed({id: 2, img: './assets/11.png'})">
+              <div class="image"><img src="images/11.png" alt=""></div>
+              <h4 class="name">中等</h4>
+            </button>
+            <button onclick="storeDataAndProceed({id: 3, img: './assets/12.png'})">
+              <div class="image"><img src="images/12.png" alt=""></div>
+              <h4 class="name">長髮</h4>
+            </button>
+          </div>
+        </div>
+
+        <div id="step3" class="step" style="display: none">
+          <h2>請選擇你喜歡的胸部尺寸</h2>
+          <div class="option-list">
+            <button onclick="storeDataAndProceed({id: 1, img: './assets/small.png'})">
+              <div class="image"><img src="images/small.png" alt=""></div>
+              <h4 class="name">小</h4>
+            </button>
+            <button onclick="storeDataAndProceed({id: 2, img: './assets/medium.png'})">
+              <div class="image"><img src="images/medium.png" alt=""></div>
+              <h4 class="name">中</h4>
+            </button>
+            <button onclick="storeDataAndProceed({id: 3, img: './assets/big.png'})">
+              <div class="image"><img src="images/big.png" alt=""></div>
+              <h4 class="name">大</h4>
+            </button>
+          </div>
+        </div>
+
+        <div id="step4" class="step" style="display: none">
+          <h2>請選擇你喜歡的身材類型</h2>
+          <div class="option-list">
+            <button onclick="storeDataAndProceed({id: 1, img: './assets/smallass.png'})">
+              <div class="image"><img src="images/smallass.png" alt=""></div>
+              <h4 class="name">小</h4>
+            </button>
+            <button onclick="storeDataAndProceed({id: 2, img: './assets/mediumass.png'})">
+              <div class="image"><img src="images/mediumass.png" alt=""></div>
+              <h4 class="name">中</h4>
+            </button>
+            <button onclick="storeDataAndProceed({id: 3, img: './assets/bigass.png'})">
+              <div class="image"><img src="images/bigass.png" alt=""></div>
+              <h4 class="name">大</h4>
+            </button>
+          </div>
+        </div>
+
+        <div id="step5" class="step profile" style="display: none">
+          <h2>根據你的偏好，我們已預先選出3個符合你要求的女性會員供你選擇</h2>
+          <div class="option-list">
+            <button class="resultImage">
+              <div class="image"><img src="images/profile1.png" alt=""></div>
+              <h4 class="name">會員1</h4>
+            </button>
+            <button class="resultImage">
+              <div class="image"><img src="images/profile2.png" alt=""></div>
+              <h4 class="name">會員2</h4>
+            </button>
+            <button class="resultImage">
+              <div class="image"><img src="images/profile3.png" alt=""></div>
+              <h4 class="name">會員3</h4>
+            </button>
+            <button onclick="storeDataAndProceed({id: 4, img: './assets/profile 4 mystery.png'})">
+              <div class="image"><img src="images/woman.jpeg" alt=""></div>
+              <h4 class="name">神秘人妻</h4>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="thankYouPage" style="display: none">
+        <h2>恭喜！</h2>
+        <h3>你獲得註冊我們網站的資格！</h3>
+        <p>載入檔案庫中符合的會員，根據你的回答，在你附近有33位女性會員。</p>
+        <h3>您即將獲得附近正妹的聯繫方式。請點擊下方按鈕添加後主動打招呼獲取正妹的青睞喔~</h3>
+        <ul>
+          <li>馬上添加美女專員，回復所在地區如：【台北】，將立即為您安排鄰近的正妹</li>
+          <li>回復【想約】，將為您解鎖女孩的聯繫方式與見面細節</li>
+          <li>輸入【深入】，可獲得進階玩法與隱藏會員福利</li>
+        </ul>
+
+        <h3>立即獲取她們的聯繫方式：</h3>
+
+        <div class="image-buttons-container" style="display: flex; justify-content: center; margin-top: 5px; gap: 60px;">
+          <a href="javascript:" onclick="k2()">
+            <img src="images/line.png" alt="bt2" style="width: auto; max-width: 90px; height: auto; max-height: 100px; object-fit: contain;">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/index.js"></script>
+
+</body></html>
